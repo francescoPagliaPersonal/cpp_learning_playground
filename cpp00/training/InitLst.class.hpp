@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:38:35 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/28 12:33:16 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/01/28 14:24:17 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ class InitLst {
 			InitLst(int num, char word, float dotnum);
 			~InitLst(void);
 	void	report(void) const;
+
+	private:
+
+	int		_m1;
+	int		_set_private(int a);
 
 };
 

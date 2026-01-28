@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:26:37 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/28 11:58:04 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/01/28 14:36:28 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int main(void) {
 */
 	InitLst lst(1, 'p', 1.5);
 	lst.report();
+//	int casa = lst._set_private(5);
 	return (0);
 }

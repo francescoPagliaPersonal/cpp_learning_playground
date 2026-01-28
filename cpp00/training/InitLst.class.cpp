@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:43:45 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/28 12:31:21 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/01/28 14:33:48 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 InitLst::InitLst(int num, char word, float dotnum) : i1(num), c1(word), f1(dotnum) {
 
 	std::cout << "InitLst " << this->c1 << " created." << std::endl;
+	this->_m1 = this->_set_private(this->i1);
 	return ;
 }
 
@@ -34,6 +35,13 @@ void	InitLst::report(void) const {
 			<<	 "\n 2: " << this->c1
 			<<   "\n 3: " << this->f1
 			<< std::endl;
+	std::cout << "Private parameters:"
+			<<	 "\n 1. " << this->_m1
+			<< std::endl;
 	return ;
 }
 
+int InitLst::_set_private(int num) {
+
+	return (num + num);
+}
