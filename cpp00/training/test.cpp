@@ -6,13 +6,14 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:26:37 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/28 14:36:28 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/01/28 15:12:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Trial.class.hpp"
 #include "InitLst.class.hpp"
+#include "Setter.class.hpp"
 
 int main(void) {
 /*	char buff[512];
@@ -32,6 +33,12 @@ int main(void) {
 */
 	InitLst lst(1, 'p', 1.5);
 	lst.report();
-//	int casa = lst._set_private(5);
+/*	int casa = lst._set_private(5); *	this code is not possible because the 
+										function is marked as private */
+	Setter value(2);
+	std::cout << "value is: " << value.getVal() << '\n';
+	value.setVal(10);
+	std::cout << "value is: " << value.getVal() << '\n';
+	value.setVal(-20);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:43:45 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/28 14:33:48 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/01/28 14:41:21 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 InitLst::InitLst(int num, char word, float dotnum) : i1(num), c1(word), f1(dotnum) {
 
-	std::cout << "InitLst " << this->c1 << " created." << std::endl;
-	this->_m1 = this->_set_private(this->i1);
+	std::cout << "InitLst " << c1 << " created." << std::endl;
+	_m1 = _set_private(i1);
 	return ;
 }
 
 InitLst::~InitLst(void) {
 
-	std::cout << "InitLst destroyed" << std::endl;
+	std::cout << '[' << __FUNCTION__ << ']' << " InitLst destroyed" << std::endl;
 	return ;
 }
 
@@ -31,17 +31,17 @@ InitLst::~InitLst(void) {
 void	InitLst::report(void) const {
 
 	std::cout << "Public parameters:"
-			<<   "\n 1: " << this->i1
-			<<	 "\n 2: " << this->c1
-			<<   "\n 3: " << this->f1
+			<<   "\n 1: " << i1
+			<<	 "\n 2: " << c1
+			<<   "\n 3: " << f1
 			<< std::endl;
 	std::cout << "Private parameters:"
-			<<	 "\n 1. " << this->_m1
+			<<	 "\n 1. " << _m1
 			<< std::endl;
 	return ;
 }
 
 int InitLst::_set_private(int num) {
 
-	return (num + num);
+	return ((num + num) * 5);
 }
