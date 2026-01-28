@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 09:44:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/27 10:21:46 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/01/28 11:25:10 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Trial {
 			~Trial(void);
 
 	void	foofunct(void);
+	int		sum(int a, int b);
 };
 
 #endif
