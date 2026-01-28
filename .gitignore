@@ -39,3 +39,8 @@
 
 # debug information files
 *.dwo
+
+# local files
+*.sw[p]
+cpp00/ex00/cpp_00
+cpp00/training/training
