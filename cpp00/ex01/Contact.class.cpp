@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   Contact.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 14:45:38 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/29 19:00:21 by fpaglia          ###   ########.fr       */
+/*   Created: 2026/01/29 19:00:13 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/01/29 19:03:18 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#include "Contact.class.hpp"
 
-# include <iostream>
-# include <string>
-# include "Contact.class.hpp"
-#include <cstdlib>
+Contact::Contact(void) : name(""), surn(""), nick(""), phon("") {}
 
-class PhoneBook {
-	
-	public:
-	
-	PhoneBook(void);
-	~PhoneBook(void);
-	
-	void 		search(void) const;
-	bool		add(void);
-	static int	getid(void);
+Contact::~Contact(void) {}
 
-	private:
-	
-	static int	ids;
-	Contact		entry[8];
-
-};
-#endif
