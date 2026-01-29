@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Setter.class.hpp                                   :+:      :+:    :+:   */
+/*   Compare.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/28 14:53:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/29 10:43:45 by fpaglia          ###   ########.fr       */
+/*   Created: 2026/01/29 10:44:49 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/01/29 11:14:13 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SETTER_CLASS_H
-# define  SETTER_CLASS_H
+#ifndef COMPARE_CLASS_H
+# define  COMPARE_CLASS_H
 
 #include <iostream>
 
-class Setter {
-
+class Compare {
 	public:
 	
-	Setter(int myval);
-	~Setter(void);
-
-	int		getVal(void) const;
-	bool	setVal(int num);
+	Compare(int num);
+	~Compare(void);
+	
+	int		getval(void);
+	void	setval(int num);
+	int		check(Compare *cmp);
 
 	private:
-	
+
 	int		_val;
 };
 
+
 #endif
+
