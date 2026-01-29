@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:26:37 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/29 11:22:15 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/01/29 12:01:20 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "InitLst.class.hpp"
 #include "Setter.class.hpp"
 #include "Compare.class.hpp"
+#include "InstCount.class.hpp"
+
 void prnt_comp(int num, char p)
 {
 	char str1[] = "phisically";
@@ -32,6 +34,11 @@ void prnt_comp(int num, char p)
 
 }
 
+void addInst()
+{
+	InstCount b;
+	std::cout << "instances: " << b.getcount() << std::endl;
+}
 
 int main(void) {
 //	HELLO WORLD
@@ -66,7 +73,7 @@ int main(void) {
 */
 
 //	COMPARISON
-	Compare one(46);
+/*	Compare one(46);
 	Compare	two(48);
 	
 	std::cout << "show return: " << (&one == &one) << std::endl;
@@ -77,5 +84,15 @@ int main(void) {
 	prnt_comp(one.check(&two), 's');
 	two.setval(46);
 	prnt_comp(one.check(&two), 's');
+i*/
+//	STATIC VALUESo
+	{	
+	std::cout << "instances: " << InstCount::getcount() << std::endl;
+	InstCount	one;
+	std::cout << "instances: " << one.getcount() << std::endl;
+	addInst();
+	std::cout << "instances: " << one.getcount() << std::endl;
+	}
+	std::cout << "instances: " << InstCount::getcount() << std::endl;
 	return (0);
 }
