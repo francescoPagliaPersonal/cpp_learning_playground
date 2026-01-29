@@ -6,7 +6,11 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:26:37 by fpaglia           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/01/29 12:12:04 by fpaglia          ###   ########.fr       */
+=======
+/*   Updated: 2026/01/29 12:01:20 by fpaglia          ###   ########.fr       */
+>>>>>>> 46cb6f7dfb48a8002b0bf7c64f69117da0d1cf5d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +88,7 @@ int main(void) {
 	prnt_comp(one.check(&two), 's');
 	two.setval(46);
 	prnt_comp(one.check(&two), 's');
+<<<<<<< HEAD
 */
 //	STATIC VALUES
 /*	this demo introduces static values meaning values owned by the class itself and 
@@ -93,7 +98,10 @@ int main(void) {
 		inst.getstativalue();
 	or globally calling the function directly from the class:
 		CLASS::getstaticvalue();
-	{	
+=======
+i*/
+//	STATIC VALUESo
+/*	{	
 	std::cout << "instances: " << InstCount::getcount() << std::endl;
 	InstCount	one;
 	std::cout << "instances: " << one.getcount() << std::endl;
