@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 15:15:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/29 18:59:24 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/01/29 23:56:57 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ std::string format_string(std::string input)
 	if (input.length() < 10)
 		str.replace(10 - input.length(), input.length(), input);
 	else {
-		str.replace(0, 8, input);
+		str.replace(0, 9, input, 0, 9);
 		str.replace(9, 1, ".");
 	}
 	return (str); 
@@ -35,28 +35,35 @@ void display_table(const Contact *entry, int idsize)
 {
 	std::string	str;
 
-	std::cout << str.assign(44, '-') << '\n'
+	std::cout << str.assign(45, '-') << '\n'
 	<< "|  index   |   name   | surname  | nickname |\n"
 	<< str << std::endl;
+	if (!idsize)
+	{
+		std::cout << "|    Empty PhoneBook nothing to display     |\n"
+				<< str << "\n "<< std::endl;
+		return ;
+	}
 	for (int i = 0; i < idsize; i++) 
 	{
-		std::cout << "|" << str.assign(9, ' ') << i
+		std::cout << "|" << str.assign(9, ' ') << (i + 1)
 				<< "|" << format_string(entry[i].name)
 				<< "|" << format_string(entry[i].surn)
 				<< "|" << format_string(entry[i].nick) 
 				<< "|" << std::endl;
 	}
+	std::cout << str.assign(45, '-') << std::endl;
 	return ;
 }
 
 void	display_contact(const Contact *entry, int id)
 {
-	std::cout << "here details of contact id: " << id << "\n"
-			<< "name:      " << entry[id].name << "\n"
-			<< "surname:   " << entry[id].surn << "\n"
-			<< "nickname:  " << entry[id].nick << "\n"
-			<< "phone nbr: " << entry[id].phon << "\n"
-			<< "dark secret:\n " << entry[id].secr << std::endl;
+	std::cout << "\n[ID: " << (id + 1) << "] contact details:\n"
+			<< "name:         " << entry[id].name << "\n"
+			<< "surname:      " << entry[id].surn << "\n"
+			<< "nickname:     " << entry[id].nick << "\n"
+			<< "phone nbr:    " << entry[id].phon << "\n"
+			<< "dark secret:\n" << entry[id].secr << "\n" << std::endl;
 	return ;
 }
 
@@ -71,13 +78,16 @@ void	PhoneBook::search(void) const
 	// display available contacts;
 	display_table(entry, idsize);
 	// offer cin to explore an id;
+	if (!idsize)
+		return ;		
 	i = 0;
 	while (i < 3)
 	{
+		std::cout << "id: ";
 		std::getline(std::cin, str);
-		idlook = std::atoi(str.c_str());
+		idlook = std::atoi(str.c_str()) - 1;
 		// if id > available trow error and request a new one
-		if (idlook >= idsize)
+		if (idlook >= idsize || idlook < 0)
 			std::cout << "id not found" << std::endl;
 		// else display detailed info
 		else {
@@ -96,7 +106,7 @@ bool	PhoneBook::add(void)
 	// continue till all the required fields are provided.
 	std::string str;
 	int id = PhoneBook::ids % 8;
-	std::cout << "Add/replace contact id: " << id << std::endl;
+	std::cout << "Editing contact id: " << (id + 1) << "/8"<< std::endl;
 	std::cout << "name: " ;
 	std::getline(std::cin, str);
 	entry[id].name.assign(str);
