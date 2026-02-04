@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 15:15:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/04 13:47:18 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/04 14:13:16 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ PhoneBook::PhoneBook(void) {}
 
 PhoneBook::~PhoneBook(void) {}
 
-std::string format_string(std::string input)
+static std::string format_string(std::string input)
 {
 	std::string	str(10, ' ');
 	if (input.length() < 10)
@@ -33,7 +33,19 @@ std::string format_string(std::string input)
 	return (str); 
 }
 
-void display_table(const Contact *entry, int idsize)
+
+static bool not_ascii_input(const std::string& str)
+{
+	for (int i = 0; i < str.length(); ++i)
+	{
+		if (((unsigned char)(str[i]) & 0x80) != 0 
+			|| ((unsigned char)(str[i]) & 0xE0) == 0)
+			return (true);
+	}
+	return (false);
+}
+
+void	PhoneBook::display_table(const Contact *entry, int idsize) const
 {
 	std::string	str;
 
@@ -58,7 +70,7 @@ void display_table(const Contact *entry, int idsize)
 	return ;
 }
 
-void	display_contact(const Contact *entry, int id)
+void	PhoneBook::display_contact(const Contact *entry, int id) const
 {
 	std::cout << "\n[ID: " << (id + 1) << "] contact details:\n"
 			<< "name:         " << entry[id].name << "\n"
@@ -99,18 +111,6 @@ void	PhoneBook::search(void) const
 		i++;
 	}
 	return ;
-}
-
-
-bool not_ascii_input(const std::string& str)
-{
-	for (int i = 0; i < str.length(); ++i)
-	{
-		if (((unsigned char)(str[i]) & 0x80) != 0 
-			|| ((unsigned char)(str[i]) & 0xE0) == 0)
-			return (true);
-	}
-	return (false);
 }
 
 bool	PhoneBook::add(void) 

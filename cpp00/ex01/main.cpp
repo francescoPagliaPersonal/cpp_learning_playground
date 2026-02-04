@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 17:25:43 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/04 13:40:58 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/04 14:20:46 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int main()
 	while (input.compare("EXIT"))
 	{
 		std::cout << "> ";
-		std::getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+			break ;
 		input.assign(trim_string(input));
 		if (input.compare("ADD") == 0)
 		{
@@ -51,6 +52,8 @@ int main()
 		else if (input.compare("EXIT") != 0)
 			std::cout << "Command not found." << std::endl;
 	}
+	std::cin.clear();
+    std::cout.flush();
 	return (0);
 }
 
