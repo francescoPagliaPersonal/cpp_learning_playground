@@ -6,12 +6,14 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 15:15:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/29 23:56:57 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/04 13:47:18 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
-#include <cstdlib>
+#include <cctype>
+#include <locale>
+#include <string>
 
 int PhoneBook::ids = 0;
 
@@ -99,6 +101,18 @@ void	PhoneBook::search(void) const
 	return ;
 }
 
+
+bool not_ascii_input(const std::string& str)
+{
+	for (int i = 0; i < str.length(); ++i)
+	{
+		if (((unsigned char)(str[i]) & 0x80) != 0 
+			|| ((unsigned char)(str[i]) & 0xE0) == 0)
+			return (true);
+	}
+	return (false);
+}
+
 bool	PhoneBook::add(void) 
 {
 	// prompt name of the field to fill up
@@ -109,18 +123,28 @@ bool	PhoneBook::add(void)
 	std::cout << "Editing contact id: " << (id + 1) << "/8"<< std::endl;
 	std::cout << "name: " ;
 	std::getline(std::cin, str);
+	if (not_ascii_input(str))
+		return (false);
 	entry[id].name.assign(str);
 	std::cout << "surname: ";
 	std::getline(std::cin, str);
+	if (not_ascii_input(str))
+		return (false);
 	entry[id].surn.assign(str);
 	std::cout << "nick name: ";
 	std::getline(std::cin, str);
+	if (not_ascii_input(str))
+		return (false);
 	entry[id].nick.assign(str);
 	std::cout << "phone number: ";
 	std::getline(std::cin, str);
+	if (not_ascii_input(str))
+		return (false);
 	entry[id].phon.assign(str);
 	std::cout << "secret: ";
 	std::getline(std::cin, str);
+	if (not_ascii_input(str))
+		return (false);
 	entry[id].secr.assign(str);
 	PhoneBook::ids += 1;
 	return (true);
