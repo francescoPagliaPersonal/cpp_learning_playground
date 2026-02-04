@@ -38,11 +38,11 @@ class Contact {
 	private:
 	
 	std::string param[MAX_FIELD];
-	std::string	name;
-	std::string	surn;
-	std::string	nick;
-	std::string	phon;
-	std::string	secr;
+	// std::string	name;
+	// std::string	surn;
+	// std::string	nick;
+	// std::string	phon;
+	// std::string	secr;
 };
 
 #endif

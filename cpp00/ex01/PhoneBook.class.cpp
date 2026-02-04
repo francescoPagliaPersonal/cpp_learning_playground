@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
+#include "Contact.class.hpp"
 #include <cctype>
 #include <locale>
 #include <string>
@@ -61,9 +62,9 @@ void	PhoneBook::display_table(const Contact *entry, int idsize) const
 	for (int i = 0; i < idsize; i++) 
 	{
 		std::cout << "|" << str.assign(9, ' ') << (i + 1)
-				<< "|" << format_string(entry[i].name)
-				<< "|" << format_string(entry[i].surn)
-				<< "|" << format_string(entry[i].nick) 
+				<< "|" << format_string(entry[i].get_field(Contact::NAME))
+				<< "|" << format_string(entry[i].get_field(Contact::SURNAME))
+				<< "|" << format_string(entry[i].get_field(Contact::NICK))
 				<< "|" << std::endl;
 	}
 	std::cout << str.assign(45, '-') << std::endl;
@@ -73,11 +74,11 @@ void	PhoneBook::display_table(const Contact *entry, int idsize) const
 void	PhoneBook::display_contact(const Contact *entry, int id) const
 {
 	std::cout << "\n[ID: " << (id + 1) << "] contact details:\n"
-			<< "name:         " << entry[id].name << "\n"
-			<< "surname:      " << entry[id].surn << "\n"
-			<< "nickname:     " << entry[id].nick << "\n"
-			<< "phone nbr:    " << entry[id].phon << "\n"
-			<< "dark secret:\n" << entry[id].secr << "\n" << std::endl;
+			<< "name:         " << entry[id].get_field(Contact::NAME) << "\n"
+			<< "surname:      " << entry[id].get_field(Contact::SURNAME) << "\n"
+			<< "nickname:     " << entry[id].get_field(Contact::NICK) << "\n"
+			<< "phone nbr:    " << entry[id].get_field(Contact::PHONE) << "\n"
+			<< "dark secret:\n" << entry[id].get_field(Contact::SECRET) << "\n" << std::endl;
 	return ;
 }
 
@@ -118,34 +119,34 @@ bool	PhoneBook::add(void)
 	// prompt name of the field to fill up
 	// offer cin to get data
 	// continue till all the required fields are provided.
-	std::string str;
+	std::string str("");
 	int id = PhoneBook::ids % 8;
 	std::cout << "Editing contact id: " << (id + 1) << "/8"<< std::endl;
 	std::cout << "name: " ;
 	std::getline(std::cin, str);
 	if (not_ascii_input(str))
 		return (false);
-	entry[id].name.assign(str);
+	entry[id].set_field(Contact::NAME, str);
 	std::cout << "surname: ";
 	std::getline(std::cin, str);
 	if (not_ascii_input(str))
 		return (false);
-	entry[id].surn.assign(str);
+	entry[id].set_field(Contact::SURNAME, str);
 	std::cout << "nick name: ";
 	std::getline(std::cin, str);
 	if (not_ascii_input(str))
 		return (false);
-	entry[id].nick.assign(str);
+	entry[id].set_field(Contact::NICK, str);
 	std::cout << "phone number: ";
 	std::getline(std::cin, str);
 	if (not_ascii_input(str))
 		return (false);
-	entry[id].phon.assign(str);
+	entry[id].set_field(Contact::PHONE, str);
 	std::cout << "secret: ";
 	std::getline(std::cin, str);
 	if (not_ascii_input(str))
 		return (false);
-	entry[id].secr.assign(str);
+	entry[id].set_field(Contact::SECRET, str);
 	PhoneBook::ids += 1;
 	return (true);
 }

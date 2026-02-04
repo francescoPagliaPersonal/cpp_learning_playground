@@ -13,13 +13,13 @@
 #include "Contact.class.hpp"
 #include <string>
 
-Contact::Contact(void) : name(""), surn(""), nick(""), phon(""), secr("") {}
+Contact::Contact(void) {}
 
 Contact::~Contact(void) {}
 
 std::string Contact::get_field(enum e_fields id) const
 {
-	if (id < MAX_FIELD)
+	if (id >= 0 && id < MAX_FIELD)
 		return (param[id]);
 	return ("");
 }
@@ -29,5 +29,5 @@ bool	Contact::set_field(enum e_fields id, std::string& str)
 	if (id < 0 || id > MAX_FIELD)
 		return (false);
 	param[id].assign(str);
-	return (true)
+	return (true);
 }
