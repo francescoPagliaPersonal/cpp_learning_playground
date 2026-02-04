@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 16:56:40 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/03 13:27:28 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/04 12:30:49 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,16 @@ std::string set_uppercase(const char *str)
 
 int main(int ac, char **av)
 {
-	if (ac == 1)
+	if (ac == 1) {
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+		return (0);
+	}
+	
+	std::string str;
 
 	for (int i = 1; i < ac; ++i){
 		
-		std::cout << set_uppercase(av[i]);
+		str += set_uppercase(av[i]);
 	}
-	std::cout << std::endl;
+	std::cout << str << std::endl;
 }
