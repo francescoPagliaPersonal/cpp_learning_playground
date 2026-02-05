@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 15:36:18 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/05 11:26:43 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:43:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class Contact {
 	
 	private:
 	
-	std::string	param[MAX_FIELD];
+	std::string	_param[MAX_FIELD];
 	bool		sanitize_phone_number(std::string& str) const;
 };
 

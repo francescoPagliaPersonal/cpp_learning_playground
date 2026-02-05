@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 15:15:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/05 11:46:19 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:42:39 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	PhoneBook::search(void) const
 	int			i;
 
     idsize =  (PhoneBook::ids > 8) ? 8 : PhoneBook::ids;
-	display_table(entry, idsize);
+	display_table(_entry, idsize);
 	if (!idsize)
 		return ;		
 	i = 0;
@@ -110,7 +110,7 @@ void	PhoneBook::search(void) const
 		if (idlook >= idsize || idlook < 0)
 			std::cout << "id not found" << std::endl;
 		else {
-			display_contact(entry, idlook);
+			display_contact(_entry, idlook);
 			break ;
 		}
 		i++;
@@ -150,7 +150,7 @@ t_ret	PhoneBook::add(void)
 	{
 		t_ret	ret;
 		field_id = static_cast<enum Contact::e_fields>(i);
-		ret = set_field(entry[id], field_id,str);
+		ret = set_field(_entry[id], field_id,str);
 		if (ret != OK)
 			return (ret);
 	}

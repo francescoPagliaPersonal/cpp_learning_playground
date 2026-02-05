@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 14:45:38 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/05 11:13:40 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:42:39 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class PhoneBook {
 	private:
 	
 	static int	ids;
-	Contact		entry[8];
+	Contact		_entry[8];
 
 	void		display_table(const Contact *entry, int idsize) const;
 	void		display_contact(const Contact *entry, int id) const;
