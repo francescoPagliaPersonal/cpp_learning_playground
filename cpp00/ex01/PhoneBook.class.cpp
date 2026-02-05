@@ -6,21 +6,41 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 15:15:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/04 14:13:16 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/05 11:46:19 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
 #include "Contact.class.hpp"
-#include <cctype>
-#include <locale>
-#include <string>
 
 int PhoneBook::ids = 0;
 
 PhoneBook::PhoneBook(void) {}
 
 PhoneBook::~PhoneBook(void) {}
+
+static std::string	trim_string(std::string& str)
+{
+	const std::string	whitespace = " \t";
+
+	int start = str.find_first_not_of(whitespace);
+	int end = str.find_last_not_of(whitespace);
+	if (start == str.npos)
+		return ("");
+	int range = end - start;
+	return str.substr(start, range + 1);
+}
+
+static bool not_ascii_input(const std::string& str)
+{
+	for (int i = 0; i < str.length(); ++i)
+	{
+		if (((unsigned char)(str[i]) & 0x80) != 0 
+			|| ((unsigned char)(str[i]) & 0xE0) == 0)
+			return (true);
+	}
+	return (false);
+}
 
 static std::string format_string(std::string input)
 {
@@ -32,18 +52,6 @@ static std::string format_string(std::string input)
 		str.replace(9, 1, ".");
 	}
 	return (str); 
-}
-
-
-static bool not_ascii_input(const std::string& str)
-{
-	for (int i = 0; i < str.length(); ++i)
-	{
-		if (((unsigned char)(str[i]) & 0x80) != 0 
-			|| ((unsigned char)(str[i]) & 0xE0) == 0)
-			return (true);
-	}
-	return (false);
 }
 
 void	PhoneBook::display_table(const Contact *entry, int idsize) const
@@ -90,9 +98,7 @@ void	PhoneBook::search(void) const
 	int			i;
 
     idsize =  (PhoneBook::ids > 8) ? 8 : PhoneBook::ids;
-	// display available contacts;
 	display_table(entry, idsize);
-	// offer cin to explore an id;
 	if (!idsize)
 		return ;		
 	i = 0;
@@ -101,10 +107,8 @@ void	PhoneBook::search(void) const
 		std::cout << "id: ";
 		std::getline(std::cin, str);
 		idlook = std::atoi(str.c_str()) - 1;
-		// if id > available trow error and request a new one
 		if (idlook >= idsize || idlook < 0)
 			std::cout << "id not found" << std::endl;
-		// else display detailed info
 		else {
 			display_contact(entry, idlook);
 			break ;
@@ -114,41 +118,44 @@ void	PhoneBook::search(void) const
 	return ;
 }
 
-bool	PhoneBook::add(void) 
+t_ret	PhoneBook::set_field(Contact& entry, enum Contact::e_fields id, std::string& str)
 {
-	// prompt name of the field to fill up
-	// offer cin to get data
-	// continue till all the required fields are provided.
+	t_ret	ret;
+	std::string	trim_str;
+	
+	std::cout << entry.get_field_name(id)
+			<< ": " ;
+	if (!std::getline(std::cin, str))
+	{
+		std::cin.clear();
+    	std::cout.flush();
+		return (E_EOF);
+	}
+	trim_str = trim_string(str);
+	if (not_ascii_input(trim_str))
+		return (E_ASCII);
+	ret = entry.set_field(id, trim_str);
+		return (ret);
+	return (OK);
+}
+
+t_ret	PhoneBook::add(void) 
+{
+
 	std::string str("");
 	int id = PhoneBook::ids % 8;
+	enum Contact::e_fields field_id = Contact::NAME;
 	std::cout << "Editing contact id: " << (id + 1) << "/8"<< std::endl;
-	std::cout << "name: " ;
-	std::getline(std::cin, str);
-	if (not_ascii_input(str))
-		return (false);
-	entry[id].set_field(Contact::NAME, str);
-	std::cout << "surname: ";
-	std::getline(std::cin, str);
-	if (not_ascii_input(str))
-		return (false);
-	entry[id].set_field(Contact::SURNAME, str);
-	std::cout << "nick name: ";
-	std::getline(std::cin, str);
-	if (not_ascii_input(str))
-		return (false);
-	entry[id].set_field(Contact::NICK, str);
-	std::cout << "phone number: ";
-	std::getline(std::cin, str);
-	if (not_ascii_input(str))
-		return (false);
-	entry[id].set_field(Contact::PHONE, str);
-	std::cout << "secret: ";
-	std::getline(std::cin, str);
-	if (not_ascii_input(str))
-		return (false);
-	entry[id].set_field(Contact::SECRET, str);
+	for (int i = 0; i < Contact::MAX_FIELD; ++i)
+	{
+		t_ret	ret;
+		field_id = static_cast<enum Contact::e_fields>(i);
+		ret = set_field(entry[id], field_id,str);
+		if (ret != OK)
+			return (ret);
+	}
 	PhoneBook::ids += 1;
-	return (true);
+	return (OK);
 }
 
 int	PhoneBook::getid(void) { return (PhoneBook::ids % 8); }
