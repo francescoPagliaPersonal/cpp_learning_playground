@@ -48,5 +48,7 @@ cpp00/ex02/joyd
 cpp00/ex02/compare.log
 cpp01/ex00/zombies
 cpp01/ex01/horde
+cpp01/ex02/pointers
+cpp01/ex03/violence
 training/training
 **/build
