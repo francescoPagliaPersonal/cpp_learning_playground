@@ -19,11 +19,11 @@ static std::string	trim_string(std::string& str)
 {
 	const std::string	whitespace = " \t";
 
-	int start = str.find_first_not_of(whitespace);
-	int end = str.find_last_not_of(whitespace);
+	size_t start = str.find_first_not_of(whitespace);
+	size_t end = str.find_last_not_of(whitespace);
 	if (start == str.npos)
 		return ("");
-	int range = end - start;
+	size_t range = end - start;
 	return str.substr(start, range + 1);
 }
 
@@ -32,8 +32,9 @@ int main()
 	std::string input("Hello");
 	PhoneBook	book;
 	t_ret		ret;
+	
 	std::cout << "welcome to your Phone book, you have " << book.getid() 
-			<< " recorderd. \nPlease provide your command to start. \n" 
+			<< " contacts recorderd. \nPlease provide your command to start. \n" 
 			<< "use: \n\t- ADD to add a new contact\n\t- SEARCH to display a "
 			<< "recorded contact.\n"
 			<< std::endl;

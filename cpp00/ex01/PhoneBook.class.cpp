@@ -12,6 +12,7 @@
 
 #include "PhoneBook.class.hpp"
 #include "Contact.class.hpp"
+#include <cstddef>
 
 int PhoneBook::ids = 0;
 
@@ -23,17 +24,17 @@ static std::string	trim_string(std::string& str)
 {
 	const std::string	whitespace = " \t";
 
-	int start = str.find_first_not_of(whitespace);
-	int end = str.find_last_not_of(whitespace);
+	size_t start = str.find_first_not_of(whitespace);
+	size_t end = str.find_last_not_of(whitespace);
 	if (start == str.npos)
 		return ("");
-	int range = end - start;
+	size_t range = end - start;
 	return str.substr(start, range + 1);
 }
 
 static bool not_ascii_input(const std::string& str)
 {
-	for (int i = 0; i < str.length(); ++i)
+	for (size_t i = 0; i < str.length(); ++i)
 	{
 		if (((unsigned char)(str[i]) & 0x80) != 0 
 			|| ((unsigned char)(str[i]) & 0xE0) == 0)

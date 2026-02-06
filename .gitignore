@@ -44,4 +44,7 @@
 *.sw[po]
 cpp00/ex00/megaphone
 cpp00/ex01/phonebook
+cpp00/ex02/joyd
+cpp00/ex02/compare.log
 cpp00/training/training
+**/build

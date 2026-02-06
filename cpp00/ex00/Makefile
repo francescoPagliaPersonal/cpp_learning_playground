@@ -11,22 +11,47 @@
 # **************************************************************************** #
 
 CC = c++
-FLAGS = -Wall -Werror -Wextra -std=c++98
-FLAGS = -g3 -std=c++98
+FLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
 
-FILES = megaphone.cpp
+DBG ?= 0
+ifeq ($(DBG),1)
+	FLAGS += -g3
+endif
+
+BLD_DIR := build
+SRC_DIR := .
+ARGS ?= 
 
 NAME = megaphone
 
-$(NAME):
-	$(CC) $(FLAGS) $(FILES) -o $@ 
+SRC = megaphone.cpp
 
-.PHONY: fclean
+OBJ = $(SRC:%.cpp=$(BLD_DIR)/%.o)
+DEPS = $(OBJ:.o=.d)
+-include $(DEPS)
 
-fclean:
+$(NAME): $(OBJ)
+	$(CC) $(FLAGS) $(OBJ) -o $@ 
+
+$(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@ mkdir -p $(dir $@)
+	$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
+
+.PHONY: clean fclean re all run
+
+clean:
+	rm -rf $(BLD_DIR)
+
+fclean: clean
 	rm -rf $(NAME)
 
 re: fclean $(NAME)
 
-run: re
-	./$(NAME)
+all: $(NAME)
+
+run: all
+	./$(NAME) $(ARGS)
+
+dbg:
+	$(MAKE) DBG=1
+	./$(NAME) $(ARGS)

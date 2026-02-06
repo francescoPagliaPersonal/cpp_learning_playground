@@ -10,24 +10,50 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = g++
-FLAGS = -Wall -Werror -Wextra -std=c++98
-FLAGS = -g3 -std=c++98
+CC = c++
+FLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
+PREPR ?=
 
-# FILES = megaphone.cpp
-FILES = tests.cpp Account.cpp 
+DBG ?= 0
+ifeq ($(DBG),1)
+	FLAGS += -g3
+	PREPR += -D DEBUG=1
+endif
+
+BLD_DIR := build
+SRC_DIR := .
+ARGS ?= 
+
+SRC = tests.cpp Account.cpp 
 
 NAME = joyd
 
-$(NAME):
-	$(CC) $(FLAGS) $(FILES) -o $@ 
+OBJ = $(SRC:%.cpp=$(BLD_DIR)/%.o)
+DEPS = $(OBJ:.o=.d)
+-include $(DEPS)
 
-.PHONY: fclean
+$(NAME): $(OBJ)
+	$(CC) $(PREPR) $(FLAGS) $(OBJ) -o $@ 
 
-fclean:
+$(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@ mkdir -p $(dir $@)
+	$(CC) $(PREPR) $(FLAGS) $(INCLUDES) -o $@ -c $<
+
+.PHONY: clean fclean re all run
+
+clean:
+	rm -rf $(BLD_DIR)
+
+fclean: clean
 	rm -rf $(NAME)
 
 re: fclean $(NAME)
 
+all: $(NAME)
+
 run: re
-	./$(NAME)
+	./$(NAME) $(ARGS)
+
+dbg: fclean
+	$(MAKE) DBG=1
+	./$(NAME) $(ARGS)
