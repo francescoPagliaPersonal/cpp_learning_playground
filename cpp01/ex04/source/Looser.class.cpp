@@ -6,12 +6,11 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 23:03:40 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/10 11:58:52 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 12:16:59 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Looser.class.hpp"
-#include <string>
 
 Looser::Looser(std::string file, std::string s1, std::string s2)
 	: _filename(file), _s1(s1), _s2(s2) {
@@ -22,6 +21,11 @@ Looser::Looser(std::string file, std::string s1, std::string s2, std::string fil
 	: _filename(file), _s1(s1), _s2(s2), _fileout(fileout) {};
 
 Looser::~Looser(void) {};
+
+std::string	Looser::get_output_filename(void) const 
+{
+	return _fileout;
+}
 
 const std::string	_build_filename(const std::string& str)
 {
@@ -36,9 +40,6 @@ const std::string	_build_filename(const std::string& str)
 	}	
 }
 
-std::string	Looser::get_output_filename(void) {return _fileout;}
-
-
 bool	Looser::replace(void)
 {
 	std::string outname;
@@ -46,6 +47,7 @@ bool	Looser::replace(void)
 		outname = _build_filename(_filename);
 	else
 		outname = _fileout;
+	
 	std::ifstream	infs(this->_filename.c_str());
 	std::ofstream	outfs(outname.c_str());
 

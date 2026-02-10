@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 14:49:28 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/10 11:58:08 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 12:16:56 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <fstream>
 #include <string>
-// #include <iostream>
 
 class Looser 
 {
@@ -25,7 +24,7 @@ class Looser
 	Looser(std::string file, std::string s1, std::string s2, std::string fileout);
 	~Looser(void);
 	bool			replace(void);
-	std::string		get_output_filename(void);
+	std::string		get_output_filename(void) const;
 
 	private:
 

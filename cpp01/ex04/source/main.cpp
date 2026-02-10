@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 10:53:24 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/10 12:01:59 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 12:13:04 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 int main(int ac, char **av)
 {
-	std::cout << "items: " << ac << std::endl;
 	if (ac < 4 || ac > 5) {
 		std::cerr << "Wrong number of parameters.\n"
 				<< "Please use the following Syntax: \n\n\t$>" 
