@@ -51,5 +51,6 @@ cpp01/ex01/horde
 cpp01/ex02/pointers
 cpp01/ex03/violence
 cpp01/ex04/looser
+cpp01/ex04/*.replace*
 training/training
 **/build
