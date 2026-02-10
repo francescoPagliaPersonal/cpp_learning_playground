@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 23:00:22 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/06 23:00:23 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 10:16:50 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class HumanB
 	void			setWeapon(Weapon& myWeapon);
 
 	private:
-	std::string		name;
-	Weapon*			weapon;
+	std::string		_name;
+	Weapon*			_weapon;
 };
 
 #endif

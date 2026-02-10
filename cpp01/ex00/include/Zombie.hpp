@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:45:41 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/06 14:45:49 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 10:15:19 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Zombie {
 	void	announce(void) const;
 
 	private:
-	std::string	name;
+	std::string	_name;
 };
 
 #endif // !ZOMBIE_H

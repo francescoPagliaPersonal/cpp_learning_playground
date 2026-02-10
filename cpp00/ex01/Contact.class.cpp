@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 19:00:13 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/05 12:43:22 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 10:14:33 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ std::string	Contact::get_field_name(enum e_fields id) const
 }
 
 
-bool	Contact::sanitize_phone_number(std::string& str) const
+bool	Contact::_sanitize_phone_number(std::string& str) const
 {
 	std::string	values(" 0123456789.+");
 	if (str.find_first_not_of(values) == str.npos)
@@ -54,7 +54,7 @@ t_ret	Contact::set_field(enum e_fields id, std::string& str)
 {
 	if (id < 0 || id > MAX_FIELD)
 		return (E_INDEX);
-	if (id == PHONE && !sanitize_phone_number(str))
+	if (id == PHONE && !_sanitize_phone_number(str))
 		return (E_PHONE);
 	_param[id].assign(str);
 	return (OK);

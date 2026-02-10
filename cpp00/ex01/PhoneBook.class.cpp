@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 15:15:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/05 12:42:39 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 10:14:55 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static std::string format_string(std::string input)
 	return (str); 
 }
 
-void	PhoneBook::display_table(const Contact *entry, int idsize) const
+void	PhoneBook::_display_table(const Contact *entry, int idsize) const
 {
 	std::string	str;
 
@@ -80,7 +80,7 @@ void	PhoneBook::display_table(const Contact *entry, int idsize) const
 	return ;
 }
 
-void	PhoneBook::display_contact(const Contact *entry, int id) const
+void	PhoneBook::_display_contact(const Contact *entry, int id) const
 {
 	std::cout << "\n[ID: " << (id + 1) << "] contact details:\n"
 			<< "name:         " << entry[id].get_field(Contact::NAME) << "\n"
@@ -99,7 +99,7 @@ void	PhoneBook::search(void) const
 	int			i;
 
     idsize =  (PhoneBook::ids > 8) ? 8 : PhoneBook::ids;
-	display_table(_entry, idsize);
+	_display_table(_entry, idsize);
 	if (!idsize)
 		return ;		
 	i = 0;
@@ -111,7 +111,7 @@ void	PhoneBook::search(void) const
 		if (idlook >= idsize || idlook < 0)
 			std::cout << "id not found" << std::endl;
 		else {
-			display_contact(_entry, idlook);
+			_display_contact(_entry, idlook);
 			break ;
 		}
 		i++;
@@ -119,7 +119,7 @@ void	PhoneBook::search(void) const
 	return ;
 }
 
-t_ret	PhoneBook::set_field(Contact& entry, enum Contact::e_fields id, std::string& str)
+t_ret	PhoneBook::_set_field(Contact& entry, enum Contact::e_fields id, std::string& str)
 {
 	t_ret	ret;
 	std::string	trim_str;
@@ -151,7 +151,7 @@ t_ret	PhoneBook::add(void)
 	{
 		t_ret	ret;
 		field_id = static_cast<enum Contact::e_fields>(i);
-		ret = set_field(_entry[id], field_id,str);
+		ret = _set_field(_entry[id], field_id,str);
 		if (ret != OK)
 			return (ret);
 	}

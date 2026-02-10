@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 22:50:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/06 22:53:48 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 10:16:54 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Weapon
 
 	private:
 
-	std::string		type;
+	std::string		_type;
 };
 
 #endif

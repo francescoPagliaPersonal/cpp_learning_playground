@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 22:54:14 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/06 23:00:04 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/10 10:16:42 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class HumanA
 	void			attack(void) const;
 
 	private:
-	std::string		name;
-	Weapon&			weapon;
+	std::string		_name;
+	Weapon&			_weapon;
 };
 
 #endif
