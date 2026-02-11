@@ -6,20 +6,16 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:26:37 by fpaglia           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/01/29 12:12:04 by fpaglia          ###   ########.fr       */
-=======
-/*   Updated: 2026/01/29 12:01:20 by fpaglia          ###   ########.fr       */
->>>>>>> 46cb6f7dfb48a8002b0bf7c64f69117da0d1cf5d
+/*   Updated: 2026/02/11 17:04:29 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Trial.class.hpp"
-#include "InitLst.class.hpp"
-#include "Setter.class.hpp"
-#include "Compare.class.hpp"
-#include "InstCount.class.hpp"
+#include "Trial.hpp"
+#include "InitLst.hpp"
+#include "Setter.hpp"
+#include "Compare.hpp"
+#include "InstCount.hpp"
 
 void prnt_comp(int num, char p)
 {

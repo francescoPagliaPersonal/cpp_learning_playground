@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   InstCount.class.cpp                                :+:      :+:    :+:   */
+/*   Trial.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 11:36:29 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/29 11:59:06 by fpaglia          ###   ########.fr       */
+/*   Created: 2026/01/27 09:44:17 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/01/28 11:25:10 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "InstCount.class.hpp"
+#ifndef TRIAL_CLASS_H
+# define TRIAL_CLASS_H
 
-int InstCount::count = 0;
+class Trial {
 
-InstCount::InstCount(void) {
+	public:
 
-	std::clog << "InstCount instance constructed" << std::endl;
-	InstCount::count += 1;
-}
+	int		foo;
 
-InstCount::~InstCount(void) {
+			Trial(void);
+			~Trial(void);
 
-	std::clog << "InstCount instance destroyed" << std::endl;
-	InstCount::count -= 1;
-}
+	void	foofunct(void);
+	int		sum(int a, int b);
+};
 
-int	InstCount::getcount(void) {
-
-	return (InstCount::count);
-}
+#endif

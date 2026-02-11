@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Trial.class.cpp                                    :+:      :+:    :+:   */
+/*   Compare.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/27 09:52:04 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/28 11:17:36 by fpaglia          ###   ########.fr       */
+/*   Created: 2026/01/29 10:44:49 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/01/29 11:14:13 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef COMPARE_CLASS_H
+# define  COMPARE_CLASS_H
+
 #include <iostream>
-#include "Trial.class.hpp"
 
-Trial::Trial(void) {
+class Compare {
+	public:
+	
+	Compare(int num);
+	~Compare(void);
+	
+	int		getval(void);
+	void	setval(int num);
+	int		check(Compare *cmp);
 
-	std::cout << "Constructor called" << std::endl;
-	this->foo = 84;
-	this->foofunct();
-	return ;
-}
+	private:
 
-Trial::~Trial(void) {
+	int		_val;
+};
 
-	std::cout << "Destructor called" << std::endl;
-	return ;
-}
 
-void	Trial::foofunct(void) {
+#endif
 
-	std::cout <<	"writing from a member function\nmy foo values is: " 
-		<< this->foo << std::endl;
-	return ;
-}

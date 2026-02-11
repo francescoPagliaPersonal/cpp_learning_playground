@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   InitLst.class.cpp                                  :+:      :+:    :+:   */
+/*   InitLst.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "InitLst.class.hpp"
+#include "InitLst.hpp"
 
 InitLst::InitLst(int num, char word, float dotnum) : i1(num), c1(word), f1(dotnum) {
 

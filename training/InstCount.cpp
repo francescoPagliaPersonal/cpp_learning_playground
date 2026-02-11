@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   InstCount.class.hpp                                :+:      :+:    :+:   */
+/*   InstCount.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 11:34:13 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/29 11:57:58 by fpaglia          ###   ########.fr       */
+/*   Created: 2026/01/29 11:36:29 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/01/29 11:59:06 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INSTCOUNT_CLASS_H
-#define  INSTCOUNT_CLASS_H
+#include "InstCount.hpp"
 
-#include <iostream>
+int InstCount::count = 0;
 
-class InstCount {
+InstCount::InstCount(void) {
 
-	public:
+	std::clog << "InstCount instance constructed" << std::endl;
+	InstCount::count += 1;
+}
 
-	InstCount(void);
-	~InstCount(void);
+InstCount::~InstCount(void) {
 
-	static int	getcount(void);
+	std::clog << "InstCount instance destroyed" << std::endl;
+	InstCount::count -= 1;
+}
 
-	private:
+int	InstCount::getcount(void) {
 
-	static int	count;
-};
-
-#endif
+	return (InstCount::count);
+}

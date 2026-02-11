@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Setter.class.hpp                                   :+:      :+:    :+:   */
+/*   Trial.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/28 14:53:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/01/29 10:43:45 by fpaglia          ###   ########.fr       */
+/*   Created: 2026/01/27 09:52:04 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/01/28 11:17:36 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SETTER_CLASS_H
-# define  SETTER_CLASS_H
-
 #include <iostream>
+#include "Trial.hpp"
 
-class Setter {
+Trial::Trial(void) {
 
-	public:
-	
-	Setter(int myval);
-	~Setter(void);
+	std::cout << "Constructor called" << std::endl;
+	this->foo = 84;
+	this->foofunct();
+	return ;
+}
 
-	int		getVal(void) const;
-	bool	setVal(int num);
+Trial::~Trial(void) {
 
-	private:
-	
-	int		_val;
-};
+	std::cout << "Destructor called" << std::endl;
+	return ;
+}
 
-#endif
+void	Trial::foofunct(void) {
+
+	std::cout <<	"writing from a member function\nmy foo values is: " 
+		<< this->foo << std::endl;
+	return ;
+}
