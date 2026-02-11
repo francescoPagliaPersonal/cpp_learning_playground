@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Looser.class.cpp                                   :+:      :+:    :+:   */
+/*   Looser.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Looser.class.hpp"
+#include "Looser.hpp"
 
 Looser::Looser(std::string file, std::string s1, std::string s2)
 	: _filename(file), _s1(s1), _s2(s2) {

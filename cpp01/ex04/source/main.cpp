@@ -6,11 +6,11 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 10:53:24 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/10 12:13:04 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/11 17:01:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Looser.class.hpp"
+#include "Looser.hpp"
 #include <iostream>
 #include <ostream>
 
