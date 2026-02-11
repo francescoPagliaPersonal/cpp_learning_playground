@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 15:02:10 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/06 15:02:11 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/11 18:15:44 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int Account::_totalNbWithdrawals = 0;
 // CONSTRUCTORS  -------------------------------------------------------------/
 
 Account::Account(int initial_deposit) 
-	: _accountIndex(_nbAccounts), _amount(initial_deposit)
+	: _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), 
+		_nbWithdrawals(0)
 { 
 	_nbAccounts++;
 	_totalAmount += initial_deposit;
@@ -43,6 +44,12 @@ Account::~Account(void)
 				<< ";closed" 
 				<< std::endl;
 };
+
+Account::Account(void)
+	:  _accountIndex(_nbAccounts), _amount(0), _nbDeposits(0), _nbWithdrawals(0) 
+{
+	_nbAccounts++;
+}
 
 // FUNCTIONS -----------------------------------------------------------------/
 

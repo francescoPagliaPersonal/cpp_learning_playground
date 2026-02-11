@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/05 11:33:35 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/02/11 17:01:22 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ARGS ?=
 
 NAME = phonebook
 
-SRC = main.cpp PhoneBook.class.cpp Contact.class.cpp Errors.cpp
+SRC = main.cpp PhoneBook.cpp Contact.cpp Errors.cpp
 
 OBJ = $(SRC:%.cpp=$(BLD_DIR)/%.o)
 DEPS = $(OBJ:.o=.d)

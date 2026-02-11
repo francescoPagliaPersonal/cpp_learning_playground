@@ -6,11 +6,11 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 17:25:43 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/05 11:39:20 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/11 17:14:39 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
 #include <string>
 #include "Errors.h"
@@ -36,7 +36,7 @@ int main()
 	std::cout << "welcome to your Phone book, you have " << book.getid() 
 			<< " contacts recorderd. \nPlease provide your command to start. \n" 
 			<< "use: \n\t- ADD to add a new contact\n\t- SEARCH to display a "
-			<< "recorded contact.\n"
+			<< "recorded contact.\n\t- EXIT to return to the terminal."
 			<< std::endl;
 
 	while (input.compare("EXIT"))
