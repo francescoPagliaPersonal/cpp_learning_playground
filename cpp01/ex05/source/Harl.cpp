@@ -3,26 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:20:18 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/10 15:28:54 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/11 15:36:03 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-Harl::Harl(void) {}
+Harl::Harl(void) {
+	_complaints[DEBUG].key = "DEBUG";
+	_complaints[DEBUG].f = &Harl::_debug;
+	_complaints[INFO].key = "INFO";
+	_complaints[INFO].f = &Harl::_info;
+	_complaints[WARNING].key = "WARNING";
+	_complaints[WARNING].f = &Harl::_warning;
+	_complaints[ERROR].key = "ERROR";
+	_complaints[ERROR].f = &Harl::_error;
+}
+
 Harl::~Harl(void) {}
 
 void	Harl::complain(std::string level)
 {
-		std::cout << "WHY ARE YOU BOTHERING MEE!!!" << std::endl;
+	for (int i = 0; i < LEV_MAX; ++i)
+	{
+		if (level == this->_complaints[i].key)
+		{
+			(this->*_complaints[i].f)();
+			return ;
+		}
+	}
+	std::cout << "STRANGE!!\nEventually I have nothing to complain about now...\n"
+			<< "Till next time!" << std::endl;
+	
 }
 
 void	Harl::_debug(void) {
 	std::cout << "I love having extra bacon for my 7XL-double-cheese"
-			<< "-triple-pickle-special-ketchup burger.\n I really do!" << std::endl;
+			<< "-triple-pickle-special-ketchup burger.\nI really do!" << std::endl;
 }
 
 void	Harl::_info(void) {
@@ -32,7 +52,7 @@ void	Harl::_info(void) {
 }
 
 void	Harl::_warning(void) {
-	std::cout << "I think I deserve to have some extra bacon for free." 
+	std::cout << "I think I deserve to have some extra bacon for free.\n" 
 			<< "I’ve been coming for years, whereas you started working "
 			<< "here just last month." << std::endl;
 }
@@ -42,3 +62,4 @@ void	Harl::_error(void) {
 			<< std::endl;
 }
 
+ 

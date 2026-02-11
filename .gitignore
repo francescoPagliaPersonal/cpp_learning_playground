@@ -52,5 +52,7 @@ cpp01/ex02/pointers
 cpp01/ex03/violence
 cpp01/ex04/looser
 cpp01/ex04/*.replace*
+cpp01/ex05/harl
+cpp01/ex06/harlFilter
 training/training
 **/build
