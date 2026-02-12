@@ -6,8 +6,14 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:47:09 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/12 11:09:53 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/12 16:57:51 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+Fixed::Fixed(void) : _fixval(0) {}
+
+Fixed::Fixed(const Fixed& obj) {
+	*this = obj;
+}

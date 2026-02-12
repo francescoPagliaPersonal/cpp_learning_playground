@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:47:32 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/12 16:05:37 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/12 16:09:04 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ class Fixed
 	Fixed(const Fixed& obj);
 	Fixed& operator=(const Fixed& obj);
 	~Fixed(void);
+	
+	int					getRawBits( void ) const;
+	void				setRawBits( int const raw );
 	
 	private:
 
