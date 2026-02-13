@@ -6,11 +6,12 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 17:25:43 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/11 17:14:39 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/13 09:59:30 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include <cstdio>
 #include <iostream>
 #include <string>
 #include "Errors.h"
@@ -42,14 +43,19 @@ int main()
 	while (input.compare("EXIT"))
 	{
 		std::cout << "> ";
-		if (!std::getline(std::cin, input))
+		if (!std::getline(std::cin, input)) {
+			std::cout << error_messages[E_EOF] << std::endl;
 			break ;
+		}
 		input.assign(trim_string(input));
 		if (input.compare("ADD") == 0)
 		{
 			ret = book.add();
-			if (ret != OK)
+			if (ret != OK) {
 				std::cout << error_messages[ret] << std::endl;
+				if (ret == E_EOF)
+					break ;
+			}
 		}
 		else if (input.compare("SEARCH") == 0)
 			book.search();

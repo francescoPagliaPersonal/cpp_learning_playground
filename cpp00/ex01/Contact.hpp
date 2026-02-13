@@ -14,7 +14,7 @@
 # define CONTACT_CLASS_H
 
 # include <string>
-#include "Errors.h"
+# include "Errors.h"
 
 class Contact {
 
