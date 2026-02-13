@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/12 10:46:12 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/02/13 10:08:32 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = main.cpp 
+FILES = main.cpp  Fixed.cpp
 
-NAME = harlFilter
+NAME = ortodox
 
 
 SRC = $(addprefix $(SRC_DIR)/, $(FILES))
