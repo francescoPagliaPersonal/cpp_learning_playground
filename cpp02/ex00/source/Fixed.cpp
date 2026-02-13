@@ -6,13 +6,17 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:47:09 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/13 10:17:48 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/13 10:44:53 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+// STATIC VALUES -------------------------------------------------------------/
+
 const int	Fixed::_fractbit = 8;
+
+// CONSTRUCTORS  -------------------------------------------------------------/
 
 Fixed::Fixed(void) : _rawbits(0) 
 {
@@ -47,6 +51,8 @@ Fixed::~Fixed(void)
 {
 	std::cout << "Destructor called" << std::endl;
 }
+
+// FUNCTIONS -----------------------------------------------------------------/
 
 int	Fixed::getRawBits(void) const
 {
