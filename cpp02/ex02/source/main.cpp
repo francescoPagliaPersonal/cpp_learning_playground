@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:45:45 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/17 11:16:55 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/17 12:12:27 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main( void ) {
 	std::cout << b << std::endl;
 	std::cout << c << std::endl;
 	std::cout << c / b << std::endl;
-	// std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
 	
 	return 0;
 }

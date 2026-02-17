@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/17 11:52:52 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/02/17 12:39:27 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC_DIR := source
 ARGS ?= 
 
 FILES = main.cpp  Fixed.cpp \
-		Fixed.compare.cpp Fixed.increment.cpp Fixed.math.cpp
+		Fixed.compare.cpp Fixed.increment.cpp Fixed.math.cpp \
+		Fixed.staticMethod.cpp
 
 NAME = operFixed
 
