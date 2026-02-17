@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/17 16:40:14 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/02/17 17:56:27 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ FILES = main.cpp  \
 		Point.cpp Point.bsp.cpp
 		
 
-NAME = operFixed
+NAME = bsp
 
 
 SRC = $(addprefix $(SRC_DIR)/, $(FILES))

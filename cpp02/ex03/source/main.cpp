@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:45:45 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/17 16:40:57 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/17 17:56:11 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,49 @@
 #include "Point.hpp"
 #include <iostream>
 
-int main( void ) {
-	
-	Point a(7, 5.5f);
-	Point b(-12.3f, 6.2f);
-	Point c;
-	Point p(0, 3);
-	std::cout << p.bsp(a, b, c, p)
-			<< std::endl;
+void test(const Point& a, const Point& b, const Point& c, const Point& p, bool expected)
+{
+	bool result = p.bsp(a, b, c, p);
+
+	std::cout << "Point (" 
+			  << p.getXpos() << ", " 
+			  << p.getYpos() << ") -> ";
+
+	if (result == expected)
+		std::cout << "✅ OK";
+	else
+		std::cout << "❌ FAIL";
+
+	std::cout << " (expected: " << expected 
+			  << ", got: " << result << ")" << std::endl;
+}
+
+int main(void)
+{
+	Point a(0, 0);
+	Point b(10, 0);
+	Point c(0, 10);
+
+	std::cout << "\n--- BASIC TESTS ---\n";
+	test(a, b, c, Point(1, 1), true);    // inside
+	test(a, b, c, Point(5, 5), false);   // on hypotenuse
+	test(a, b, c, Point(10, 10), false); // outside
+	test(a, b, c, Point(0, 0), false);   // vertex
+	test(a, b, c, Point(0, 5), false);   // edge
+
+	std::cout << "\n--- ORIENTATION TEST ---\n";
+	test(b, a, c, Point(1, 1), true);     // reversed order
+
+	std::cout << "\n--- DEGENERATE TRIANGLE ---\n";
+	Point d(0, 0);
+	Point e(5, 5);
+	Point f(10, 10); // collinear
+	test(d, e, f, Point(6, 6), false);
+
+	std::cout << "\n--- FLOAT PRECISION TEST ---\n";
+	test(a, b, c, Point(0.1f, 0.1f), true);
+	test(a, b, c, Point(9.999f, 0.001f), false);
+
+	std::cout << "\n--- DONE ---\n";
 	return 0;
 }

@@ -20,12 +20,12 @@ Point::~Point(void) {};
 
 // METHODS  -------------------------------------------------------------/
 
-float Point::getXpos(void)
+float Point::getXpos(void) const
 {
 	return (this->x.toFloat());
 }
 
-float Point::getYpos(void)
+float Point::getYpos(void) const
 {
 	return (this->y.toFloat());
 }
