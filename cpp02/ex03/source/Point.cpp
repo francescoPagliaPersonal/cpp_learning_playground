@@ -9,7 +9,7 @@ Point::Point(float const xpos, float const ypos)
 	: x(xpos), y(ypos) {};
 
 Point::Point(const Point& point)
-	: x(point.x.getRawBits()), y(point.y.getRawBits()) {};
+	: x(point.x), y(point.y) {};
 	
 Point& Point::operator=(const Point& point) {
 	(void)point;

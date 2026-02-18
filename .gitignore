@@ -42,6 +42,7 @@
 
 # local files
 *.sw[po]
+**/build
 cpp00/ex00/megaphone
 cpp00/ex01/phonebook
 cpp00/ex02/joyd
@@ -58,4 +59,4 @@ cpp02/ex00/ortodox
 training/training
 cpp02/ex01/displayFixed
 cpp02/ex02/operFixed
-**/build
+cpp02/ex03/bsp

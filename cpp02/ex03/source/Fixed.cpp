@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:47:09 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/17 11:04:06 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/18 16:09:57 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,49 +19,21 @@ const int	Fixed::_fractbit = 8;
 
 // CONSTRUCTORS  -------------------------------------------------------------/
 
-Fixed::Fixed(void) : _rawbits(0) 
-{
-	std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed(void)				: _rawbits(0) {}
 
-Fixed::Fixed(const int nbr) : _rawbits(_toRawBits(nbr)) 
-{
-	std::cout << "Int constructor called" << std::endl;
-}
+Fixed::Fixed(const int nbr)		: _rawbits(_toRawBits(nbr)) {}
 
-Fixed::Fixed(const float nbr) : _rawbits(_toRawBits(nbr))
-{
-	std::cout << "Float constructor called" << std::endl;
-}
+Fixed::Fixed(const float nbr)	: _rawbits(_toRawBits(nbr)) {}
 
-/* For as much as I understod this is the best approach to create the copy constructor.
- * Eventually to have a fully matching approach to the output the overload = is required
- */
-Fixed::Fixed(const Fixed& obj) 
-	: _rawbits(obj._rawbits) 
-{
-	std::cout << "Copy constructor called" << std::endl;
-}
+Fixed::Fixed(const Fixed& obj)	: _rawbits(obj._rawbits) {}
 
-// Fixed::Fixed(const Fixed& obj) 
-// {
-// 	std::cout << "Copy constructor called" << std::endl;
-// 	*this = obj;
-// }
-
-Fixed& Fixed::operator=(const Fixed& obj)
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	
+Fixed& Fixed::operator=(const Fixed& obj) {
 	if (this != &obj)	
 		this->_rawbits = obj.getRawBits();
 	return (*this);
 }
 
-Fixed::~Fixed(void)
-{
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed(void) {}
 
 // METHODS -----------------------------------------------------------------/
 
