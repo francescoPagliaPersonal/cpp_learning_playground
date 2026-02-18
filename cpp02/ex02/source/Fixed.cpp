@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:47:09 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/17 11:04:06 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/18 16:08:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ Fixed::Fixed(const Fixed& obj)
 {
 	std::cout << "Copy constructor called" << std::endl;
 }
-
-// Fixed::Fixed(const Fixed& obj) 
-// {
-// 	std::cout << "Copy constructor called" << std::endl;
-// 	*this = obj;
-// }
 
 Fixed& Fixed::operator=(const Fixed& obj)
 {
