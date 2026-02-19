@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 11:13:52 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 15:42:26 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:48:38 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class ClapTrap
 	
 	std::string		getName(void);
 	void			setName(std::string name);
-	
+	void			report(void);
 	protected:
 	
 	std::string		_name;

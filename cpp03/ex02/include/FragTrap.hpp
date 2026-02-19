@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:22:31 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 16:22:33 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:49:33 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef SCAVTRAP_H
-# define SCAVTRAP_H
+#ifndef FragTrap_H
+# define FragTrap_H
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class FragTrap : public ClapTrap
 {
 	public:
 	
-	ScavTrap(void);
-	ScavTrap(std::string name);
-	ScavTrap(const ScavTrap& obj);
-	ScavTrap& operator=(const ScavTrap& obj);
-	~ScavTrap(void);
+	FragTrap(void);
+	FragTrap(std::string name);
+	FragTrap(const FragTrap& obj);
+	FragTrap& operator=(const FragTrap& obj);
+	~FragTrap(void);
 	
-	void			guardGate(void);
+	void			highFivesGuys(void);
 	void			attack(const std::string& target);
 	void			report(void);
 
