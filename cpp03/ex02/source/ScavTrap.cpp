@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:22:25 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 16:22:26 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:53:10 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		ScavTrap::report(void)
 {
 	std::cout << "ScavTrap " << _name
 			<< "\thit point:    " << _hitPoints
-			<< "\tattack point: " << _attackDamage
 			<< "\tenergy point: " << _energyPoints
+			<< "\tattack point: " << _attackDamage
 			<< std::endl;
 }

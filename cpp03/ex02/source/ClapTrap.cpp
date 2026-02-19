@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 11:13:35 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 16:50:54 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/19 16:53:01 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void		ClapTrap::report(void)
 {
 	std::cout << "ClapTrap " << _name
 			<< "\thit point:    " << _hitPoints
-			<< "\tattack point: " << _attackDamage
 			<< "  \tenergy point: " << _energyPoints
+			<< "\tattack point: " << _attackDamage
 			<< std::endl;
 }
