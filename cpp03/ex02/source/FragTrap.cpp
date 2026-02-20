@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:22:25 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 16:53:05 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:29:11 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	FragTrap::attack(const std::string& target)
 	}
 }
 
-void		FragTrap::report(void)
+void		FragTrap::report(void) const
 {
 	std::cout << "FragTrap " << _name
 			<< "\thit point:    " << _hitPoints

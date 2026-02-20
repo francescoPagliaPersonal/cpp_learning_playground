@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:22:25 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 16:22:26 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:27:58 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ScavTrap::attack(const std::string& target)
 	}
 }
 
-void		ScavTrap::report(void)
+void		ScavTrap::report(void) const
 {
 	std::cout << "ScavTrap " << _name
 			<< "\thit point:    " << _hitPoints

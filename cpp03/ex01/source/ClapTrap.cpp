@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 11:13:35 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 15:47:17 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:27:52 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ ClapTrap::~ClapTrap(void)
 
 // METHODS --------------------------------------------------------------------/
 
-std::string	ClapTrap::getName(void)
+std::string	ClapTrap::getName(void) const
 {
 	return (_name);
 }
@@ -134,7 +134,7 @@ void		ClapTrap::setattackDamage(unsigned int amount)
 			<< " points" << std::endl;
 }
 
-int			ClapTrap::getAttackDamage(void)
+int			ClapTrap::getAttackDamage(void) const
 {
 	return (_attackDamage);
 }

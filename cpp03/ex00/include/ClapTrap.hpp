@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 11:13:52 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 12:36:19 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:26:09 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ class ClapTrap
 	void			beRepaired(unsigned int amount);
 	
 	void			setattackDamage(unsigned int amount);
-	int				getAttackDamage(void);
+	int				getAttackDamage(void) const;
 	
-	std::string		getName(void);
+	std::string		getName(void) const;
 	bool			setName(std::string name);
 	
 	private:
