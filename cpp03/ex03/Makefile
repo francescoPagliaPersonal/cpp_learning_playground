@@ -6,12 +6,12 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/19 16:32:23 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/02/20 18:18:01 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-FLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
+FLAGS = -Wall -Werror -Wextra -Wno-shadow -Wshadow -std=c++98 -MMD -MP
 INCLUDES = -Iinclude
 PREPR ?=
 
@@ -25,10 +25,10 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 		
 
-NAME = frag
+NAME = diamond
 
 
 SRC = $(addprefix $(SRC_DIR)/, $(FILES))

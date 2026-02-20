@@ -6,18 +6,17 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:22:25 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 16:53:10 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:38:26 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
-#include "ClapTrap.hpp"
 
 // CONSTRUCTOR ----------------------------------------------------------------/
 
 ScavTrap::ScavTrap(void) : ClapTrap() 
 {
-	_hitPoints = 100;
+	_hitPoints = 70;
 	_energyPoints = 50;
 	_attackDamage = 20;
 
@@ -27,7 +26,7 @@ ScavTrap::ScavTrap(void) : ClapTrap()
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	_hitPoints = 100;
+	_hitPoints = 70;
 	_energyPoints = 50;
 	_attackDamage = 20;
 
@@ -81,13 +80,4 @@ void	ScavTrap::attack(const std::string& target)
 				<< " due to lack of energy resources, it might die trying!"
 				<< std::endl;
 	}
-}
-
-void		ScavTrap::report(void)
-{
-	std::cout << "ScavTrap " << _name
-			<< "\thit point:    " << _hitPoints
-			<< "\tenergy point: " << _energyPoints
-			<< "\tattack point: " << _attackDamage
-			<< std::endl;
 }

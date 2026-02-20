@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:22:31 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/19 16:49:33 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:33:27 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : public virtual ClapTrap
 {
 	public:
 	
@@ -28,7 +28,6 @@ class FragTrap : public ClapTrap
 	
 	void			highFivesGuys(void);
 	void			attack(const std::string& target);
-	void			report(void);
 
 	
 };
