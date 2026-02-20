@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 11:13:52 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/20 12:38:28 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 18:22:21 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ class ClapTrap
 	protected:
 	
 	std::string		_name;
-	int				_hitPoints; 	
-	int				_energyPoints; 	
-	int				_attackDamage; 	
+	int				_hitPoints;
+	int				_energyPoints;
+	int				_attackDamage;
 	
 };
 

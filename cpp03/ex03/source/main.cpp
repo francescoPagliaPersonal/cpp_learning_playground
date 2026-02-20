@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:22:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/20 13:18:22 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 18:30:16 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int main(void)
 	fr01.highFivesGuys();
 	sc01.guardGate();
 	di01.whoAmI();
+	std::cout << "\n---------- DESTRUCTORS ------------\n" << std::endl;
 	
 	
 	return (0);

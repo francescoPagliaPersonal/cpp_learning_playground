@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 17:03:06 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/20 13:39:45 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 18:25:39 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ class DiamondTrap : public FragTrap, public ScavTrap
 	private:
 
 	std::string		_name;
+	// int				_hitPoints; 	
+	// int				_energyPoints; 	
+	// int				_attackDamage; 
 };
 
 #endif

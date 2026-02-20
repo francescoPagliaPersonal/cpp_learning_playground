@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 17:03:26 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/20 13:43:00 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/20 18:54:01 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 #include "ScavTrap.hpp"
 
 DiamondTrap::DiamondTrap(void)
-	: ClapTrap("default_clap_name"), _name("default") 
+	: ClapTrap("default_clap_name"), _name("default")
 {
 	_hitPoints = FragTrap::_hitPoints;
 	_energyPoints = ScavTrap::_energyPoints;
 	_attackDamage = FragTrap::_attackDamage;
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 30;
 	
 	if (DEBUG == 0)
 		std::cout << "DiamondTrap Basic constructor called" << std::endl;
@@ -32,7 +35,10 @@ DiamondTrap::DiamondTrap(std::string name)
 	_hitPoints = FragTrap::_hitPoints;
 	_energyPoints = ScavTrap::_energyPoints;
 	_attackDamage = FragTrap::_attackDamage;
-	
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 30;
+		
 	if (DEBUG == 0)
 		std::cout << "DiamondTrap Named constructor called" << std::endl;
 }
