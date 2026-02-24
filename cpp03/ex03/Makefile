@@ -6,12 +6,12 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/20 18:18:01 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/02/24 09:54:27 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-FLAGS = -Wall -Werror -Wextra -Wno-shadow -Wshadow -std=c++98 -MMD -MP
+FLAGS = -Wall -Werror -Wextra -std=c++98 -MMD -MP
 INCLUDES = -Iinclude
 PREPR ?=
 
@@ -19,6 +19,11 @@ DBG ?= 0
 ifeq ($(DBG),1)
 	FLAGS += -g3
 	PREPR += -D DEBUG=1
+endif
+
+SHW ?= 0
+ifeq ($(SHW),1)
+	FLAGS += -Wshadow-all 
 endif
 
 BLD_DIR := build
@@ -61,4 +66,8 @@ run: re
 
 dbg: fclean
 	$(MAKE) DBG=1
+	./$(NAME) $(ARGS)
+
+shw: fclean
+	$(MAKE) SHW=1
 	./$(NAME) $(ARGS)
