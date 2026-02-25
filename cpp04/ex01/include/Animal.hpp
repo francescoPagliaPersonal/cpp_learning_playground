@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:12 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 13:54:04 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/25 16:11:55 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 
 # include <string>
 # include "Brain.hpp"
+# include "debug.h"
 # include <cstddef>
 
-# ifndef DEBUG
-#  define DEBUG 0
-# endif
+
 
 class Animal {
 
@@ -33,7 +32,8 @@ class Animal {
 
 	virtual std::string		getType(void) const;
 	virtual void			makeSound(void) const;
-	
+	virtual const std::string&		getIdea(unsigned int id) const = 0;
+	virtual bool					changeIdea(unsigned int id, std::string idea) = 0;
 	
 	private:
 	

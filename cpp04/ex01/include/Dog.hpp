@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:28 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 14:22:57 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/25 15:59:18 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "Animal.hpp"
 # include "Brain.hpp"
 # include <string>
+# include "debug.h"
 
 class Dog : public Animal
 {
@@ -29,6 +30,8 @@ class Dog : public Animal
 
 	virtual std::string		getType(void) const;
 	virtual void			makeSound(void) const;
+	bool					changeIdea(unsigned int id, std::string idea);
+	const std::string&		getIdea(unsigned int id) const;
 	
 	
 	private:

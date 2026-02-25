@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:27:06 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 14:23:37 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/25 15:59:24 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Dog::Dog(void) : Animal(), _type("Dog")
 
 Dog::Dog(const Dog& obj) : Animal(), _type(obj._type)
 {
-	ideas = new Brain; // FIXME ... what is the meaning of generating a new brain when I should copy over from a different one?
+	ideas = new Brain(*obj.ideas); 
 	if (DEBUG == 0)
 		std::cout << "Dog Copy constructor called" << std::endl;
 }
@@ -32,7 +32,10 @@ Dog::Dog(const Dog& obj) : Animal(), _type(obj._type)
 Dog& Dog::operator=(const Dog& obj)
 {
 	if (this != &obj)
+	{
 		_type = obj._type;
+		*ideas = *obj.ideas;
+	}
 	if (DEBUG == 0)
 		std::cout << "Dog = operator constructor called" << std::endl;
 	return (*this);
@@ -53,4 +56,20 @@ std::string Dog::getType(void) const
 void Dog::makeSound(void) const
 {
 	std::cout << "WOFF WOFF!!" << std::endl;
+}
+
+
+bool	Dog::changeIdea(unsigned int id, std::string idea)
+{
+	if (id < MAX_STRINGS)
+	{
+		ideas->setAnIdea(id, idea);
+		return (true);
+	}
+	return false;	
+}
+
+const std::string&	Dog::getIdea(unsigned int id) const
+{
+	return (ideas->getAnIdea(id));
 }
