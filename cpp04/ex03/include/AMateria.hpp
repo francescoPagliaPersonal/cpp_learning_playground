@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 11:38:41 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 13:32:16 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 16:30:55 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define AMATERIA_H
 
 # include <string>
+# include <iostream>
+# include "debug.h"
 
 class ICharacter;
 
@@ -28,7 +30,7 @@ class AMateria
 	
 	virtual std::string const &	getType(void) const; //Returns the materia type
 	virtual AMateria*	clone(void) const = 0;
-	virtual void		use(ICharacter& target);
+	virtual void		use(ICharacter& target) const = 0;
 
 	protected:
 	

@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 12:53:28 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 13:17:05 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:24:44 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define IMATERIASOURCE_H
 
 # include <string>
+# include "debug.h"
 
 class IMateriaSource
 {

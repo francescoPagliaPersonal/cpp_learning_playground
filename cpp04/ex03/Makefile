@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/26 12:55:27 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/02/26 16:42:36 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,12 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES =  \
-		 main.cpp 
+FILES =  main.cpp \
+		 AMateria.cpp Cure.cpp Ice.cpp \
+		 Character.cpp 	ICharacter.cpp \
 		
 
-NAME = animals
+NAME = materials
 
 
 SRC = $(addprefix $(SRC_DIR)/, $(FILES))

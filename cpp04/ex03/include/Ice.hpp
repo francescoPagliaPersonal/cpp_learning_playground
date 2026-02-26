@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 11:48:03 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 13:16:23 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 16:31:12 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 # define ICE_H
 
 #include "AMateria.hpp"
+# include "debug.h"
 
 class Ice : public AMateria
 {
 	public:
 	Ice(void);
-	Ice(std::string const & type);
 	Ice(const Ice& obj);
 	Ice& operator=(const Ice& obj);
 	~Ice(void);
 	
-	std::string const &	getType() const; //Returns the materia type
-	virtual AMateria*	clone() const = 0;
-	virtual void		use(ICharacter& target);
+	virtual AMateria*	clone() const;
+	virtual void		use(ICharacter& target) const;
 
 	protected:
 

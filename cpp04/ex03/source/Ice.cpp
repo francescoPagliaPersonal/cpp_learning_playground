@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 12:55:41 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 16:31:07 by fpaglia          ###   ########.fr       */
+/*   Created: 2026/02/26 14:44:58 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/02/26 16:30:59 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef CURE_H
-# define CURE_H
-
+#include "Ice.hpp"
 #include "AMateria.hpp"
-# include "debug.h"
+#include "ICharacter.hpp"
 
-class Cure : public AMateria
+Ice::Ice(void) : AMateria("ice") {}
+Ice::Ice(const Ice& obj) : AMateria(obj._type) {}
+Ice::~Ice(void) {}
+
+Ice& Ice::operator=(const Ice& obj)
 {
-	public:
-	Cure(void);
-	Cure(const Cure& obj);
-	Cure& operator=(const Cure& obj);
-	~Cure(void);
-	
-	virtual AMateria*	clone() const;
-	virtual void		use(ICharacter& target) const;
+	if (this != &obj)
+		_type = obj._type;
+	return (*this);
+}
 
-	protected:
+AMateria* Ice::clone() const
+{
+	return (new Ice(*this));
+}
 
-	private:
-	
-};
-
-#endif
+void	Ice::use(ICharacter& target) const
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
