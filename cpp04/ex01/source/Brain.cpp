@@ -40,23 +40,6 @@ Brain::~Brain(void) {
 		std::cout << "Brain destructor called" << std::endl;
 }
 
-
-bool Brain::loadIdeas(std::string filename)
-{
-	std::string sentence;
-	std::fstream file(filename.c_str());
-	if (!file)
-		return (false);
-
-	int i = 0;
-	while (i < MAX_STRINGS && std::getline(file, sentence))
-	{
-		ideas[i].assign(sentence);
-		++i;
-	}
-	return (true);
-}
-
 bool Brain::setAnIdea(unsigned int id, const std::string& idea)
 {
 	if (id < MAX_STRINGS)
