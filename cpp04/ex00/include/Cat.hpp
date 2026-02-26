@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:22 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 11:07:41 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 09:55:18 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "Animal.hpp"
 #include <string>
+# include "debug.h"
+
 
 class Cat : public Animal
 {

@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:12 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 11:20:37 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 10:20:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define WRONGANIMAL_H
 
 # include <string>
+# include "debug.h"
 
-# ifndef DEBUG
-#  define DEBUG 0
-# endif
 
 class WrongAnimal {
 
@@ -27,7 +25,7 @@ class WrongAnimal {
 	WrongAnimal(std::string type);
 	WrongAnimal(const WrongAnimal& obj);
 	WrongAnimal& operator=(const WrongAnimal& obj);
-	~WrongAnimal(void);
+	virtual ~WrongAnimal(void);
 
 	std::string		getType(void) const;
 	void			makeSound(void) const;

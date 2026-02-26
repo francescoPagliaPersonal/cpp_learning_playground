@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:27:12 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 11:22:07 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 10:18:40 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 #include <iostream>
 #include <string>
 
-WrongCat::WrongCat(void) : WrongAnimal(), _type("Cat") 
+WrongCat::WrongCat(void) : WrongAnimal(), _type("wrongCat") 
 {
 	if (DEBUG == 0)
-		std::cout << "Cat Basic constructor called" << std::endl;
+		std::cout << "WrongCat Basic constructor called" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat& obj) : WrongAnimal(), _type(obj._type)
 {
 	if (DEBUG == 0)
-		std::cout << "Cat Copy constructor called" << std::endl;
+		std::cout << "WrongCat Copy constructor called" << std::endl;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& obj)
@@ -33,14 +33,14 @@ WrongCat& WrongCat::operator=(const WrongCat& obj)
 	if (this != &obj)
 		_type = obj._type;
 	if (DEBUG == 0)
-		std::cout << "Cat = operator constructor called" << std::endl;
+		std::cout << "WrongCat = operator constructor called" << std::endl;
 	return (*this);
 }
 
 WrongCat::~WrongCat(void)
 {
 	if (DEBUG == 0)
-		std::cout << "Cat destructor called" << std::endl;
+		std::cout << "WrongCat destructor called" << std::endl;
 }
 
 std::string WrongCat::getType(void) const 
@@ -50,5 +50,5 @@ std::string WrongCat::getType(void) const
 
 void WrongCat::makeSound(void) const
 {
-	std::cout << "MIAOOOO!!" << std::endl;
+	std::cout << "WROONGMIAOOOO!!" << std::endl;
 }

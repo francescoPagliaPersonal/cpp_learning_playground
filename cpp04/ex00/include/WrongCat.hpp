@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:22 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 11:20:25 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 09:55:37 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "WrongAnimal.hpp"
 #include <string>
+# include "debug.h"
+
 
 class WrongCat : public WrongAnimal
 {

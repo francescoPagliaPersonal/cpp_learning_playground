@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:27:00 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 10:51:52 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 09:44:04 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <string>
 
-Animal::Animal(void) : _type("anybeast") 
+Animal::Animal(void) : _type("anyBeast") 
 {
 	if (DEBUG == 0)
 		std::cout << "Animal Basic constructor called" << std::endl;

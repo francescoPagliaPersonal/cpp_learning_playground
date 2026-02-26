@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:12 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 11:26:07 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 09:55:10 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 # define ANIMAL_H
 
 # include <string>
-
-# ifndef DEBUG
-#  define DEBUG 0
-# endif
+# include "debug.h"
 
 class Animal {
 
@@ -35,7 +32,7 @@ class Animal {
 	
 	private:
 	
-	std::string		_type;
+	std::string				_type;
 };
 
 #endif

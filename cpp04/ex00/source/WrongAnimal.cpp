@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:27:00 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/24 11:20:57 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/26 10:25:33 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <string>
 
-WrongAnimal::WrongAnimal(void) : _type("anybeast") 
+WrongAnimal::WrongAnimal(void) : _type("wrongBeast") 
 {
 	if (DEBUG == 0)
 		std::cout << "WrongAnimal Basic constructor called" << std::endl;
@@ -55,5 +55,6 @@ std::string WrongAnimal::getType(void) const
 
 void WrongAnimal::makeSound(void) const
 {
-	std::cout << "A generic animal doesn't emit specialize sound" << std::endl;
+	std::cout << "A generic animal doesn't emit specialize sound " 
+				"especially when it's wrong!" << std::endl;
 }
