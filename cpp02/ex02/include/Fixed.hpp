@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:47:32 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/17 12:30:32 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 14:02:15 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <cmath>
 # include <ostream>
 # include <climits>
+# include "debug.h"
 
 class Fixed 
 {

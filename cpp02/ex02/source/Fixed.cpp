@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 10:47:09 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/18 16:08:22 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 14:28:54 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,20 @@ const int	Fixed::_fractbit = 8;
 
 Fixed::Fixed(void) : _rawbits(0) 
 {
-	std::cout << "Default constructor called" << std::endl;
+	if (DEBUG == 1)
+		std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int nbr) : _rawbits(_toRawBits(nbr)) 
 {
-	std::cout << "Int constructor called" << std::endl;
+	if (DEBUG == 1)
+		std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float nbr) : _rawbits(_toRawBits(nbr))
 {
-	std::cout << "Float constructor called" << std::endl;
+	if (DEBUG == 1)
+		std::cout << "Float constructor called" << std::endl;
 }
 
 /* For as much as I understod this is the best approach to create the copy constructor.
@@ -40,12 +43,14 @@ Fixed::Fixed(const float nbr) : _rawbits(_toRawBits(nbr))
 Fixed::Fixed(const Fixed& obj) 
 	: _rawbits(obj._rawbits) 
 {
-	std::cout << "Copy constructor called" << std::endl;
+	if (DEBUG == 1)
+		std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed& Fixed::operator=(const Fixed& obj)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	if (DEBUG == 1)
+		std::cout << "Copy assignment operator called" << std::endl;
 	
 	if (this != &obj)	
 		this->_rawbits = obj.getRawBits();
@@ -54,7 +59,8 @@ Fixed& Fixed::operator=(const Fixed& obj)
 
 Fixed::~Fixed(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	if (DEBUG == 1)
+		std::cout << "Destructor called" << std::endl;
 }
 
 // METHODS -----------------------------------------------------------------/

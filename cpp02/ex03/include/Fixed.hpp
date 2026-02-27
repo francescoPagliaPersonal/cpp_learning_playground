@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 13:37:59 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/17 13:38:03 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 14:26:25 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <cmath>
 # include <ostream>
 # include <climits>
+# include "debug.h"
 
 class Fixed 
 {

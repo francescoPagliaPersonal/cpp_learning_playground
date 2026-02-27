@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 13:38:50 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/17 17:55:20 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 14:19:56 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Point {
 	
 	Fixed const	x;
 	Fixed const	y;
-	Fixed sign(const Point& p1, const Point& p2, const Point& p3) const ;
+	Fixed vector(const Point& p1, const Point& p2, const Point& p3) const ;
 };
 
 #endif
