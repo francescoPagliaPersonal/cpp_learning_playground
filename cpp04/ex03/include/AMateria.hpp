@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 11:38:41 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 16:30:55 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 18:01:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class AMateria
 	AMateria& operator=(const AMateria& obj);
 	virtual ~AMateria(void);
 	
-	virtual std::string const &	getType(void) const; //Returns the materia type
+	virtual std::string const &	getType(void) const;
 	virtual AMateria*	clone(void) const = 0;
 	virtual void		use(ICharacter& target) const = 0;
 

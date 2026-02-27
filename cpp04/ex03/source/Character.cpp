@@ -6,40 +6,60 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 14:56:57 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 17:06:05 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 18:26:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
 #include "Character.hpp"
 
-Character::Character(void) : ICharacter("default") 
+// CONSTRUCTORS ---------------------------------------------------------------/
+
+Character::Character(void) : _name("default") 
 {
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < MAX_ITEMS; ++i)
 		_invetory[i] = NULL;
 }
 
-Character::Character(std::string const & name) : ICharacter(name)
+Character::Character(std::string const & name) : _name(name)
 {
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < MAX_ITEMS; ++i)
 		_invetory[i] = NULL;
 }
 
-Character::Character(const Character& obj) : ICharacter(obj._name) 
+Character::Character(const Character& obj) : _name(obj._name) 
 {
-	for (int i = 0; i < 4; ++i)
-		_invetory[i] = NULL;
+	for (int i = 0; i < MAX_ITEMS; ++i)
+	{
+		if (obj._invetory[i] != NULL)
+			_invetory[i] = obj._invetory[i]->clone();
+	}
+		
 }
 
-Character::~Character(void) {}
+Character::~Character(void) 
+{
+	for (int i = 0; i < MAX_ITEMS; ++i)
+	{
+		delete _invetory[i];
+	}
+}
 
 Character& Character::operator=(const Character& obj)
 {
-	if (this != &obj)
-		_name = obj._name;
+	if (this == &obj)
+		return (*this);
+	_name = obj._name;
+	for (int i = 0; i < MAX_ITEMS; ++i)
+	{
+		if (obj._invetory[i] != NULL)
+			_invetory[i] = obj._invetory[i]->clone();
+	}
 	return (*this);
 }
+
+// CONSTRUCTORS ---------------------------------------------------------------/
+
 
 ICharacter*	Character::clone() const
 {
@@ -60,14 +80,13 @@ void	Character::equip(AMateria* m)
 
 void	Character::unequip(int idx)
 {
-	if (idx >= MAX_ITEMS)
-		return ;
-	_invetory[idx] = NULL;
+	if (idx >= 0 && idx < MAX_ITEMS)
+		_invetory[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
-	if (idx <= MAX_ITEMS && _invetory[idx] != NULL)
+	if (idx >= 0 && idx < MAX_ITEMS && _invetory[idx] != NULL)
 	{
 		_invetory[idx]->use(target);
 		_invetory[idx] = NULL;

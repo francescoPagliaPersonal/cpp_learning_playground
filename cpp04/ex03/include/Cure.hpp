@@ -6,10 +6,9 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 12:55:41 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 16:31:07 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 18:04:47 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CURE_H
 # define CURE_H
