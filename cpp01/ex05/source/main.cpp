@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:20:01 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/11 15:34:10 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 10:57:32 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ int main(int ac, char **av)
 	std::string::size_type start = complaint.find_first_not_of(' ');
 	if (start != complaint.npos)
 	{
-		complaint = complaint.substr(start, complaint.npos);
-		std::string::size_type end = complaint.find_first_of(' ');
-		complaint = complaint.substr(0, end);
 		complaint = set_uppercase(complaint);
 		std::cout << "level: \"" << complaint << "\""<< std::endl;
 	}
