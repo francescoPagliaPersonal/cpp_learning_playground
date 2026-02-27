@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:20:01 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/11 15:41:02 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/02/27 11:59:46 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(int ac, char **av)
 	
 	if (ac != 2)
 	{
-		std::clog << "Wrong number of parameter.\nPlease use:\t" << av[0]
+		std::cout << "Wrong number of parameter.\nPlease use:\t" << av[0]
 				<< "{complain level[DEBUG, INFO, WARNING, ERROR]}" << std::endl;
 		return (1);
 	}
