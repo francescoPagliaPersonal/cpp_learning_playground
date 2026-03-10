@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/24 09:54:27 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/03/10 15:08:28 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ endif
 
 SHW ?= 0
 ifeq ($(SHW),1)
-	FLAGS += -Wshadow-all 
+	FLAGS += -Wno-shadow-all 
 endif
 
 BLD_DIR := build
