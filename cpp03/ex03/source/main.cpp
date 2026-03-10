@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 16:22:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/03/10 14:55:47 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/10 18:25:19 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "DiamondTrap.hpp"
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
-#include <sstream>
+#include <iostream>
 
 int main(void)
 {
@@ -29,7 +29,6 @@ int main(void)
 
 	std::cout << "\n---------- DIAMOND ------------\n" << std::endl;
 	DiamondTrap di01("diamond_obj");
-	DiamondTrap di02;
 
 	
 	std::cout << "\n---------- REPORTS ------------\n" << std::endl;
@@ -37,7 +36,6 @@ int main(void)
 	fr01.report();
 	sc01.report();
 	di01.report();
-	di02.report();
 	
 	std::cout << "\n---------- ATTACK VALUES ------------\n" << std::endl;
 	cl01.attack("a scav");
@@ -53,9 +51,13 @@ int main(void)
 	
 	std::cout << "\n---------- CONSTRUCTOR TESTS ------------\n" << std::endl;
 	DiamondTrap di03(di01);
+	DiamondTrap di02;
+
 	di02 = di03;
 	di02.whoAmI();
 	di03.whoAmI();
+	di02.report();
+	di03.report();
 	
 	std::cout << "\n---------- DESTRUCTORS ------------\n" << std::endl;
 	
