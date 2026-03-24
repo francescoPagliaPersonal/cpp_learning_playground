@@ -1,4 +1,4 @@
-# cpp_modules
+# cpp learning playground
 42 Vienna assigments.
 
 Collection of all the C++ entry level projects designed to learn the foundations of the language
