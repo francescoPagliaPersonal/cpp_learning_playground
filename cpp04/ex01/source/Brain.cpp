@@ -1,7 +1,18 @@
-#include "Brain.hpp"
-#include "Animal.hpp"
-#include <string>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 17:13:53 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/03/24 17:22:18 by fpaglia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "Brain.hpp"
+
+std::string Brain::defaultIdea = "you reached the end of my brain";
 
 Brain::Brain(void)
 {
@@ -52,5 +63,7 @@ bool Brain::setAnIdea(unsigned int id, const std::string& idea)
 
 const std::string&	Brain::getAnIdea(unsigned int id) const
 {
-	return ((ideas[id]));
+	if (id < MAX_STRINGS)
+		return ((ideas[id]));
+	return defaultIdea;
 }

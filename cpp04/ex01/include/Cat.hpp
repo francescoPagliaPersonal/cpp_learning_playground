@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:22 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 11:32:08 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/24 16:31:39 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ class Cat : public Animal
 	Cat& operator=(const Cat& obj);
 	~Cat(void);
 
-	virtual std::string		getType(void) const;
 	virtual void			makeSound(void) const;
 	const std::string&		getIdea(unsigned int id) const;
 	bool					changeIdea(unsigned int id, std::string idea);
@@ -36,7 +35,6 @@ class Cat : public Animal
 	
 	private:
 	
-	std::string		_type;
 	Brain 			*ideas;
 };
 

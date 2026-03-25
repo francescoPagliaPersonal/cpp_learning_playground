@@ -6,16 +6,12 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:44:22 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 11:31:48 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/24 17:21:44 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Animal.hpp"
-#include "Brain.hpp"
-
-#include <iostream>
-#include <string>
 
 Animal::Animal(void) : _type("anybeast")
 {

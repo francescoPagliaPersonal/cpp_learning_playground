@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 17:13:36 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/03/24 17:13:37 by fpaglia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "Animal.hpp"
 #include "Brain.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include <iostream>
+#include <ostream>
 
 # define ANIM_COUNT 20
 
@@ -21,12 +34,15 @@ int main(void)
 		else 
 			zoo[i] = new Cat();
 	}
-
+	
 	if (DEBUG == 0)
 		std::cout << "\n -----------START OF ZOO DESTRUCTOR--------------- \n" << std::endl;
 
 	for (int i = 0; i < ANIM_COUNT; ++i)
+	{
+		zoo[i]->makeSound();
 		delete zoo[i];
+	}
 
 	if (DEBUG == 0)
 		std::cout << "\n -----------END OF ZOO DESTRUCTOR--------------- \n" << std::endl;
@@ -39,7 +55,7 @@ int main(void)
 	std::cout << "Jeff thought: " << jeff.getIdea(ideaID) << "\n";
 	jeff.changeIdea(ideaID,"Hello World");
 	std:: cout << "Jeff changed his mind: " << jeff.getIdea(ideaID) << "\n"
-			<< "while John was firm on the first idea: " << john.getIdea(5)
+			<< "while John was firm on the first idea: " << john.getIdea(ideaID)
 			<< std::endl;
 
 	if (DEBUG == 0)

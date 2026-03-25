@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:13:40 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 13:02:58 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/24 17:22:47 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@
 #  define MAX_STRINGS 100
 # endif
 
+#include "debug.h"
 #include <iostream>
-#include <fstream>
 #include <sstream>
 #include <string>
-#include "debug.h"
 
 class Brain 
 {
@@ -39,6 +38,7 @@ class Brain
 	private:
 	
 	std::string			ideas[MAX_STRINGS];
+	static std::string	defaultIdea;
 };
 
 #endif

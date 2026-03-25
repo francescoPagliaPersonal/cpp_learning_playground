@@ -6,24 +6,23 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:27:06 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/25 15:59:24 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/24 17:25:26 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-#include <iostream>
-#include <string>
-
-Dog::Dog(void) : Animal(), _type("Dog") 
+Dog::Dog(void) : Animal() 
 {
+	_type = "Dog";
 	ideas = new Brain();
 	if (DEBUG == 0)
 		std::cout << "Dog Basic constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& obj) : Animal(), _type(obj._type)
+Dog::Dog(const Dog& obj) : Animal()
 {
+	_type = obj._type;
 	ideas = new Brain(*obj.ideas); 
 	if (DEBUG == 0)
 		std::cout << "Dog Copy constructor called" << std::endl;
@@ -48,16 +47,10 @@ Dog::~Dog(void)
 		std::cout << "Dog destructor called" << std::endl;
 }
 
-std::string Dog::getType(void) const 
-{
-	return (_type);
-}
-
 void Dog::makeSound(void) const
 {
 	std::cout << "WOFF WOFF!!" << std::endl;
 }
-
 
 bool	Dog::changeIdea(unsigned int id, std::string idea)
 {
