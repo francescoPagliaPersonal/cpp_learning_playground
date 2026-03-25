@@ -6,15 +6,16 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:22 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 09:55:37 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/24 17:28:28 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WRONGCAT_H
 # define WRONGCAT_H
 
-#include "WrongAnimal.hpp"
-#include <string>
+# include "WrongAnimal.hpp"
+# include <iostream>
+# include <string>
 # include "debug.h"
 
 
@@ -31,10 +32,6 @@ class WrongCat : public WrongAnimal
 	std::string		getType(void) const;
 	void			makeSound(void) const;
 
-	
-	private:
-	
-	std::string		_type;
 };
 
 #endif

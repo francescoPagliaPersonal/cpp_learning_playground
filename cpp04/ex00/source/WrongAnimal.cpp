@@ -6,14 +6,11 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:27:00 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 10:25:33 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/24 17:27:44 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
-
-#include <iostream>
-#include <string>
 
 WrongAnimal::WrongAnimal(void) : _type("wrongBeast") 
 {

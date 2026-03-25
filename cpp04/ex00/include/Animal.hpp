@@ -6,15 +6,16 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:12 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 09:55:10 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/24 17:26:06 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ANIMAL_H
 # define ANIMAL_H
 
-# include <string>
 # include "debug.h"
+# include <iostream>
+# include <string>
 
 class Animal {
 
@@ -30,7 +31,7 @@ class Animal {
 	virtual void			makeSound(void) const;
 	
 	
-	private:
+	protected:
 	
 	std::string				_type;
 };
