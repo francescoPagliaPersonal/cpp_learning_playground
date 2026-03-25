@@ -6,17 +6,18 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 10:04:28 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/02/26 11:28:44 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/24 17:24:05 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_H
 # define DOG_H
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
-# include <string>
 # include "debug.h"
+# include <iostream>
+# include <string>
 
 class Dog : public AAnimal
 {
@@ -28,7 +29,6 @@ class Dog : public AAnimal
 	Dog& operator=(const Dog& obj);
 	~Dog(void);
 
-	virtual std::string			getType(void) const;
 	virtual void				makeSound(void) const;
 	virtual const std::string&	getIdea(unsigned int id) const;
 	virtual bool				changeIdea(unsigned int id, std::string idea);
@@ -37,7 +37,6 @@ class Dog : public AAnimal
 	
 	private:
 	
-	std::string		_type;
 	Brain 			*ideas;
 };
 

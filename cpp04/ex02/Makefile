@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/02/24 12:16:39 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/03/24 17:20:41 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES =  Dog.cpp Cat.cpp Animal.cpp Brain.cpp\
+FILES =  Dog.cpp Cat.cpp AAnimal.cpp Brain.cpp\
 		 main.cpp 
 		
 
