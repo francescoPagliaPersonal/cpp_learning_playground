@@ -3,44 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:07:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/03/16 15:07:09 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/31 13:16:59 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdexcept>
+#include <string>
+#include <iostream>
 
 class Bureaucrat 
 {
 	public:
 
 	Bureaucrat(void);
+	Bureaucrat(std::string name);
+	Bureaucrat(std::string name, int grade);
 	Bureaucrat(const Bureaucrat& obj);
 	~Bureaucrat(void);
 	Bureaucrat&	operator=(const Bureaucrat& obj);
 
 	std::string			getName() const;
 	int					getGrade() const;
-	int					promote(const unsigned int levels);
-	int					demote(const unsigned int levels);
+	bool				increment(const unsigned int levels);
+	bool				decrement(const unsigned int levels);
 
+	
+	class GradeTooHighException : public std::invalid_argument {
+		public: 
+		GradeTooHighException(std::string what_msg, int grade);
+		int		getWrongGrade() const; 
+		private:
+		int		_futureGrade;
+	};
+	
+	class GradeTooLowException : public std::invalid_argument {
+		public: 
+		GradeTooLowException(std::string what_msg, int grade);
+		int		getWrongGrade() const; 
+		
+		private:
+		int		_futureGrade;
+	};
 	
 	private:
 	
-	static int			_maxgrade = 1;
-	static int			_mingrade = 150;
+	const static int	_maxgrade = 1;
+	const static int	_mingrade = 150;
 
 	const std::string	_name;
 	int					_grade;
 	
-	const std::string	_report() const;
+	bool				_check_grade(int grade) const;
+	
 
-	/* exceptions to be studied:
-	Bureaucrat::GradeTooHighException
-	Bureaucrat::GradeTooLowException
-	*/
-
-}
-
+};
 
 // include << overload over cout stream
+std::ostream&		operator<<(std::ostream& ostream, Bureaucrat const &obj);
