@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:07:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/03/31 13:16:59 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/31 15:03:13 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class Bureaucrat
 	Bureaucrat(std::string name, int grade);
 	Bureaucrat(const Bureaucrat& obj);
 	~Bureaucrat(void);
-	Bureaucrat&	operator=(const Bureaucrat& obj);
 
 	std::string			getName() const;
 	int					getGrade() const;
@@ -48,7 +47,10 @@ class Bureaucrat
 		int		_futureGrade;
 	};
 	
+	
 	private:
+	
+	Bureaucrat&	operator=(const Bureaucrat& obj);
 	
 	const static int	_maxgrade = 1;
 	const static int	_mingrade = 150;

@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:06:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/03/31 13:41:34 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/03/31 16:54:05 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
 	}
 } ;
 
+Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name), _grade(obj._grade) {};
+
 Bureaucrat::GradeTooLowException::GradeTooLowException(std::string what_msg, int grade)
 	: std::invalid_argument (what_msg), _futureGrade(grade) {} ;
 
@@ -42,14 +44,14 @@ Bureaucrat::GradeTooHighException::GradeTooHighException(std::string what_msg, i
 	
 bool	Bureaucrat::_check_grade(int grade) const {
 	if (grade > _mingrade)
-		throw Bureaucrat::GradeTooLowException("value below max grade", grade);
+		throw Bureaucrat::GradeTooLowException("value below min grade", grade);
 	else if (grade < _maxgrade)
 		throw Bureaucrat::GradeTooHighException("value exceed max grade", grade);
 	return (true);
 };
 
 std::string	Bureaucrat::getName() const {
-	return _name;
+	return (_name);
 }
 
 int	Bureaucrat::getGrade() const {
