@@ -3,7 +3,6 @@
 #include "GradeException.hpp"
 #include <exception>
 #include <iostream>
-#include <iterator>
 
 int main()
 {
@@ -62,18 +61,24 @@ int main()
 		Bureaucrat("Peone2", 148),
 	} ;
 
-	Form Form11("Form11", 31, 130);
-	int i = 0;
-	while (i < 5)
-	{
+	for (int i = 0; i < 5 ; ++i) {
+		std::cout << bur[i] << std::endl;
+	}
+
+	std::cout << "\n\n-------TESTING Form::beSigned() " 
+			<<"--------\n" << std::endl;
+
+	Form	Form1A("Form1A", 31, 130);
+	
+	for (int i = 0; i < 5 ; ++i) {
 		std::cout << "ATTEMPT: " << i << " "
 			<< "Bureaucrat " << bur[i].getName() 
 			<< " tries to sign the form" 
 			<< std::endl; 
 		try {
-			if (Form11.beSigned(bur[i]))
+			if (Form1A.beSigned(bur[i]))
 				std::cout << bur[i].getName() << " signed "
-						<< Form11.getName() << "\n" << std::endl;
+						<< Form1A.getName() << "\n" << std::endl;
 			else
 			 	std::cout << bur[i].getName() 
 						<< " tried to sign an already signed Form" 
@@ -84,7 +89,18 @@ int main()
 			std::cout << "SIGNATURE ERROR: " << bur[i].getName() << e.what() 
 					<< "\n" << std::endl;
 		}
-		i++;
 	}
-	std::cout << Form11 << std::endl;
+
+	std::cout << "\n\n" << Form1A << std::endl;
+
+	std::cout << "\n\n-------TESTING Bureaucrat::signForm() " 
+			<<"--------\n" << std::endl;
+
+	Form	Form2B("Form2B", 101, 100);
+	
+	for (int i = 0; i < 5 ; ++i) {
+		bur[i].signForm(Form2B);
+	}
+	
+	std::cout << "\n\n" << Form2B << std::endl;
 }

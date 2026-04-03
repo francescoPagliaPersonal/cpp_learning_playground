@@ -6,17 +6,18 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:07:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 12:48:55 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:49:50 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_H
 # define  BUREAUCRAT_H
 
-#include "bureauLimits.h"
-#include "GradeException.hpp"
-#include <string>
-#include <iostream>
+# include "bureauLimits.h"
+# include "GradeException.hpp"
+# include "Form.hpp"
+# include <string>
+# include <iostream>
 
 class Bureaucrat 
 {
@@ -32,6 +33,7 @@ class Bureaucrat
 	int					getGrade() const;
 	bool				increment(const unsigned int levels);
 	bool				decrement(const unsigned int levels);
+	bool				signForm(Form& Form);
 
 	
 	class GradeTooHighException : public GradeException {

@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:44:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 12:58:26 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/03 14:50:14 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 # define FORM_H
 
 #include "bureauLimits.h"
-#include "Bureaucrat.hpp"
 #include "GradeException.hpp"
 #include <string>
+#include <iostream>
+
+class Bureaucrat ;
 
 class Form 
 {

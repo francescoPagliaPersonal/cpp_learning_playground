@@ -6,13 +6,12 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:51:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 13:35:39 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/03 15:02:59 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
-#include "bureauLimits.h"
-#include <stdexcept>
+#include "Bureaucrat.hpp"
 	
 Form::Form(std::string name, int signingGrade, int executingGrade)
 	: _name(name),

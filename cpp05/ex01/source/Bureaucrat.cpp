@@ -6,12 +6,11 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:06:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 12:55:55 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/03 15:21:56 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Bureaucrat.hpp"
-#include <exception>
 
 Bureaucrat::~Bureaucrat() {};
 Bureaucrat::Bureaucrat() : _name("Jhon Doe"), _grade(_mingrade) {} ;
@@ -94,4 +93,25 @@ std::ostream&	operator<<(std::ostream& ostream, Bureaucrat const &obj)
 {
 	ostream << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return ostream;
+}
+
+
+bool Bureaucrat::signForm(Form& obj) {
+	std:: cout << this->_name ;
+	try {
+		if (obj.beSigned(*this))
+			std:: cout << " signed " << obj.getName() << std::endl;
+		else {
+			std:: cout << " couldn’t sign " << obj.getName() 
+					<< " because it was already signed."<< std::endl;
+			return false;	
+		}
+	}
+	catch (Form::GradeTooLowException& e)
+	{
+		std:: cout << " couldn’t sign " << obj.getName() 
+				<< " because his grade was too low."<< std::endl;
+		return false;	
+	}
+	return true;
 }
