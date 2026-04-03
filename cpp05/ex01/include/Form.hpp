@@ -6,19 +6,22 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:44:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/03/31 17:25:30 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/03 12:58:26 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
+#ifndef FORM_H
+# define FORM_H
+
+#include "bureauLimits.h"
 #include "Bureaucrat.hpp"
 #include "GradeException.hpp"
+#include <string>
 
 class Form 
 {
 	public:
 
-	Form(void);
 	Form(std::string name, int signingGrade, int executingGrade);
 	Form(const Form& obj);
 	~Form(void);
@@ -32,15 +35,19 @@ class Form
 	class GradeTooHighException : public GradeException {
 		public:
 		GradeTooHighException(void);
-		~GradeTooHighException(void);
+		GradeTooHighException(int value);
 	} ;
+	
 	class GradeTooLowException : public GradeException {
 		public:
 		GradeTooLowException(void);
-		~GradeTooLowException(void);
+		GradeTooLowException(int value);
 	} ;
 
+
 	private:
+	
+	Form(void);
 	Form&	operator=(const Form& obj);
 	
 	const std::string	_name;
@@ -48,10 +55,13 @@ class Form
 	const int			_gradeToExec;
 	
 	bool				_issigned;
+	
+	int					isValidGrade(int value) const;
 };
 
 std::ostream&		operator<<(std::ostream& ostream, Form const &obj);
 
+#endif
 /*
 Let’s create a Form class. It has:
 • A constant name.
