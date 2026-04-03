@@ -6,11 +6,14 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:07:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/03/31 15:03:13 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/03 15:35:46 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdexcept>
+#ifndef BUREAUCRAT_H
+# define  BUREAUCRAT_H
+
+#include "GradeException.hpp"
 #include <string>
 #include <iostream>
 
@@ -30,21 +33,17 @@ class Bureaucrat
 	bool				decrement(const unsigned int levels);
 
 	
-	class GradeTooHighException : public std::invalid_argument {
-		public: 
-		GradeTooHighException(std::string what_msg, int grade);
-		int		getWrongGrade() const; 
-		private:
-		int		_futureGrade;
+	class GradeTooHighException : public GradeException {
+		public:
+		GradeTooHighException(void);
+		GradeTooHighException(int grade);
+		
 	};
 	
-	class GradeTooLowException : public std::invalid_argument {
-		public: 
-		GradeTooLowException(std::string what_msg, int grade);
-		int		getWrongGrade() const; 
-		
-		private:
-		int		_futureGrade;
+	class GradeTooLowException : public GradeException {
+		public:
+		GradeTooLowException(void);
+		GradeTooLowException(int grade);
 	};
 	
 	
@@ -65,3 +64,5 @@ class Bureaucrat
 
 // include << overload over cout stream
 std::ostream&		operator<<(std::ostream& ostream, Bureaucrat const &obj);
+
+#endif

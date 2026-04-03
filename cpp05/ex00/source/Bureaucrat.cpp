@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:06:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/03/31 16:54:05 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/03 15:38:31 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,30 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
 	}
 	catch (Bureaucrat::GradeTooLowException& e) {
 		std::cout << "ERROR:  " << _name << " - Grade not allowed - " << e.what()
-				<< "    ...defaulting to max grade" << std::endl;
+				<< "     ...defaulting to min grade" << std::endl;
 		_grade = _mingrade;
 	}
 } ;
 
 Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name), _grade(obj._grade) {};
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(std::string what_msg, int grade)
-	: std::invalid_argument (what_msg), _futureGrade(grade) {} ;
+Bureaucrat::GradeTooHighException::GradeTooHighException(void) 
+	: GradeException("Bureaucrat grade exceed max grade") {} ;
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(std::string what_msg, int grade)
-	: std::invalid_argument (what_msg), _futureGrade(grade) {} ;
+Bureaucrat::GradeTooLowException::GradeTooLowException(void) 
+	: GradeException("Bureaucrat grade below min grade") {} ;
 
+Bureaucrat::GradeTooHighException::GradeTooHighException(int value) 
+	: GradeException("Bureaucrat grade exceed max grade", value) {} ;
+	
+Bureaucrat::GradeTooLowException::GradeTooLowException(int value) 
+	: GradeException("Bureaucrat grade below min grade", value) {} ;
 	
 bool	Bureaucrat::_check_grade(int grade) const {
 	if (grade > _mingrade)
-		throw Bureaucrat::GradeTooLowException("value below min grade", grade);
+		throw GradeTooLowException(grade);
 	else if (grade < _maxgrade)
-		throw Bureaucrat::GradeTooHighException("value exceed max grade", grade);
+		throw GradeTooHighException(grade);
 	return (true);
 };
 
@@ -90,11 +95,3 @@ std::ostream&	operator<<(std::ostream& ostream, Bureaucrat const &obj)
 	ostream << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return ostream;
 }
-
-int		Bureaucrat::GradeTooHighException::getWrongGrade() const{
-	return _futureGrade;
-}; 
-
-int		Bureaucrat::GradeTooLowException::getWrongGrade() const{
-	return _futureGrade;
-}; 
