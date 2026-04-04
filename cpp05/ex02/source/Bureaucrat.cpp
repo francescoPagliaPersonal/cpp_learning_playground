@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 # include "Bureaucrat.hpp"
+#include "GradeException.hpp"
+#include <exception>
 
 Bureaucrat::~Bureaucrat() {};
 Bureaucrat::Bureaucrat() : _name("Jhon Doe"), _grade(_mingrade) {} ;
@@ -97,21 +99,37 @@ std::ostream&	operator<<(std::ostream& ostream, Bureaucrat const &obj)
 
 
 bool Bureaucrat::signForm(AForm& obj) {
-	std:: cout << this->_name ;
+	std::cout << this->_name ;
 	try {
 		if (obj.beSigned(*this))
-			std:: cout << " signed " << obj.getName() << std::endl;
+			std::cout << " signed " << obj.getName() << std::endl;
 		else {
-			std:: cout << " couldn’t sign " << obj.getName() 
+			std::cout << " couldn’t sign " << obj.getName() 
 					<< " because it was already signed."<< std::endl;
 			return false;	
 		}
 	}
 	catch (AForm::GradeTooLowException& e)
 	{
-		std:: cout << " couldn’t sign " << obj.getName() 
+		std::cout << " couldn’t sign " << obj.getName() 
 				<< " because his grade was too low."<< std::endl;
 		return false;	
 	}
 	return true;
+}
+
+
+bool	Bureaucrat::executeForm(AForm const & form) const {
+	std::cout << this->_name ;
+	try {
+		form.execute(*this);
+		std::cout << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception& e) {
+		std::cout << " couldn't execute " << form.getName() 
+				<< " because " << e.what() << std::endl;
+		return false ;
+	}
+	return true ;
+
 }

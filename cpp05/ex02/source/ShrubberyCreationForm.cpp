@@ -2,6 +2,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "GradeException.hpp"
+#include <ios>
 #include <fstream>
 
 
@@ -19,26 +20,28 @@ std::string ShrubberyCreationForm::getTarget(void) const {
 	return _target;
 }
 
+ShrubberyCreationForm::GradeNotSignedException::GradeNotSignedException(void) 
+	: GradeException("the form is not signed") {} ;
+
+ShrubberyCreationForm::GradeNotExecutedException::GradeNotExecutedException(void) 
+	: GradeException("the Bureaucrat grade is too low to execute") {} ;
+	
 
 bool 	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	if (!this->getIsFormSigned()) {
-		// TODO: replace with exception to throw in the the Forms 
-		std::cout << "Error form not signed" << std::endl;
-		return (false);
+		throw GradeNotSignedException();
 	}
 
 	else if (executor.getGrade() > this->getGradeToExec()) {
-		// TODO: replace with exception to throw in the the Forms 
-		std::cout << "Error grade too low" << std::endl;
-		return (false);
+		throw GradeNotExecutedException();
 	}
 
 	std::string 	filename(_target + "_shrubbery");
 	std::ofstream	outfs(filename.c_str());
 
 	if (!outfs.is_open())
-		// TODO: replace with exception to throw in the the Forms 
-		return (false);
+		throw std::ios_base::failure("Could not create the file");
+
 	outfs << "     ccee88oo\n  C8O8O8Q8PoOb o8oo\n dOB69QO8PdUOpugoO9bD\n"
 		<< "CgggbU8OU qOp qOdoUOdcb\n    6OuU  /p u gcoUodpP\n"
 		<< "      \\\\\\//  /douUP\n        \\\\\\////\n         |||/\\\n"

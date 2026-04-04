@@ -18,6 +18,15 @@ class ShrubberyCreationForm : public AForm
 	std::string 	getTarget() const;
  
 	// TODO: setup the exception to throw in the the Forms 
+	class GradeNotSignedException : public GradeException {
+		public:
+		GradeNotSignedException(void);
+	} ;
+	
+	class GradeNotExecutedException : public GradeException {
+		public:
+		GradeNotExecutedException(void);
+	} ;
 
 	private:
 	ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& obj);
