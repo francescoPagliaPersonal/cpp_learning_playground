@@ -6,16 +6,14 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:28:15 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/07 19:33:20 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/07 19:44:26 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RobotomyRequestForm.hpp"
+#include "BureauException.hpp"
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include "BureauException.hpp"
-#include <fstream>
-#include <unistd.h>
+#include "RobotomyRequestForm.hpp"
 
 int		RobotomyRequestForm::_attempt = 0;
 
@@ -49,20 +47,15 @@ bool 	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	}
 	this->_attempt++;
 	if (_attempt % 2 != 0) {
-		std::cout << "Bzzzzzzzzt!...\n";
-		usleep(2000);
-		std::cout << "Vrrr-t-t-t-t!\n" ;
-		usleep(1000);
-		std::cout << "Hmmmmmm!\n" ;
-		usleep(500);
-		std::cout << "Whirrrrrr!\n" ;
-		usleep(250);
-		std::cout << "Grrrrrr-ack!\n" ;
-		usleep(100);
-		return true;
-		std::cout << _target << " has been robotomized successfully." 
+		std::cout << "Bzzzzzzzzt!...\n"
+				<< "Vrrr-t-t-t-t!\n" 
+				<< "Hmmmmmm!\n" 
+				<< "Whirrrrrr!\n" 
+				<< "Grrrrrr-ack!\n"
+				<< _target << " has been robotomized successfully." 
 				<< std::endl;
+		return true;
 	}
+	std::cout << "Robotomy failed." << std::endl;
 	return false;
-		std::cout << "Robotomy failed." << std::endl;
 };

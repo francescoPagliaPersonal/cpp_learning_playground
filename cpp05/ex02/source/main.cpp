@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 19:27:56 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/07 19:34:45 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/07 19:47:32 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int main()
 		if (bur[i].executeForm(*forms[j]) && j < 2)
 			j++;
 	}
+	std::cout << "\n\n----------robotomy reps----------\n" << std::endl;
+	for (int i = 0; i < 5 ; ++i)
+		bur[i].executeForm(*forms[1]);
+	
 	for (int i = 0; i < 3 ; ++i) {
 		delete forms[i];
 	}
