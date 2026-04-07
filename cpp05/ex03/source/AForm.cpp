@@ -88,16 +88,8 @@ std::ostream&		operator<<(std::ostream& ostream, AForm const &obj) {
 };
 
 std::ostream& operator<<(std::ostream& ostream, const AForm* obj) {
-    if (!obj)
-        return ostream << "NULL";
-	else {
-		std::string status;
-		obj->getIsFormSigned() == true ? status.assign("true") : status.assign("false");
-		ostream << "FORM REPORT: " << obj->getName() << " Status: " << status
-				<< " requires grade: " << obj->getGradeToSign() << " to be signed,"
-				<< " requires grade: " << obj->getGradeToExec() << " to be executed.";
-		
-		return ostream;
-	}
-    // return ostream << *obj; 
+	if (!obj)
+		return ostream << "FORM REPORT: Form Pointer has NULL value and"
+						<< " cannot be retrieved.";
+	return ostream << *obj;
 }

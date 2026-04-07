@@ -42,13 +42,13 @@ AForm *Intern::makeForm(std::string label, std::string target) {
 			tmp = NULL;
 	}
 	if (!tmp)
-		std::cout << "ERROR\nIntern tried to create Form: " << label
-				<< "with target: " << target << "\n"
+		std::cout << "\nERROR\nIntern tried to create\nForm: " << label
+				<< "\ntarget: " << target << "\n"
 				<< "Select Form is not available please choose one of those options:\n"
-				<< "- Shrubbery Creation\n"
-				<< "- Robotomy Request\n"
-				<< "- Presidential Pardon\n\n"
-				<< "...Null Form returned." << std::endl;
+				<< "- \"Shrubbery Creation\"\n"
+				<< "- \"Robotomy Request\"\n"
+				<< "- \"Presidential Pardon\"\n\n"
+				<< "...Null Form returned.\n" << std::endl;
 	else
 		std::cout << "Intern creates " << tmp->getName() << " Form" << std::endl;
 	return tmp;

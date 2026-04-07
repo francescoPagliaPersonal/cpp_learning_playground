@@ -119,6 +119,13 @@ bool Bureaucrat::signForm(AForm& obj) {
 	return true;
 }
 
+bool Bureaucrat::signForm(AForm* obj) {
+	if (!obj) {
+		std::cout << _name << " no Form to sign." << std::endl;
+		return false;
+	}
+	return signForm(*obj);
+}
 
 bool	Bureaucrat::executeForm(AForm const & form) const {
 	try {
@@ -132,4 +139,12 @@ bool	Bureaucrat::executeForm(AForm const & form) const {
 	}
 	return true ;
 
+}
+
+bool Bureaucrat::executeForm(AForm const * obj) const {
+	if (!obj) {
+		std::cout << _name << " no Form to execute." << std::endl;
+		return false;
+	}
+	return executeForm(*obj);
 }

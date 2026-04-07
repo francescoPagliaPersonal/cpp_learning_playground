@@ -34,7 +34,9 @@ class Bureaucrat
 	bool			increment(const unsigned int levels);
 	bool			decrement(const unsigned int levels);
 	bool			signForm(AForm& Form);
+	bool			signForm(AForm* Form);
 	bool			executeForm(AForm const & form) const;
+	bool			executeForm(AForm const * form) const;
 
 	
 	class GradeTooHighException : public BureauException {
