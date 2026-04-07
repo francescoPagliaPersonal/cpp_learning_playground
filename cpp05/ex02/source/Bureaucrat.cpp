@@ -6,12 +6,13 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:06:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 16:10:39 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/07 19:01:53 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Bureaucrat.hpp"
-#include "GradeException.hpp"
+#include "AForm.hpp"
+#include "BureauException.hpp"
 #include <exception>
 
 Bureaucrat::~Bureaucrat() {};
@@ -37,16 +38,16 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
 Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name), _grade(obj._grade) {};
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(void) 
-	: GradeException("Bureaucrat grade exceed max grade") {} ;
+	: BureauException("Bureaucrat grade exceed max grade") {} ;
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(void) 
-	: GradeException("Bureaucrat grade below min grade") {} ;
+	: BureauException("Bureaucrat grade below min grade") {} ;
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(int value) 
-	: GradeException("Bureaucrat grade exceed max grade", value) {} ;
+	: BureauException("Bureaucrat grade exceed max grade", value) {} ;
 	
 Bureaucrat::GradeTooLowException::GradeTooLowException(int value) 
-	: GradeException("Bureaucrat grade below min grade", value) {} ;
+	: BureauException("Bureaucrat grade below min grade", value) {} ;
 	
 bool	Bureaucrat::_check_grade(int grade) const {
 	if (grade > _mingrade)
@@ -103,11 +104,6 @@ bool Bureaucrat::signForm(AForm& obj) {
 	try {
 		if (obj.beSigned(*this))
 			std::cout << " signed " << obj.getName() << std::endl;
-		else {
-			std::cout << " couldn’t sign " << obj.getName() 
-					<< " because it was already signed."<< std::endl;
-			return false;	
-		}
 	}
 	catch (AForm::GradeTooLowException& e)
 	{
@@ -115,18 +111,22 @@ bool Bureaucrat::signForm(AForm& obj) {
 				<< " because his grade was too low."<< std::endl;
 		return false;	
 	}
+	catch (AForm::FormSignedException& e) {
+		std::cout << " couldn’t sign " << obj.getName() 
+				<< " because it was already signed."<< std::endl;
+		return false;	
+	}
 	return true;
 }
 
 
 bool	Bureaucrat::executeForm(AForm const & form) const {
-	std::cout << this->_name ;
 	try {
 		form.execute(*this);
-		std::cout << " executed " << form.getName() << std::endl;
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << " couldn't execute " << form.getName() 
+		std::cout << this->_name << " couldn't execute " << form.getName() 
 				<< " because " << e.what() << std::endl;
 		return false ;
 	}

@@ -1,5 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 19:27:56 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/04/07 19:34:45 by fpaglia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
 
@@ -19,11 +33,10 @@ int main()
 	}
 
 	std::cout << "\n\n----------SETUP FORMS----------\n" << std::endl;
-	// TODO: to modify with the new additional classes
 	AForm *forms[3] = {
 		new ShrubberyCreationForm("Honey"),
-		new ShrubberyCreationForm("Biney"),
-		new ShrubberyCreationForm("Piney"),
+		new RobotomyRequestForm("Biney"),
+		new PresidentialPardonForm("Piney"),
 	};
 
 	for (int i = 0; i < 3 ; ++i) {
@@ -43,7 +56,6 @@ int main()
 		if (bur[i].executeForm(*forms[j]) && j < 2)
 			j++;
 	}
-
 	for (int i = 0; i < 3 ; ++i) {
 		delete forms[i];
 	}

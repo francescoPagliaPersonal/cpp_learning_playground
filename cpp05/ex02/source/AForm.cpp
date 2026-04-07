@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:51:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 16:18:37 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/07 19:31:15 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,19 @@ AForm::AForm(const AForm& obj)
 AForm::~AForm(void) {};
 
 AForm::GradeTooHighException::GradeTooHighException(void) 
-	: GradeException("Form value exceed max grade") {} ;
+	: BureauException("Form value exceed max grade") {} ;
 
 AForm::GradeTooLowException::GradeTooLowException(void) 
-	: GradeException("Form value below min grade") {} ;
+	: BureauException("Form value below min grade") {} ;
+	
+AForm::FormSignedException::FormSignedException(void) 
+	: BureauException("Form already signed cannot be signed again") {} ;
 
 AForm::GradeTooHighException::GradeTooHighException(int value) 
-	: GradeException("Form value exceed max grade", value) {} ;
+	: BureauException("Form value exceed max grade", value) {} ;
 	
 AForm::GradeTooLowException::GradeTooLowException(int value) 
-	: GradeException("Form value below min grade", value) {} ;
+	: BureauException("Form value below min grade", value) {} ;
 
 std::string AForm::getName() const {
 	return _name;
@@ -58,11 +61,11 @@ bool AForm::getIsFormSigned() const {
 bool AForm::beSigned(const Bureaucrat& obj) {
 	if (obj.getGrade() > _gradeToSign)
 		throw GradeTooLowException(obj.getGrade());
-	else if (!_issigned) {
-		_issigned = true;
-		return true;
+	else if (_issigned) {
+		throw FormSignedException();
 	}
-	return false;
+	_issigned = true;
+	return true;
 }
 
 
@@ -80,7 +83,6 @@ std::ostream&		operator<<(std::ostream& ostream, AForm const &obj) {
 	obj.getIsFormSigned() == true ? status.assign("true") : status.assign("false");
 	ostream << "FORM REPORT: " << obj.getName() << " Status: " << status
 			<< " requires grade: " << obj.getGradeToSign() << " to be signed,"
-			<< " requires grade: " << obj.getGradeToExec() << " to be executed."
-			<< std::endl;
+			<< " requires grade: " << obj.getGradeToExec() << " to be executed.";
 	return ostream;
 };

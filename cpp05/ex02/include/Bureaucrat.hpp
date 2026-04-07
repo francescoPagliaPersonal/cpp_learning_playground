@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:07:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 16:29:17 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/07 19:26:57 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define  BUREAUCRAT_H
 
 # include "bureauLimits.h"
-# include "GradeException.hpp"
+# include "BureauException.hpp"
 # include "AForm.hpp"
 # include <string>
 # include <iostream>
@@ -37,14 +37,14 @@ class Bureaucrat
 	bool			executeForm(AForm const & form) const;
 
 	
-	class GradeTooHighException : public GradeException {
+	class GradeTooHighException : public BureauException {
 		public:
 		GradeTooHighException(void);
 		GradeTooHighException(int grade);
 		
 	};
 	
-	class GradeTooLowException : public GradeException {
+	class GradeTooLowException : public BureauException {
 		public:
 		GradeTooLowException(void);
 		GradeTooLowException(int grade);

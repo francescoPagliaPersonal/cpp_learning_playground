@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/04/03 17:31:09 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/04/07 18:18:43 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,9 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = AForm.cpp GradeException.cpp Bureaucrat.cpp \
-		ShrubberyCreationForm.cpp \
+FILES = AForm.cpp BureauException.cpp Bureaucrat.cpp \
+		ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp \
 		main.cpp
 		
 

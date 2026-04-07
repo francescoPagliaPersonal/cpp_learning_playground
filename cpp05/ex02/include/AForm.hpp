@@ -14,7 +14,7 @@
 # define FORM_H
 
 #include "bureauLimits.h"
-#include "GradeException.hpp"
+#include "BureauException.hpp"
 #include <string>
 #include <iostream>
 
@@ -36,18 +36,22 @@ class AForm
 	
 	virtual bool 	execute(Bureaucrat const & executor) const = 0;
 	
-	class GradeTooHighException : public GradeException {
+	class GradeTooHighException : public BureauException {
 		public:
 		GradeTooHighException(void);
 		GradeTooHighException(int value);
 	} ;
 	
-	class GradeTooLowException : public GradeException {
+	class GradeTooLowException : public BureauException {
 		public:
 		GradeTooLowException(void);
 		GradeTooLowException(int value);
 	} ;
 
+	class FormSignedException : public BureauException {
+		public:
+		FormSignedException(void);
+	} ;
 
 	private:
 	

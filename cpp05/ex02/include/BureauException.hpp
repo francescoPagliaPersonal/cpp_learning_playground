@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GradeException.hpp                                 :+:      :+:    :+:   */
+/*   BureauException.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 15:21:18 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 12:17:00 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/07 17:03:40 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include <exception>
 # include <string>
 
-class GradeException : public std::exception
+class BureauException : public std::exception
 {
 	public:
-	GradeException(const std::string& msg); 
-	GradeException(const std::string& msg, int value); 
-	virtual ~GradeException() throw();
+	BureauException(const std::string& msg); 
+	BureauException(const std::string& msg, int value); 
+	virtual ~BureauException() throw();
 	
 	const char*		what() const throw();
 	int				getValue() const throw();

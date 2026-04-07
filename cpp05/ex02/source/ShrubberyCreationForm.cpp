@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 19:28:11 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/04/07 19:28:12 by fpaglia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include "GradeException.hpp"
-#include <ios>
+#include "BureauException.hpp"
 #include <fstream>
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
-	: AForm("SCF", REGRAD_SIGN, REGRAD_EXEC),
+	: AForm("SCF", SCF_SIGN, SCF_EXEC),
 	_target(target) {} ;
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj)
@@ -20,20 +31,19 @@ std::string ShrubberyCreationForm::getTarget(void) const {
 	return _target;
 }
 
-ShrubberyCreationForm::GradeNotSignedException::GradeNotSignedException(void) 
-	: GradeException("the form is not signed") {} ;
+ShrubberyCreationForm::BureauNotSignedException::BureauNotSignedException(void) 
+	: BureauException("the form is not signed") {} ;
 
-ShrubberyCreationForm::GradeNotExecutedException::GradeNotExecutedException(void) 
-	: GradeException("the Bureaucrat grade is too low to execute") {} ;
-	
+ShrubberyCreationForm::BureauNotExecutedException::BureauNotExecutedException(void) 
+	: BureauException("the Bureaucrat grade is too low to execute Shrubbery creation") {} ;
 
 bool 	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	if (!this->getIsFormSigned()) {
-		throw GradeNotSignedException();
+		throw BureauNotSignedException();
 	}
 
 	else if (executor.getGrade() > this->getGradeToExec()) {
-		throw GradeNotExecutedException();
+		throw BureauNotExecutedException();
 	}
 
 	std::string 	filename(_target + "_shrubbery");
@@ -42,27 +52,20 @@ bool 	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	if (!outfs.is_open())
 		throw std::ios_base::failure("Could not create the file");
 
-	outfs << "     ccee88oo\n  C8O8O8Q8PoOb o8oo\n dOB69QO8PdUOpugoO9bD\n"
-		<< "CgggbU8OU qOp qOdoUOdcb\n    6OuU  /p u gcoUodpP\n"
-		<< "      \\\\\\//  /douUP\n        \\\\\\////\n         |||/\\\n"
-		<< "         |||\\/\n         |||||\n   .....//||||\\....\n"
-		<< "  ..................\n thanks to David Moore\n";
+	outfs << "\n"
+		<< "     ccee88oo                  ccee88oo                  ccee88oo             \n"
+		<< "  C8O8O8Q8PoOb o8oo         C8O8O8Q8PoOb o8oo         C8O8O8Q8PoOb o8oo       \n"
+		<< " dOB69QO8PdUOpugoO9bD      dOB69QO8PdUOpugoO9bD      dOB69QO8PdUOpugoO9bD     \n"
+		<< "CgggbU8OU qOp qOdoUOdcb   CgggbU8OU qOp qOdoUOdcb   CgggbU8OU qOp qOdoUOdcb   \n"
+		<< "    6OuU  /p u gcoUodpP       6OuU  /p u gcoUodpP       6OuU  /p u gcoUodpP   \n"
+		<< "      \\\\\\//  /douUP             \\\\\\//  /douUP             \\\\\\//  /douUP       \n"
+		<< "        \\\\\\////                   \\\\\\////                   \\\\\\////           \n"
+		<< "         |||/\\                     |||/\\                     |||/\\            \n"
+		<< "         |||\\/                     |||\\/                     |||\\/            \n"
+		<< "         |||||                     |||||                     |||||            \n"
+		<< "   .....//||||\\....          .....//||||\\....          .....//||||\\....       \n"
+		<< "  ..................        ..................        ..................      \n"
+		<< " thanks to David Moore for the beautiful ASCII art I use for this exercise\n";
 	outfs.close();
 	return true;
 };
-
-/*
-     ccee88oo
-  C8O8O8Q8PoOb o8oo
- dOB69QO8PdUOpugoO9bD
-CgggbU8OU qOp qOdoUOdcb
-    6OuU  /p u gcoUodpP
-      \\\//  /douUP
-        \\\////
-         |||/\
-         |||\/
-         |||||
-   .....//||||\....
-  ..................
- thanks to David Moore
-*/
