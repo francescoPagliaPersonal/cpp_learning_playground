@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 20:06:17 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/07 21:55:45 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/08 16:49:59 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-std::string Intern::forms[3] = {
-		"Shrubbery Creation",
-		"Robotomy Request",
-		"Presidential Pardon"
+Intern::t_dictForm Intern::_entryMap[MAXFORM] = {
+		{"Shrubbery Creation", createShrubbery }, 
+		{"Robotomy Request", createRobotomy }, 
+		{"Presidential Pardon", createPresidential }, 
 };
 
 Intern::Intern(void) {} ;
@@ -64,3 +64,18 @@ int	Intern::getCase(std::string label) {
 	}
 	return -1;
 }
+
+AForm * Intern::createShrubbery(std::string target) {
+	return new ShrubberyCreationForm(target);
+}
+
+
+AForm * Intern::createRobotomy(std::string target) {
+	return new ShrubberyCreationForm(target);
+}
+
+
+AForm * Intern::createPresidential(std::string target) {
+	return new ShrubberyCreationForm(target);
+}
+
