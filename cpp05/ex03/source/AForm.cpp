@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:51:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/07 21:51:58 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/08 12:34:21 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 	
 AForm::AForm(std::string name, int signingGrade, int executingGrade)
 	: _name(name),
-	_gradeToSign(isValidGrade(signingGrade)),
-	_gradeToExec(isValidGrade(executingGrade)),
+	_gradeToSign(_isValidGrade(signingGrade)),
+	_gradeToExec(_isValidGrade(executingGrade)),
 	_issigned(false) {} ;
 	
 AForm::AForm(const AForm& obj)
@@ -69,7 +69,7 @@ bool AForm::beSigned(const Bureaucrat& obj) {
 }
 
 
-int	AForm::isValidGrade(int value) const {
+int	AForm::_isValidGrade(int value) const {
 	if (value < HIGHEST_GRADE)
 		throw GradeTooHighException(value);
 	else if (value > LOWEST_GRADE)

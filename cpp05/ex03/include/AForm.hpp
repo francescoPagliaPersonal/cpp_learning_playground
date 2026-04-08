@@ -64,7 +64,7 @@ class AForm
 	
 	bool				_issigned;
 	
-	int					isValidGrade(int value) const;
+	int					_isValidGrade(int value) const;
 };
 
 std::ostream&		operator<<(std::ostream& ostream, const AForm& obj);
