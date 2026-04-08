@@ -6,12 +6,12 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 15:21:18 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/07 17:03:40 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/08 13:43:14 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRADEEXCEPTION_H
-# define GRADEEXCEPTION_H
+#ifndef BUREAUEXCEPTION_H
+# define BUREAUEXCEPTION_H
 
 # include <exception>
 # include <string>

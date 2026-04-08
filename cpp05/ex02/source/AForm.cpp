@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:51:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/07 19:31:15 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/08 12:34:21 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 	
 AForm::AForm(std::string name, int signingGrade, int executingGrade)
 	: _name(name),
-	_gradeToSign(isValidGrade(signingGrade)),
-	_gradeToExec(isValidGrade(executingGrade)),
+	_gradeToSign(_isValidGrade(signingGrade)),
+	_gradeToExec(_isValidGrade(executingGrade)),
 	_issigned(false) {} ;
 	
 AForm::AForm(const AForm& obj)
@@ -69,7 +69,7 @@ bool AForm::beSigned(const Bureaucrat& obj) {
 }
 
 
-int	AForm::isValidGrade(int value) const {
+int	AForm::_isValidGrade(int value) const {
 	if (value < HIGHEST_GRADE)
 		throw GradeTooHighException(value);
 	else if (value > LOWEST_GRADE)
@@ -86,3 +86,10 @@ std::ostream&		operator<<(std::ostream& ostream, AForm const &obj) {
 			<< " requires grade: " << obj.getGradeToExec() << " to be executed.";
 	return ostream;
 };
+
+std::ostream& operator<<(std::ostream& ostream, const AForm* obj) {
+	if (!obj)
+		return ostream << "FORM REPORT: Form Pointer has NULL value and"
+						<< " cannot be retrieved.";
+	return ostream << *obj;
+}
