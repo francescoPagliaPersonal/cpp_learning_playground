@@ -6,34 +6,32 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:06:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 15:38:31 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/08 12:31:04 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Bureaucrat.hpp"
+// #include "Form.hpp"
+#include "GradeException.hpp"
 #include <exception>
 
 Bureaucrat::~Bureaucrat() {};
-Bureaucrat::Bureaucrat() : _name("Jhon Doe"), _grade(_mingrade) {} ;
-Bureaucrat::Bureaucrat(std::string name) : _name(name), _grade(_mingrade) {} ;
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
-	try {
-		_check_grade(grade);
-		_grade = grade;
-	}
-	catch (Bureaucrat::GradeTooHighException& e) {
-		std::cout << "ERROR:  " << _name << " - Grade not allowed - " << e.what()
-				<< "    ...defaulting to max grade" << std::endl;
-		_grade = _maxgrade;
-	}
-	catch (Bureaucrat::GradeTooLowException& e) {
-		std::cout << "ERROR:  " << _name << " - Grade not allowed - " << e.what()
-				<< "     ...defaulting to min grade" << std::endl;
-		_grade = _mingrade;
-	}
-} ;
 
-Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name), _grade(obj._grade) {};
+Bureaucrat::Bureaucrat() 
+	: _name("Jhon Doe"), 
+	_grade(_mingrade) {} ;
+	
+Bureaucrat::Bureaucrat(std::string name) 
+	: _name(name), 
+	_grade(_mingrade) {} ;
+
+Bureaucrat::Bureaucrat(std::string name, int grade)
+	: _name(name),
+	_grade(_isValidGrade(grade)) {} ;
+
+Bureaucrat::Bureaucrat(const Bureaucrat& obj) 
+	: _name(obj._name), 
+	_grade(obj._grade) {};
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(void) 
 	: GradeException("Bureaucrat grade exceed max grade") {} ;
@@ -47,12 +45,12 @@ Bureaucrat::GradeTooHighException::GradeTooHighException(int value)
 Bureaucrat::GradeTooLowException::GradeTooLowException(int value) 
 	: GradeException("Bureaucrat grade below min grade", value) {} ;
 	
-bool	Bureaucrat::_check_grade(int grade) const {
+int	Bureaucrat::_isValidGrade(int grade) const {
 	if (grade > _mingrade)
 		throw GradeTooLowException(grade);
 	else if (grade < _maxgrade)
 		throw GradeTooHighException(grade);
-	return (true);
+	return (grade);
 };
 
 std::string	Bureaucrat::getName() const {
@@ -64,34 +62,29 @@ int	Bureaucrat::getGrade() const {
 }
 
 bool Bureaucrat::increment(const unsigned int levels) {
-	try {
-		_check_grade(this->_grade - levels);
+	if (_isValidGrade(this->_grade - levels))
 		_grade -= levels;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "ERROR:  " << _name << " - Grade not updated - " 
-				<< e.what() << std::endl;
-	}
 	return (true);
 }
 
 bool Bureaucrat::decrement(const unsigned int levels) {
-	try {
-		_check_grade(_grade + levels);
+	if (_isValidGrade(_grade + levels))
 		_grade += levels;
-
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "ERROR:  " << _name << " - Grade not updated - " 
-				<< e.what() << std::endl;
-	}
 	return (true);
 }
 
-std::ostream&	operator<<(std::ostream& ostream, Bureaucrat const &obj)
+std::ostream&	operator<<(std::ostream& ostream, Bureaucrat const & obj)
 {
 	ostream << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return ostream;
+}
+
+std::ostream&	operator<<(std::ostream& ostream, Bureaucrat const * obj)
+{
+	if (!obj) {
+		ostream << "ERROR: Bureaucrat Pointer has NULL value and"
+				<< " cannot be retrieved.";
+		return ostream;
+	}
+	return ostream << *obj;
 }

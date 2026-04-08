@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 15:07:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 15:35:46 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/08 12:10:42 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,13 @@ class Bureaucrat
 	const std::string	_name;
 	int					_grade;
 	
-	bool				_check_grade(int grade) const;
+	int				_isValidGrade(int grade) const;
 	
 
 };
 
 // include << overload over cout stream
-std::ostream&		operator<<(std::ostream& ostream, Bureaucrat const &obj);
+std::ostream&	operator<<(std::ostream& ostream, Bureaucrat const & obj);
+std::ostream&	operator<<(std::ostream& ostream, Bureaucrat const * obj);
 
 #endif
