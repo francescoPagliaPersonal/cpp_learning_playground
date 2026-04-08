@@ -7,13 +7,13 @@
 
 int main()
 {
-	Intern	test;
+	Intern	myIntern;
 	
 	AForm	*forms[FORMMAX] = {
-		test.makeForm("Shrubbery Creation", "Shrubby"),
-		test.makeForm("Robotomy Request", "Roboty"),
-		test.makeForm("Presidential Pardon", "Pardon"),
-		test.makeForm("Shrubbery on", "B")
+		myIntern.makeForm("Shrubbery Creation", "Shrubby"),
+		myIntern.makeForm("Robotomy Request", "Roboty"),
+		myIntern.makeForm("Presidential Pardon", "Pardon"),
+		myIntern.makeForm("Shrubbery on", "B")
 	};
 	Bureaucrat mybur("Francesco", 24);
 	for (int i = 0; i < FORMMAX; ++i)
@@ -28,3 +28,28 @@ int main()
 		delete forms[i];
 
 }
+
+/*
+try {
+		_isValidGrade(grade);
+		_grade = grade;
+	}
+	catch (Bureaucrat::GradeTooHighException& e) {
+		std::cout << "ERROR:  " << _name << " - Grade not allowed - " << e.what()
+				<< "    ...defaulting to max grade" << std::endl;
+		_grade = _maxgrade;
+	}
+	catch (Bureaucrat::GradeTooLowException& e) {
+		std::cout << "ERROR:  " << _name << " - Grade not allowed - " << e.what()
+				<< "    ...defaulting to min grade" << std::endl;
+		_grade = _mingrade;
+	}
+*/
+
+/*
+	catch (std::exception& e)
+	{
+		std::cout << "ERROR:  " << _name << " - Grade not updated - " 
+				<< e.what() << std::endl;
+	}
+*/
