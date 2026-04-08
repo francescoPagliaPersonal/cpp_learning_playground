@@ -70,11 +70,3 @@ class AForm
 std::ostream&		operator<<(std::ostream& ostream, const AForm& obj);
 std::ostream&		operator<<(std::ostream& ostream, const AForm* obj);
 #endif
-/*
-Let’s create a AForm class. It has:
-• A constant name.
-• A boolean indicating whether it is signed (at construction, it is not).
-• A constant grade required to sign it.
-• A constant grade required to execute it.
-All these attributes are private, not protected.
-*/
