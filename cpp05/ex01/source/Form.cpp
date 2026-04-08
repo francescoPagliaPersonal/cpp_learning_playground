@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:51:55 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/03 15:02:59 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/08 13:40:07 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ Form::GradeTooHighException::GradeTooHighException(void)
 Form::GradeTooLowException::GradeTooLowException(void) 
 	: GradeException("Form value below min grade") {} ;
 
+Form::FormSignedException::FormSignedException(void) 
+	: GradeException("Form already signed cannot be signed again") {} ;
+	
 Form::GradeTooHighException::GradeTooHighException(int value) 
 	: GradeException("Form value exceed max grade") {
 		_value = value;
@@ -62,13 +65,12 @@ bool Form::getIsFormSigned() const {
 bool Form::beSigned(const Bureaucrat& obj) {
 	if (obj.getGrade() > _gradeToSign)
 		throw GradeTooLowException(obj.getGrade());
-	else if (!_issigned) {
-		_issigned = true;
-		return true;
+	else if (_issigned) {
+		throw FormSignedException();
 	}
-	return false;
+	_issigned = true;
+	return true;
 }
-
 
 int	Form::isValidGrade(int value) const {
 	if (value < HIGHEST_GRADE)
@@ -84,7 +86,13 @@ std::ostream&		operator<<(std::ostream& ostream, Form const &obj) {
 	obj.getIsFormSigned() == true ? status.assign("true") : status.assign("false");
 	ostream << "FORM REPORT: " << obj.getName() << " Status: " << status
 			<< " requires grade: " << obj.getGradeToSign() << " to be signed,"
-			<< " requires grade: " << obj.getGradeToExec() << " to be executed."
-			<< std::endl;
+			<< " requires grade: " << obj.getGradeToExec() << " to be executed." ;
 	return ostream;
 };
+
+std::ostream& operator<<(std::ostream& ostream, const Form* obj) {
+	if (!obj)
+		return ostream << "FORM REPORT: Form Pointer has NULL value and"
+						<< " cannot be retrieved.";
+	return ostream << *obj;
+}

@@ -36,21 +36,6 @@ int main()
 				<< " (" << e.getValue() << ")" << std::endl;
 	}
 
-	std::cout << "\n\n-------TESTING 3 FORMS IN A ROW" 
-			<<" WITH OUT OF BOUND GRADES--------\n" << std::endl;
-	try {
-		Form myForms1("H21", 10, 1);
-		Form myForms2("H22", 10, 160);
-		Form myForms3("H23", 0, 150);
-		std::cout << myForms1 << "\n"
-				<< myForms2 << "\n"
-				<< myForms3 << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "FORM NOT CREATED :  " << e.what() << std::endl;
-	}
-
 	std::cout << "\n\n-------TESTING RELATIONS " 
 			<<" WITH  BUREAUCRATS--------\n" << std::endl;
 	Bureaucrat	bur[5] = {
@@ -71,7 +56,7 @@ int main()
 	Form	Form1A("Form1A", 31, 130);
 	
 	for (int i = 0; i < 5 ; ++i) {
-		std::cout << "ATTEMPT: " << i << " "
+		std::cout << "ATTEMPT: " << i << " - "
 			<< "Bureaucrat " << bur[i].getName() 
 			<< " tries to sign the form" 
 			<< std::endl; 
@@ -86,7 +71,7 @@ int main()
 	
 		}
 		catch (std::exception& e) {
-			std::cout << "SIGNATURE ERROR: " << bur[i].getName() << e.what() 
+			std::cout << "SIGNATURE ERROR: " << bur[i].getName() << " " << e.what() 
 					<< "\n" << std::endl;
 		}
 	}
