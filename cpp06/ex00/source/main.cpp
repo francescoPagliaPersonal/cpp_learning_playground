@@ -1,12 +1,17 @@
+#include "ScalarConverter.hpp"
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
+#include <string.h>
 
 int main(int ac, char **av)
 {
+	outData conv;
+	memset(&conv, 0, sizeof(conv));
 	if (ac != 2) {
 		std::cout	<< "Error\n"
+					<< "Invalid input, "
 					<< "conversion cannot be executed.\n\n"
 					<< "Example usage:\n"
 					<< av[0] << " c     # to convert a character\n"
@@ -18,22 +23,14 @@ int main(int ac, char **av)
 		return 1;
 	}
 
-	const char	*str = av[1];
-	char		*end = NULL; 
-	double		nbrd = std::strtod(str,&end);
-	if (str == end) 
-		std::cout << *str << *end << "  only one value!" << std::endl;
-	else
-		std::cout  << *str << *end << "  there are leftovers!!" << std::endl;;
-	float		nbrf = (float)nbrd;
-	int			nbri = (int)nbrd;
-	char		nbrc = (char)nbrd;
-	// nbrd = -INFINITY; 
-	// nbrf =  (float)nbrd;
+	if (ScalarConverter::convert(av[1], &conv)) {
+		
+		std::cout << std::fixed << std::setprecision(1)
+				  << "char   : " << conv.nbrc  << "\n"   
+				  << "int    : " << conv.nbri << "\n"
+				  << "float  : " << conv.nbrf << "f\n" 
+				  << "double : " << conv.nbrd << "\n" << std::endl;
 
-	std::cout << std::fixed << std::setprecision(1)
-			  << "char   : " << nbrc << "\n"   
-			  << "int    : " << nbri << "\n"
-			  << "float  : " << nbrf << "f\n" 
-			  << "double : " << nbrd << "\n" << std::endl;
+	}
+
 }
