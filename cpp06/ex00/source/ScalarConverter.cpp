@@ -6,12 +6,13 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:00:15 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/13 14:43:49 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:14:56 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <cctype>
+#include <cmath>
 #include <cstdlib>
 #include <cstring>
 #include <limits>
@@ -173,21 +174,21 @@ void setError(outData *conv)
 }
 
 bool fitsInteger(long num) {
-	return (num < std::numeric_limits<int>::max()
-		&& num > std::numeric_limits<int>::min());
+	return (num <= std::numeric_limits<int>::max()
+		&& num >= std::numeric_limits<int>::min());
 }
 
 bool fitsFloat(double num) {
-	return (num < std::numeric_limits<float>::max()
-		&& num > -std::numeric_limits<float>::max());
+	return (num <= std::numeric_limits<float>::max()
+		&& num >= -std::numeric_limits<float>::max());
 }
 
 void intToChar(int num, outData *conv) {
 	conv->nbrc = static_cast<unsigned char>(num);
-	if (std::isprint(num))
-		conv->nbrc_status = OK;
-	else if (num > std::numeric_limits<unsigned char>::max() || num < 0) 
+	if (num > std::numeric_limits<unsigned char>::max() || num < 0) 
 		conv->nbrc_status = NOPOSS;
+	else if (std::isprint(num))
+		conv->nbrc_status = OK;
 	else conv->nbrc_status = NODISP;
 }
 
@@ -210,12 +211,12 @@ bool ScalarConverter::convertInt(outData *conv) {
 	conv->nbri_status = OK;
 	intToChar(num, conv);
 	conv->nbrf = static_cast<float>(num);
-	if (num == conv->nbrf)
+	if (num == static_cast<int>(conv->nbrf))
 		conv->nbrf_status = OK;
 	else
 	 	conv->nbrf_status = NOPOSS;
 	conv->nbrd = static_cast<double>(num);
-	if (num == conv->nbrd)
+	if (num == static_cast<int>(conv->nbrd))
 		conv->nbrd_status = OK;
 	else
 	 	conv->nbrd_status = NOPOSS;
@@ -223,53 +224,38 @@ bool ScalarConverter::convertInt(outData *conv) {
 }
 
 bool ScalarConverter::convertFloat(outData *conv) {
+	
 	(void) conv;
 	return true;
 }
 bool ScalarConverter::convertDouble(outData *conv) {
-	(void) conv;
+	const char *str = _input.str.c_str();
+	char *end;
+	errno = 0;
+	double num = std::strtod(str, &end);
+	if (errno != 0)	{
+		setError(conv);
+		return false;
+	}
+	
+	conv->nbrd = num;
+	conv->nbrd_status = OK;
+	
+	if (!fitsFloat(num)){
+		conv->nbrf_status = NOPOSS;
+	}
+	else {
+		conv->nbrf = static_cast<float>(num);
+		if (conv->nbrd == static_cast<double>(conv->nbrf))
+			conv->nbrf_status = OK;
+		else
+		 	conv->nbrf_status = NOPOSS;
+	}
+	if (!fitsInteger(static_cast<long>(std::ceil(conv->nbrd))))
+		//TODO to complete execution here
 	return true;
 }
 bool ScalarConverter::convertNone(outData *conv) {
 	(void) conv;
 	return true;
 }
-
-/*
-check if the are more than 2 inputs 
-	if yes return error,
-clean up trailing an leading spaces 
-verify if there is any space left inbetween
-if yes return error
-
-check litteral cases:
-inf
-inff
-+inf
-+inff
--inf
--inff
-nan
-nanf
-
-check if starts with a sign 
-	if it's signed and the next char is not a number return "error"
-	
-check if the next char is a number
-	if not and is signed return "error"
-	if not and is not signed and there is +1 char return "error"
-		else return the char and convert all the other types
-	if yes:
-	check if the rest of the string is number only
-		if yes mark it as INT 
-		if it's not the first interruption is a . walk again till you have EOL or f
-			if it's EOL mark it as DOUBLE
-			else if its f and next char is EOL mark it as FLOAT
-			else  return "error"
-	if all the test have passed run strtod if an overflow error appear return "error"
-	if not check the Type recorded and check against the type recorded if the value overflows the given type.
-		if so return "error" 
-	
-	to render the text, check the data type and implent conversions based on this info
-
-*/

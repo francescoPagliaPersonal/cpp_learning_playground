@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:10:49 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/13 14:36:52 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:03:23 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ class ScalarConverter
 	
 	// inputs   ---------------------->
 	static inData		_input;
-	// static outData		_convertions;
 	static std::string  _littNum[LITTERALNUMBER];
 	
 	// methods  ---------------------->
