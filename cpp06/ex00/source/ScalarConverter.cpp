@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:00:15 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/14 13:19:01 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/14 15:03:17 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,3 @@ void ScalarConverter::intToChar(int num, scalars *conv) {
 }
 
 
-bool ScalarConverter::convertNone(scalars *conv) {
-	(void) conv;
-	return true;
-}
-
-bool ScalarConverter::convertLitteral(scalars *conv, double num) {
-	
-	conv->nbrc_status = NOPOSS;
-	conv->nbri_status = NOPOSS;
-	
-	conv->nbrf = static_cast<float>(num);
-	conv->nbrf_status = OK;
-
-	conv->nbrd = num;
-	conv->nbrd_status = OK;
-	
-	return true;
-}

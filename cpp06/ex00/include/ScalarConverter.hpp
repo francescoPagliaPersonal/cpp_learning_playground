@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:10:49 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/14 13:31:23 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/14 14:59:48 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,49 +15,9 @@
 
 #include <cmath>
 # include <string>
+# include "scalarStruct.hpp"
 
 # define LITTERALNUMBER 8
-
-enum nbrStatus {
-	OK,
-	NODISP,
-	NOPOSS,
-	MAXERR
-};
-
-enum inType {
-	CHAR,
-	INTEGER,
-	FLOAT,
-	DOUBLE,
-	NOTATYPE,
-	MAXTYPE	
-};
-
-/* Input data stores: 
- * the validated std::string 
- * the datatype evaluated
- * the possiblitiy of being a litteral (inf/nan/etc)
- */
-struct inData {
-	std::string 	str;
-	inType			type;
-	int 			litteral; 
-};
-
-/* 
- */
-struct scalars {
-	char			nbrc;
-	nbrStatus		nbrc_status;
-	int 			nbri;
-	nbrStatus		nbri_status;
-	float 			nbrf;
-	nbrStatus		nbrf_status;
-	double 			nbrd;
-	nbrStatus		nbrd_status;	
-};
-
 
 class ScalarConverter 
 {
