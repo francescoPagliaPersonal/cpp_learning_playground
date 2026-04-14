@@ -84,6 +84,7 @@ bool ScalarConverter::validateInput(const char* str) {
 		return false;
 	
 	dot == 1 ? _in_type = DOUBLE : _in_type = INTEGER;
-	char_f == 1 ? _in_type = FLOAT : NULL;
+	if (char_f == 1) 
+		_in_type = FLOAT;
 	return true;
 }
