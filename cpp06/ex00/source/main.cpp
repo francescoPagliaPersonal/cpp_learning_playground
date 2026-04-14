@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/14 16:25:26 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/04/14 16:43:53 by fpaglia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverter.hpp"
-#include <cmath>
-#include <cstdlib>
-#include <cstring>
-#include <ios>
+#include "scalarStruct.hpp"
 #include <iostream>
 #include <iomanip>
 #include <string.h>
@@ -21,50 +30,62 @@ int errorReturn(char *prog, int errNum) {
 	return errNum;
 }
 
-void print0(double num) {
+std::string printMessage(enum nbrStatus stat) {
+	if (stat == NOPOSS)
+		return "impossible" ;
+	if (stat == NODISP)
+		return "Non displayable";
+	if (stat == ROUND)
+		return "\t\t* Rounded";
+	return "";
+}
+
+void printNumberWithPrecision(double num, enum nbrStatus stat) {
 	if (num == std::floor(num))
 		std::cout	<< std::fixed 
 					<< std::setprecision(1) 
 					<< num << std::endl;
 	else 
-	 	std::cout	<< std::setprecision(10) 
-					<< num << std::endl;
+	 	std::cout	<< std::setprecision(6) 
+					<< num 
+					<< printMessage(stat)
+					<< std::endl;
 };
 
-void print0(float num) {
+void printNumberWithPrecision(float num, enum nbrStatus stat ) {
 	if (num == std::floor(num))
 		std::cout	<< std::fixed 
 					<< std::setprecision(1) 
-					<< num << "f" << std::endl;
+					<< num << "f" 
+					<< printMessage(stat)
+					<< std::endl;
 	else 
 	 	std::cout	<< std::setprecision(10) 
 					<< num << std::endl;
 };
-
 
 void printConv(scalars& conv) {
 
-	// std::cout << std::fixed << std::showpoint << std::endl;
-	if (conv.nbrc_status == OK)
-		std::cout << "char   : " << conv.nbrc  << std::endl;
-	else if (conv.nbrc_status == NODISP) 
-		std::cout << "char   : " << "Non displayable"  << std::endl;
+	if (conv.nchr_status <= ROUND)
+		std::cout << "char   : " << conv.nchr << printMessage(conv.nchr_status) << std::endl;
 	else 
-		std::cout << "char   : " << "impossible"  << std::endl;
-	if (conv.nbri_status == OK)
-		std::cout << "int    : " << conv.nbri << std::endl;
+		std::cout << "char   : " << printMessage(conv.nchr_status) << std::endl;
+	if (conv.nint_status <= ROUND)
+		std::cout << "int    : " << conv.nint << printMessage(conv.nint_status) << std::endl;
 	else 
-		std::cout << "int    : " << "impossible"  << std::endl;
-	if (conv.nbrf_status == OK) {
-		std::cout << "float  : " ;	print0(conv.nbrf);
+		std::cout << "int    : " << printMessage(conv.nint_status) << std::endl;
+	if (conv.nflo_status <= ROUND) {
+		std::cout << "float  : " ;	
+		printNumberWithPrecision(conv.nflo, conv.nflo_status);
+	}
+	else if (!(conv.nflo_status == OK))
+		std::cout << "float  : " << printMessage(conv.nflo_status) << std::endl;
+	if (conv.ndou_status == OK) {
+		std::cout << "double : " ;	
+		printNumberWithPrecision(conv.ndou, conv.ndou_status);
 	}
 	else 
-		std::cout << "float  : " << "impossible"  << std::endl;
-	if (conv.nbrd_status == OK) {
-		std::cout << "double : " ;	print0(conv.nbrd);
-	}
-	else 
-		std::cout << "double : " << "impossible"  << std::endl;
+		std::cout << "double : " << printMessage(conv.ndou_status) << std::endl;
 }
 
 int main(int ac, char **av)
@@ -80,5 +101,4 @@ int main(int ac, char **av)
 	}
 	printConv(conv);
 	return (0);
-
 }

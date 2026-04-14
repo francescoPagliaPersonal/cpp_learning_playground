@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.int.cpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/14 16:26:19 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/04/14 16:26:21 by fpaglia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverter.hpp"
 #include <errno.h>
 #include <cstdlib>
 
 
 bool ScalarConverter::convertInt(scalars *conv) {
-	const char *str = _input.str.c_str();
+	const char *str = _in_str.c_str();
 	char *end;
 	errno = 0;
 	long num = std::strtol(str, &end, 10);
@@ -18,18 +30,18 @@ bool ScalarConverter::convertInt(scalars *conv) {
 		return false;
 	}
 	
-	conv->nbri = num;
-	conv->nbri_status = OK;
+	conv->nint = num;
+	conv->nint_status = OK;
 	intToChar(num, conv);
-	conv->nbrf = static_cast<float>(num);
-	if (num == static_cast<int>(conv->nbrf))
-		conv->nbrf_status = OK;
+	conv->nflo = static_cast<float>(num);
+	if (num == static_cast<int>(conv->nflo))
+		conv->nflo_status = OK;
 	else
-	 	conv->nbrf_status = NOPOSS;
-	conv->nbrd = static_cast<double>(num);
-	if (num == static_cast<int>(conv->nbrd))
-		conv->nbrd_status = OK;
+	 	conv->nflo_status = NOPOSS;
+	conv->ndou = static_cast<double>(num);
+	if (num == static_cast<int>(conv->ndou))
+		conv->ndou_status = OK;
 	else
-	 	conv->nbrd_status = NOPOSS;
+	 	conv->ndou_status = NOPOSS;
 	return true;		
 }

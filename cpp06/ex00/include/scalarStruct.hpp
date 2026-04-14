@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scalarStruct.hpp                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/14 16:25:17 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/04/14 16:43:28 by fpaglia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCALARSTRUCT_H
 # define SCALARSTRUCT_H
 
-# include <string>
-
 enum nbrStatus {
 	OK,
+	ROUND,
 	NODISP,
 	NOPOSS,
 	MAXERR
@@ -19,30 +30,26 @@ enum inType {
 	MAXTYPE	
 };
 
-/* Input data stores: 
- * the validated std::string 
- * the datatype evaluated
- * the possiblitiy of being a litteral (inf/nan/etc)
- */
-struct inData {
-	std::string 	str;
-	inType			type;
-	int 			litteral; 
-};
-
-/* 
+/* This structure is used by the ScalarConverter::convert function
+ * to provide with the Scalar version of the number expressed in 
+ * the input string.
+ * The status of each scalar is notified via the nbrStatus enumerator:
+ * - 0: conversion is successful and the data match the source type.
+ * - 1: conversion is successful but the data is rounded compared 
+ * 		to the source type.
+ * - 2: conversion is successful but the value cannot be displayed in 
+ * 		the give data type.
+ * - 3: conversion not successful value is set to 0.
  */
 struct scalars {
-	char			nbrc;
-	nbrStatus		nbrc_status;
-	int 			nbri;
-	nbrStatus		nbri_status;
-	float 			nbrf;
-	nbrStatus		nbrf_status;
-	double 			nbrd;
-	nbrStatus		nbrd_status;	
+	char			nchr;
+	nbrStatus		nchr_status;
+	int 			nint;
+	nbrStatus		nint_status;
+	float 			nflo;
+	nbrStatus		nflo_status;
+	double 			ndou;
+	nbrStatus		ndou_status;	
 };
-
-
 
 #endif

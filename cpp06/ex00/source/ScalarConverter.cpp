@@ -6,17 +6,20 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:00:15 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/14 15:03:17 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/14 16:10:40 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include "scalarStruct.hpp"
 #include <cctype>
 #include <cmath>
 #include <cstring>
 #include <limits>
 
-inData ScalarConverter::_input;
+std::string	ScalarConverter::_in_str;
+inType		ScalarConverter::_in_type;
+int 		ScalarConverter::_in_litteral = 0;
 
 bool ScalarConverter::convert(const char *str, scalars *conv)
 {
@@ -25,7 +28,7 @@ bool ScalarConverter::convert(const char *str, scalars *conv)
 	if (!validateInput(str))
 		return false;
 	
-	switch (_input.type) {
+	switch (_in_type) {
 		case 0:
 			status = convertChar(conv);
 			break ;
@@ -47,10 +50,10 @@ bool ScalarConverter::convert(const char *str, scalars *conv)
 
 void ScalarConverter::setError(scalars *conv)
 {
-	conv->nbrc_status = NOPOSS;
-	conv->nbri_status = NOPOSS;
-	conv->nbrf_status = NOPOSS;
-	conv->nbrd_status = NOPOSS;
+	conv->nchr_status = NOPOSS;
+	conv->nint_status = NOPOSS;
+	conv->nflo_status = NOPOSS;
+	conv->ndou_status = NOPOSS;
 }
 
 bool ScalarConverter::fitsInteger(long num) {
@@ -64,12 +67,12 @@ bool ScalarConverter::fitsFloat(double num) {
 }
 
 void ScalarConverter::intToChar(int num, scalars *conv) {
-	conv->nbrc = static_cast<unsigned char>(num);
+	conv->nchr = static_cast<unsigned char>(num);
 	if (num > std::numeric_limits<unsigned char>::max() || num < 0) 
-		conv->nbrc_status = NOPOSS;
+		conv->nchr_status = NOPOSS;
 	else if (std::isprint(num))
-		conv->nbrc_status = OK;
-	else conv->nbrc_status = NODISP;
+		conv->nchr_status = conv->nint_status;
+	else conv->nchr_status = NODISP;
 }
 
 

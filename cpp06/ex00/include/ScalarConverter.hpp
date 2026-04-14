@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 18:10:49 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/14 14:59:48 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/14 15:23:29 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,18 @@ class ScalarConverter
 	private:
 	
 	// inputs   ---------------------->
-	static inData		_input;
+	static std::string	_in_str;
+	static inType		_in_type;
+	static int 			_in_litteral;
+	
 	static std::string  _litteralNumbers[LITTERALNUMBER];
 	
 	// methods  ---------------------->
+	// --- parse input
 	static bool validateInput(const char* str);
 	static bool isLitterals(std::string str);
 
+	// --- conversion 
 	static bool convertChar(scalars *conv);
 	static bool convertInt(scalars *conv);
 	static bool convertFloat(scalars *conv);

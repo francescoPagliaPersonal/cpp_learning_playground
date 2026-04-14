@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.double.cpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/14 16:26:11 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/04/14 16:26:13 by fpaglia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverter.hpp"
 #include <errno.h>
 #include <cstdlib>
 
 
 bool ScalarConverter::convertDouble(scalars *conv) {
-	const char *str = _input.str.c_str();
+	const char *str = _in_str.c_str();
 	char *end;
 	errno = 0;
 	double num = std::strtod(str, &end);
@@ -13,34 +25,34 @@ bool ScalarConverter::convertDouble(scalars *conv) {
 		return false;
 	}
 
-	if (_input.litteral) {
+	if (_in_litteral) {
 		convertLitteral(conv, num);
 		return true;
 	}
 	
-	conv->nbrd = num;
-	conv->nbrd_status = OK;
+	conv->ndou = num;
+	conv->ndou_status = OK;
 	
 	if (!fitsFloat(num)){
-		conv->nbrf_status = NOPOSS;
+		conv->nflo_status = NOPOSS;
 	}
 	else {
-		conv->nbrf = static_cast<float>(num);
-		conv->nbrd == static_cast<double>(conv->nbrf)
-			? conv->nbrf_status = OK
-		 	: conv->nbrf_status = NOPOSS;
+		conv->nflo = static_cast<float>(num);
+		conv->ndou == static_cast<double>(conv->nflo)
+			? conv->nflo_status = OK
+		 	: conv->nflo_status = ROUND;
 	}
-	if (!fitsInteger(static_cast<long>(std::ceil(conv->nbrd))))
-		conv->nbri_status = NOPOSS;
+	if (!fitsInteger(static_cast<long>(conv->ndou)))
+		conv->nint_status = NOPOSS;
 	else {
-		conv->nbri = static_cast<int>(std::ceil(conv->nbrd));
-		num ==  static_cast<int>(conv->nbri) 
-			? conv->nbri_status = OK 
-			: conv->nbri_status = NOPOSS; 
+		conv->nint = static_cast<int>(conv->ndou);
+		num ==  static_cast<int>(conv->nint) 
+			? conv->nint_status = OK 
+			: conv->nint_status = ROUND; 
 	} 
-	if (conv->nbri_status == OK )
-		intToChar(conv->nbri, conv);
+	if (conv->nint_status == OK )
+		intToChar(conv->nint, conv);
 	else
-		(conv->nbrc_status = NOPOSS);
+		(conv->nchr_status = NOPOSS);
 	return true;
 }
