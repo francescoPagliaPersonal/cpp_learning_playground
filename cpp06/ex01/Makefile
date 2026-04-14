@@ -30,7 +30,7 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = Serializer.cpp  \
+FILES = Serializer.cpp  Data.cpp\
 		main.cpp
 		
 

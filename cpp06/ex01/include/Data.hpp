@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/14 16:57:45 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/14 17:02:23 by fpaglia          ###   ########.fr       */
+/*   Created: 2026/04/15 00:03:46 by fpaglia           #+#    #+#             */
+/*   Updated: 2026/04/15 00:03:47 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_H
-# define SERIALIZER_H
+#ifndef DATA_H
+# define DATA_H
 
-# include "Data.hpp"
-// # include <cstdint>
 # include <string>
+# include <ostream>
 
-typedef unsigned long uintptr_t;
-
-class Serializer 
-{
-
-	public:
-
-	static uintptr_t	serialize(Data* ptr);
-	static Data*		deserialize(uintptr_t raw);
+class Data {
 	
+	public:
+	
+	Data();
+	Data(std::string str, int value);
+	~Data();
 
+	std::string				getStr(void) const;
+	int						getValue(void) const;
+
+	
 	private:
 	
-	Serializer(void);
-	Serializer(const Serializer& obj);
-	Serializer& operator=(const Serializer& obj);
-	~Serializer(void);
+	Data(const Data& obj);
+	Data& operator=(const Data& obj);
 
+	const int				_value;
+	const std::string		_str;
 };
+
+std::ostream&		operator<<(std::ostream& ostream, const Data& obj);
 
 #endif
