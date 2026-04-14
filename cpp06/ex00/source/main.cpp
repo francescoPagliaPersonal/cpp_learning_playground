@@ -1,6 +1,8 @@
 #include "ScalarConverter.hpp"
 #include <cmath>
 #include <cstdlib>
+#include <cstring>
+#include <ios>
 #include <iostream>
 #include <iomanip>
 #include <string.h>
@@ -19,33 +21,56 @@ int errorReturn(char *prog, int errNum) {
 	return errNum;
 }
 
-void printConv(outData& conv) {
+void print0(double num) {
+	if (num == std::floor(num))
+		std::cout	<< std::fixed 
+					<< std::setprecision(1) 
+					<< num << std::endl;
+	else 
+	 	std::cout	<< std::setprecision(10) 
+					<< num << std::endl;
+};
 
-	std::cout << std::fixed << std::setprecision(1) << std::endl;
+void print0(float num) {
+	if (num == std::floor(num))
+		std::cout	<< std::fixed 
+					<< std::setprecision(1) 
+					<< num << "f" << std::endl;
+	else 
+	 	std::cout	<< std::setprecision(10) 
+					<< num << std::endl;
+};
+
+
+void printConv(scalars& conv) {
+
+	// std::cout << std::fixed << std::showpoint << std::endl;
 	if (conv.nbrc_status == OK)
-		std::cout << "char   : " << conv.nbrc  << "\n" ;
+		std::cout << "char   : " << conv.nbrc  << std::endl;
 	else if (conv.nbrc_status == NODISP) 
-		std::cout << "char   : " << "Non displayable"  << "\n" ;
+		std::cout << "char   : " << "Non displayable"  << std::endl;
 	else 
-		std::cout << "char   : " << "impossible"  << "\n" ;
+		std::cout << "char   : " << "impossible"  << std::endl;
 	if (conv.nbri_status == OK)
-		std::cout << "int    : " << conv.nbri << "\n" ;
+		std::cout << "int    : " << conv.nbri << std::endl;
 	else 
-		std::cout << "int    : " << "impossible"  << "\n" ;
-	if (conv.nbrf_status == OK)
-		std::cout << "float  : " << conv.nbrf << "\n" ;
+		std::cout << "int    : " << "impossible"  << std::endl;
+	if (conv.nbrf_status == OK) {
+		std::cout << "float  : " ;	print0(conv.nbrf);
+	}
 	else 
-		std::cout << "float  : " << "impossible"  << "\n" ;
-	if (conv.nbrd_status == OK)
-		std::cout << "double : " << conv.nbrd << "\n" ;
+		std::cout << "float  : " << "impossible"  << std::endl;
+	if (conv.nbrd_status == OK) {
+		std::cout << "double : " ;	print0(conv.nbrd);
+	}
 	else 
-		std::cout << "double : " << "impossible"  << "\n" << std::endl;
+		std::cout << "double : " << "impossible"  << std::endl;
 }
 
 int main(int ac, char **av)
 {
-	outData conv;
-	memset(&conv, 0, sizeof(conv));
+	scalars conv;
+	
 	if (ac != 2) {
 		return errorReturn(av[0], 1);
 	}

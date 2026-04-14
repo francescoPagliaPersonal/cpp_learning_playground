@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/04/09 18:10:19 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/04/14 13:17:32 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,10 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = ScalarConverter.cpp \
+FILES = ScalarConverter.cpp  \
+		ScalarConverter.char.cpp ScalarConverter.double.cpp \
+		ScalarConverter.float.cpp ScalarConverter.int.cpp \
+		ScalarConverter.isLitteral.cpp ScalarConverter.validateInput.cpp \
 		main.cpp
 		
 
