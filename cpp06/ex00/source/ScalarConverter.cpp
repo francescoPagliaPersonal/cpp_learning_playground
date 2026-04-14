@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:00:15 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/13 16:14:56 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/14 10:38:54 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ bool ScalarConverter::validateInput(const char* str) {
 	if (it != tmp.end()) {
 		if (*it == '.')
 			dot = 1;
-		else if (static_cast<unsigned char>(*it) == 'f')
+		else if (static_cast<unsigned char>(std::tolower(*it)) == 'f')
 			char_f = 1;
 		else 
 			return false;
@@ -157,7 +157,7 @@ bool ScalarConverter::validateInput(const char* str) {
 bool ScalarConverter::convertChar(outData *conv) {
 	conv->nbrc = _input.str.c_str()[0];
 	conv->nbrc_status = OK;
-	conv->nbri = conv->nbrc - '0';
+	conv->nbri = static_cast<int>(conv->nbrc);
 	conv->nbri_status = OK;
 	conv->nbrd = static_cast<double>(conv->nbri);
 	conv->nbrd_status = OK;
@@ -224,10 +224,48 @@ bool ScalarConverter::convertInt(outData *conv) {
 }
 
 bool ScalarConverter::convertFloat(outData *conv) {
+	const char *str = _input.str.c_str();
+	char *end;
+	errno = 0;
+	double num = std::strtod(str, &end);
+	if (errno != 0)	{
+		setError(conv);
+		return false;
+	}	
+	if (!fitsFloat(num)){
+		setError(conv);
+		return false;
+	}
+	else {
+		conv->nbrf = static_cast<float>(num);
+		conv->nbrd == static_cast<double>(conv->nbrf)
+			? conv->nbrf_status = OK
+		 	: conv->nbrf_status = NOPOSS;
+		if (conv->nbrf_status == NOPOSS){
+			setError(conv);
+			return false;
+		}
+	}
 	
-	(void) conv;
+	conv->nbrd = num;
+	conv->nbrd_status = OK;
+
+	
+	if (!fitsInteger(static_cast<long>(std::ceil(conv->nbrd))))
+		conv->nbri_status = NOPOSS;
+	else {
+		conv->nbri = static_cast<int>(std::ceil(conv->nbrd));
+		num ==  static_cast<int>(conv->nbri) 
+			? conv->nbri_status = OK 
+			: conv->nbri_status = NOPOSS; 
+	} 
+	if (conv->nbri_status == OK )
+		intToChar(conv->nbri, conv);
+	else
+		(conv->nbrc_status = NOPOSS);
 	return true;
 }
+
 bool ScalarConverter::convertDouble(outData *conv) {
 	const char *str = _input.str.c_str();
 	char *end;
@@ -246,15 +284,25 @@ bool ScalarConverter::convertDouble(outData *conv) {
 	}
 	else {
 		conv->nbrf = static_cast<float>(num);
-		if (conv->nbrd == static_cast<double>(conv->nbrf))
-			conv->nbrf_status = OK;
-		else
-		 	conv->nbrf_status = NOPOSS;
+		conv->nbrd == static_cast<double>(conv->nbrf)
+			? conv->nbrf_status = OK
+		 	: conv->nbrf_status = NOPOSS;
 	}
 	if (!fitsInteger(static_cast<long>(std::ceil(conv->nbrd))))
-		//TODO to complete execution here
+		conv->nbri_status = NOPOSS;
+	else {
+		conv->nbri = static_cast<int>(std::ceil(conv->nbrd));
+		num ==  static_cast<int>(conv->nbri) 
+			? conv->nbri_status = OK 
+			: conv->nbri_status = NOPOSS; 
+	} 
+	if (conv->nbri_status == OK )
+		intToChar(conv->nbri, conv);
+	else
+		(conv->nbrc_status = NOPOSS);
 	return true;
 }
+
 bool ScalarConverter::convertNone(outData *conv) {
 	(void) conv;
 	return true;
