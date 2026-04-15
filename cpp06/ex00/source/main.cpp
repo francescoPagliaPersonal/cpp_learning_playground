@@ -46,7 +46,7 @@ void printNumberWithPrecision(double num, enum nbrStatus stat) {
 					<< std::setprecision(1) 
 					<< num << std::endl;
 	else 
-	 	std::cout	<< std::setprecision(6) 
+	 	std::cout	<< std::setprecision(10) 
 					<< num 
 					<< printMessage(stat)
 					<< std::endl;
