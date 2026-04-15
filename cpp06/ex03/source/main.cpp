@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 10:16:34 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/15 10:31:10 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/15 10:53:47 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int main()
 	Base * one = Base::generate();
 	
 	Base::identify(one);
+	Base::identify(*one);
 	delete one;
 }
