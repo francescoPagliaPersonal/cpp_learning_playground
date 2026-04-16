@@ -27,5 +27,6 @@ worth noting that the last item of arrA could be the spare even number and must 
 
 Note from Joseph it might be needed to do the insertion at each level of decomposition not only at the last level to comply with 
 the project requirements.
-
+Has been confirmed also by the person I reviewed that the binary tree insertion must be executed at each round of the descending reordering.
+To be read on the documentation to get the confirmation.
 
