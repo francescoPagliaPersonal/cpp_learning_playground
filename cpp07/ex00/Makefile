@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/04/14 15:05:49 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/04/16 09:13:54 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,10 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = whatever \
-		main.cpp
+FILES = main.cpp
 		
 
-NAME = convert
+NAME = template
 
 
 SRC = $(addprefix $(SRC_DIR)/, $(FILES))
