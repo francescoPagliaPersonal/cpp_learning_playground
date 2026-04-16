@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 19:21:13 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/16 10:29:17 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/16 12:19:49 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(void)
 	std::cout << "a = " << a << ", b = " << b << std::endl;
 	::swap( a, b );
 	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+	std::cout << "min( a, b ) = " << ::min<A>( a, b ) << std::endl;
 	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
 	}
 	{
@@ -65,7 +65,7 @@ int main(void)
 	std::cout << "a = " << a << ", b = " << b << std::endl;
 	::swap( a, b );
 	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+	std::cout << "min( a, b ) = " << ::min<float>( a, b ) << std::endl;
 	std::cout << "min( a, b ) = " << std::min( a, b ) << std::endl;
 	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
 	}

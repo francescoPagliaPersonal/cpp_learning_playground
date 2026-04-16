@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/04/16 09:13:54 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/04/16 12:39:53 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ PREPR ?=
 
 DBG ?= 0
 ifeq ($(DBG),1)
-	FLAGS += -g3
+	FLAGS += -g3 -Wno-unused
 	PREPR += -D DEBUG=1
 endif
 
