@@ -1,0 +1,31 @@
+this exercise requires to create two different containers, in both do the same operation. (check vector vs deque)
+the double implementation is meaningful just to observe the difference in time between the two allocation methods.
+
+In principle the algorithm requires the following:
+
+create an array, 
+start groupping the array in increasing blocks of multiple of 2 
+size block = 2 , 4, 8, etc.
+
+Max block size is 2^n <= (array.size() / 2 )
+so the max amount of items in a block has to be at most 50% of the items or 2* block size is <= array.size() 
+
+at each groupping round compare the last item of the blocks and sort them in an ascendent order.
+once reached the max level of sorting do the same again until the block reaches the size of 2 items.
+check std::swapRanges .. or something similar on c++
+
+At this point the second part of the algorithm takes place.
+the approach is simple: the second item of the array is always coherently sorted compared to the end of the array.
+The array returned is always sorted by the uneven values, so it is possible to extract 2 arrays where:
+arrA {even} -> to be inserted
+arrB {odd} -> insertion point.
+the insertion happens as follow:
+the data to be sampled in arrA is = to current index + (2*last index)
+so sampling is constant : 1, 3, 5, 11, etc
+the insertion is a binary search in the range between arrB[0] and arrB[arrB.len() - (arrA.len() - currentIDX)] 
+worth noting that the last item of arrA could be the spare even number and must be removed from the calculation!!
+
+Note from Joseph it might be needed to do the insertion at each level of decomposition not only at the last level to comply with 
+the project requirements.
+
+
