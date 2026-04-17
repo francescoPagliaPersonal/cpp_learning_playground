@@ -6,10 +6,11 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 09:00:45 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/17 13:05:48 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/17 13:14:18 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdlib>
 #include <iostream>
 #include <Array.hpp>
 #include "ArrayException.hpp"

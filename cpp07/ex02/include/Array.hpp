@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 09:01:05 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/17 13:00:09 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/17 13:13:51 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,16 @@ class Array
 	Array&	operator=(Array const & obj) 
 			{
 				if (this == &obj)
-        			return *this;
+					return *this;
 				
-				delete [] _array;
+				T* tmp = new T[obj._size];
 
-				_array = new T[obj._size];
+				for (int i = 0; i < obj._size; i++)
+					tmp[i] = obj._array[i];
+
+				delete[] _array;
+				_array = tmp;
 				_size = obj._size;
-
-				for (int i = 0; i < obj._size; ++i)
-					_array[i] = obj[i];
 				return *this;		
 			};
 	
