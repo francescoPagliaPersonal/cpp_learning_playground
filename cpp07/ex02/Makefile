@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/04/16 12:40:20 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/04/17 12:53:51 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = main.cpp
+FILES = ArrayException.cpp main.cpp
 		
 
 NAME = template
