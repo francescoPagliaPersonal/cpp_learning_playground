@@ -13,26 +13,28 @@
 #ifndef ITER_H
 # define ITER_H
 
-#include <cstddef>
+
+typedef unsigned long size_t;
+
 
 template<typename T>
-void iter(T *arr, const std::size_t len, void (*f)(T const &))
+void iter(T *arr, const size_t len, void (*f)(T const &))
 {
-	for (std::size_t i = 0; i < len; ++i)
+	for (size_t i = 0; i < len; ++i)
 		f(arr[i]);				
 }
 
 template<typename T>
-void iter(T *arr, const std::size_t len, void (*f)(T &))
+void iter(T *arr, const size_t len, void (*f)(T &))
 {
-	for (std::size_t i = 0; i < len; ++i)
+	for (size_t i = 0; i < len; ++i)
 		f(arr[i]);				
 }
 
 template<typename T, typename A>
-void iter(T *arr, const std::size_t len, A f)
+void iter(T *arr, const size_t len, A f)
 {
-	for (std::size_t i = 0; i < len; ++i)
+	for (size_t i = 0; i < len; ++i)
 		f(arr[i]);				
 }
 
