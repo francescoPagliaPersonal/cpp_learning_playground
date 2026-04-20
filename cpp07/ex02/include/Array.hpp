@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 09:01:05 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/17 13:13:51 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/20 12:05:21 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ class Array
 		return *this;		
 	};
 	
-	int		size(void) const 	{ return _size;	};
+	int			size(void) const 	{ return _size;	};
 	
 	class ArrayExceptRange : public ArrayException {
 		public:
@@ -102,8 +102,8 @@ class Array
 
 	private:
 	
-	T	*_array;
-	int	_size;
+	T		*_array;
+	int		_size;
 
 	int		_isPositive(int n) 
 	{
