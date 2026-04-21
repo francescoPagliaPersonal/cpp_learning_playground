@@ -3,23 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 15:56:15 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/20 16:05:29 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/21 12:18:54 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EASYFIND_H
 # define EASYFIND_H
 
+#include <errno.h>
+
 template<typename T>
-const T& easyfind(T const & container, int value) const {
-	for (it = iterator.begin(); it < iterator.end(); ++it)
-		if (container[i] == value)
-			return container[i];
+typename T::iterator	easyfind(T const & container, int value) 
+{
+	typename T::iterator it;
+	for (it = container.begin(); it != container.end(); ++it)
+		if (*it == value)
+			return it;
 	errno = 1;
-	return iterator.end();
+	return container.end();
+}
+
+
+template<typename T>
+typename T::iterator	easyfind(T & container, int value) 
+{
+	typename T::iterator it;
+	for (it = container.begin(); it != container.end(); ++it)
+		if (*it == value)
+			return it;
+	errno = 1;
+	return container.end();
 }
 
 #endif
