@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 11:44:08 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/22 14:42:40 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/22 15:40:52 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		Span::shortestSpan(void) const {
 
 int		Span::longestSpan(void) const {
 	if (_array.size() < 2)
-		throw ArrayExceptRange("Not enough items to perform shortestSpan operation.");
+		throw ArrayExceptRange("Not enough items to perform longestSpan operation.");
 	int maxVal = *std::max_element(_array.begin(), _array.end());
 	int minVal = *std::min_element(_array.begin(), _array.end());
 	return maxVal - minVal;

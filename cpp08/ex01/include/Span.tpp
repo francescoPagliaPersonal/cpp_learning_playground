@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 10:55:44 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/22 14:11:43 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/22 15:33:01 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SPAN_T
 
 #include <cstddef>
-#include <exception>
 #include <iterator>
 #include <typeinfo>
 
