@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ArrayException.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpaglia <fpaglia@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 11:13:22 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/17 11:13:24 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/22 14:37:42 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef ArrayEXCEPTION_H
 # define ArrayEXCEPTION_H

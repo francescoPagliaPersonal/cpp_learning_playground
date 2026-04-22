@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 10:28:53 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/22 12:53:02 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/22 13:57:32 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ class Span
 
 	void	addNumber(int num);
 
-	template<typename T>
-	void	addRange(T const & container, 
-						typename T::iterator start,
-						const typename T::iterator end);
+	template<typename Iterator>
+	void	addRange(Iterator first, const Iterator last);
 	int		shortestSpan(void)	const;
 	int		longestSpan(void)	const;
 
