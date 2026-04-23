@@ -15,10 +15,12 @@
 #include <list>
 
 template<typename T>
-void printIterable(std::string title, T & obj) {
+void printIterable(std::string title, T const & obj) {
 	std::cout << "\nPRINTING "<< title << ": "<< std::endl;
-	typename T::iterator it = obj.begin();
-	typename T::iterator ite = obj.end();
+	typename T::const_iterator it = obj.begin();
+	typename T::const_iterator ite = obj.end();
+	if (it == ite)
+		return;
 	--ite;
 	while (it != ite )
 	{
@@ -30,7 +32,9 @@ void printIterable(std::string title, T & obj) {
 
 int main(void)
 {
+	int counter = 0;
 	{
+		std::cout << "\n\n========== T" << counter << " CREATE A MUTANT STACK AND COMPARE AGAINST A LIST =============\n" << std::endl; ++counter;
 		
 		std::list<int>	mylist;
 		MutantStack<int> mstack;
@@ -44,6 +48,8 @@ int main(void)
 		printIterable("std::List   ", mylist);		
 	}
 	{
+		std::cout << "\n\n========== T" << counter << " USE AVAILABLE MEMBER FUNCTION push, pop, top  =============\n" << std::endl; ++counter;
+
 		MutantStack<int> mstack;
 		std::list<int>	mylist;
 		
@@ -73,13 +79,16 @@ int main(void)
 				<<   "\nmylist.top : " << mylist.back() << "\tsize: " << mylist.size()
 				<< std::endl;
 
-		MutantStack<int>::iterator it = mstack.begin();
-		std::cout << "shifting pointers: \nbegin + 1: " << *(++it) << "\nbegin    : " << *(--it) << std::endl;
-		
-
 		printIterable("MutantStack ", mstack);
 		printIterable("std::List   ", mylist);	
 	
+		std::cout << "\n\n========== T" << counter << " PLAY WITH ITERATOR ++it/--it  =============\n" << std::endl; ++counter;
+
+		MutantStack<int>::iterator it = mstack.begin();
+		std::cout << "shifting pointers: \nbegin + 1: " << *(++it) << "\nbegin    : " << *(--it) << std::endl;
+	
+		std::cout << "\n\n========== T" << counter << " COPY CONSTRUCTOR OF A STACK USING A MUTANT STACK  AND VICE VERSA =============\n" << std::endl; ++counter;
+		
 		std::cout << "std::stack (reverted):" << std::endl;
 		std::stack<int> s(mstack);
 		while (s.size() != 0) {
@@ -87,7 +96,24 @@ int main(void)
 			s.pop();
 		}
 		std::cout << std::endl;
-			
+		s = mstack;
+		MutantStack<int> ms(s);
+		MutantStack<int> ms2(ms);
+		printIterable("copy constuctor of std::stack  ", ms);
+		printIterable("copy constuctor of MutantStack ", ms2);
+		
+		std::cout << "\n\n========== T" << counter << " COPY ASSIGN OPERATOR =============\n" << std::endl; ++counter;
+
+		MutantStack<int>	massign;
+		MutantStack<int>	sassign;
+
+		massign = mstack;
+		sassign = s;
+
+		printIterable("MutantStack ", mstack);
+		printIterable("op= MutantStack     ", massign);	
+		printIterable("op= std::Stack      ", sassign);	
+
 	}	
 	return 0;
 }

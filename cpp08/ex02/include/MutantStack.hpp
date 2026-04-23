@@ -21,8 +21,13 @@ class MutantStack : public std::stack<T> {
 	public:
 	MutantStack<T>(void) : std::stack<T>() {};
 	MutantStack<T>(const MutantStack<T>& obj) : std::stack<T>(obj) {};
+	MutantStack<T>(const std::stack<T>& obj) : std::stack<T>(obj) {};
 	~MutantStack<T>(void) {}; 
 	MutantStack<T>& operator=(const MutantStack<T>& obj) {
+		std::stack<T>::operator=(obj);
+		return *this;
+	}
+	MutantStack<T>& operator=(const std::stack<T>& obj) {
 		std::stack<T>::operator=(obj);
 		return *this;
 	}
@@ -34,8 +39,8 @@ class MutantStack : public std::stack<T> {
 	iterator begin(void)	{return this->c.begin();}
 	iterator end(void)		{return this->c.end();}
 
-	iterator begin(void)	const	{return this->c.begin();}
-	iterator end(void)		const 	{return this->c.end();}
+	const_iterator begin(void)	const	{return this->c.begin();}
+	const_iterator end(void)	const 	{return this->c.end();}
 };
 
 #endif
