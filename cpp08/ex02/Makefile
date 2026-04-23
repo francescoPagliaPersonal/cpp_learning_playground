@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/04/22 12:04:41 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/04/23 13:57:41 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,7 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = ArrayException.cpp Span.cpp \
-		main.cpp 
+FILES = main.cpp 
 		
 NAME = containers
 
