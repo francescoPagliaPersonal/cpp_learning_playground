@@ -30,7 +30,7 @@ class Span
 	void	addNumber(int num);
 
 	template<typename Iterator>
-	void	addRange(Iterator first, const Iterator last);
+	void	addRange(const Iterator first, const Iterator last);
 	int		shortestSpan(void)	const;
 	int		longestSpan(void)	const;
 
