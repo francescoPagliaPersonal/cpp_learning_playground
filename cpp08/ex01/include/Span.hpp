@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 10:28:53 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/22 13:57:32 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/27 11:32:44 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ class Span
 	int		shortestSpan(void)	const;
 	int		longestSpan(void)	const;
 
-	const std::string	printArray(void)	const;
+	const std::string	printArray(void)		const;
+	const std::string	printArray(int count)	const;
 	
 	class ArrayExceptRange : public ArrayException {
 		public:

@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 11:44:08 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/22 15:40:52 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/27 11:39:48 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,20 @@ const std::string Span::printArray(void) const {
 	std::vector<int>::const_iterator it;
 	for ( it = _array.begin(); it != _array.end(); ++it) 
 		tostr << *it << ", " ;
+	return tostr.str();
+}
+
+const std::string Span::printArray(int count) const {
+	std::ostringstream tostr;
+	std::vector<int>::const_iterator it;
+	for ( it = _array.begin(); it - _array.begin()  <= count;  ++it) {
+		tostr << *it << ", " ;
+	}
+	tostr << " ... ";
+	for ( it = _array.end() - count; it != _array.end() - 1; ++it) {
+		tostr << *it << ", " ;
+	}
+	tostr << *it;
 	return tostr.str();
 }
 
