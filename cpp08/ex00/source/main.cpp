@@ -6,18 +6,18 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 11:48:47 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/24 10:53:27 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/27 10:44:14 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
 #include <algorithm>
 #include <deque>
+#include <vector>
 #include <list>
 #include <cstddef>
 #include <iostream>
 #include <errno.h>
-#include <vector>
 
 int main(void)
 {
