@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 13:28:22 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/23 15:22:49 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/27 11:53:13 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,14 @@ int main(void)
 		std::cout << "\n\n========== T" << counter << " COPY CONSTRUCTOR OF A STACK USING A MUTANT STACK  AND VICE VERSA =============\n" << std::endl; ++counter;
 		
 		std::cout << "std::stack (reverted):" << std::endl;
+		
 		std::stack<int> s(mstack);
 		while (s.size() != 0) {
 			std::cout << s.top() << ", " ;
 			s.pop();
 		}
 		std::cout << std::endl;
+		
 		s = mstack;
 		MutantStack<int> ms(s);
 		MutantStack<int> ms2(ms);
@@ -111,8 +113,8 @@ int main(void)
 		sassign = s;
 
 		printIterable("MutantStack ", mstack);
-		printIterable("op= MutantStack     ", massign);	
-		printIterable("op= std::Stack      ", sassign);	
+		printIterable("op= MutantStack  ", massign);	
+		printIterable("op= std::Stack   ", sassign);	
 
 	}	
 	return 0;

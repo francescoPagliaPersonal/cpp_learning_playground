@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 11:03:08 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/23 15:05:56 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/27 11:57:32 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class MutantStack : public std::stack<T> {
 	MutantStack<T>(void) : std::stack<T>() {};
 	MutantStack<T>(const MutantStack<T>& obj) : std::stack<T>(obj) {};
 	MutantStack<T>(const std::stack<T>& obj) : std::stack<T>(obj) {};
-	~MutantStack<T>(void) {}; 
+	virtual ~MutantStack<T>(void) {}; 
 	MutantStack<T>& operator=(const MutantStack<T>& obj) {
 		std::stack<T>::operator=(obj);
 		return *this;
@@ -34,7 +34,6 @@ class MutantStack : public std::stack<T> {
 	
 	typedef typename std::stack<T>::container_type::iterator 		iterator;
     typedef typename std::stack<T>::container_type::const_iterator	const_iterator;
-	typedef typename std::stack<T>::container_type::value_type		value_type;
 
 	iterator begin(void)	{return this->c.begin();}
 	iterator end(void)		{return this->c.end();}
