@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 12:18:19 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/27 12:42:19 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/27 13:09:28 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int main(int ac, char** av) {
 		std::cout << ERR_INPUT << std::endl;
 		return 1;
 	}
+	try {BitcoinExchange::init();}
+	catch (std::exception& e)
+		{ std::cerr << "ERROR: "<< e.what() << std::endl;	}
 	try {BitcoinExchange::convert(av[1]);}
 	catch (std::exception& e)
 		{ std::cerr << "ERROR: "<< e.what() << std::endl;	}
