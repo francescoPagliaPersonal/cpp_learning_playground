@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 12:10:34 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 18:04:51 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/28 18:37:04 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,8 @@ class BitcoinExchange {
 	~BitcoinExchange(void);
 	BitcoinExchange&	operator=(const BitcoinExchange & obj);
 
-	std::fstream		_fileBTC;
-	std::fstream		_fileIN;
 	
 	static std::map<std::string, double>	_dbBTC;
-	std::map<std::string, double>			_dbIN;
 		
 	static bool			_checkHeader(std::fstream & in, const std::string & title);
 	static bool			_isvalidDate(const std::string & date);
