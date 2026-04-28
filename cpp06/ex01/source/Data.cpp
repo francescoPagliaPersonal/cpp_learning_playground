@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 01:25:43 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/15 01:25:45 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/28 16:44:29 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ std::string	Data::getStr(void) const {
 	return _str;
 };
 
-int					Data::getValue(void) const {
+int			Data::getValue(void) const {
 	return _value;
 };
 
