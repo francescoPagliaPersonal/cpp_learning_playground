@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:44:09 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 11:44:56 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/28 15:36:56 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ static int daysInMonth(int month, int year)
     }
 }
 
-std::string	BitcoinExchange::_extractDate(const std::string & date) 
+bool	BitcoinExchange::_isvalidDate(const std::string & date)
 {
-	if (date.size() < DATE_LEN)
-		return std::string("");
+	if (date.size() != DATE_LEN) 
+		return false;
 	
-	std::string extractedDate = date.substr(0, DATE_LEN);
 	const char	*start = date.c_str();
 	char		*end;
 	int			dateitem[3];
@@ -54,21 +53,21 @@ std::string	BitcoinExchange::_extractDate(const std::string & date)
 		errno = 0;
 		dateitem[i] = std::strtol(start, &end, 10);
 		if (errno != 0)
-			return std::string("");
+			return false;
 		if (i < 2) 
 		{
 			if (*end != '-')
-				return std::string("");
+				return false;
 			start = end + 1;
 		} 
 	}
 	if (end - date.c_str() != DATE_LEN)
-		return std::string("");
+		return false;
 	if (dateitem[0] < 2000)
-		return std::string("");
+		return false;
 	if (!(dateitem[1] > 0 && dateitem[1] <= 12))
-		return std::string("");
+		return false;
 	if (!(dateitem[2] > 0 && dateitem[2] <= daysInMonth(dateitem[1], dateitem[0])))
-		return std::string("");
-	return extractedDate;
+		return false;
+	return true;
 }
