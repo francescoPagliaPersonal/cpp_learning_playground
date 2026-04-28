@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 15:59:40 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 18:00:22 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/28 18:40:00 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool BitcoinExchange::_extractRate(
 	errno = 0;
 	number = std::strtod(value.c_str(), &end);
 	if (value.c_str() == end) {
-		error = "missing rate.";
+		error = "missing rate value.";
 		return false;
 	}
 	

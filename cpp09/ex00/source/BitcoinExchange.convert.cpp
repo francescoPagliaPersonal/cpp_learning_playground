@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 17:57:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 18:23:04 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/28 18:38:41 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void BitcoinExchange::convert(const char* file) {
 			continue;
 		}
 		if (!_parseLine(myline, " | ", date, rate, error))	{
-			std::cout << "Error: bad input => " << myline << " => " << error << std::endl;
+			std::cout << "Error: bad input : " << error << " => " << myline << std::endl;
 			continue;
 		}
 		if (!_validateRate(rate, error)) {
