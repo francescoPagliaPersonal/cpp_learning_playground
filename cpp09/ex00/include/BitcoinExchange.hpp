@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 12:10:34 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/27 18:15:29 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/28 11:54:12 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # define BITCO_DB "db/data.csv"
 # define DATE_LEN 10
+
 # include <map>
 # include <fstream>
+# include <iostream>
+# include <cstdlib>
 
 class BitcoinExchange {
 	
