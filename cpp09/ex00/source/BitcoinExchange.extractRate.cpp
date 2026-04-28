@@ -6,10 +6,9 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 15:59:40 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 16:23:30 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/28 18:00:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "BitcoinExchange.hpp"
 #include <cerrno>

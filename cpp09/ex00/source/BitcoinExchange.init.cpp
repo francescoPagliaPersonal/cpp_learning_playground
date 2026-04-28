@@ -6,14 +6,13 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 09:26:51 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 16:23:04 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/28 17:56:09 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include <iomanip>
 #include <string>
-
 
 void BitcoinExchange::init(void) 
 {

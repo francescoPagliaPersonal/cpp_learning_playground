@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/04/28 16:07:10 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/04/28 18:14:03 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,9 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = BitcoinExchange.cpp BitcoinExchange.init.cpp BitcoinExchange.extractDate.cpp \
-		BitcoinExchange.parseLine.cpp BitcoinExchange.extractRate.cpp \
+FILES = BitcoinExchange.cpp BitcoinExchange.init.cpp BitcoinExchange.convert.cpp \
+		BitcoinExchange.parseLine.cpp BitcoinExchange.isvalidDate.cpp \
+		BitcoinExchange.extractRate.cpp \
 		main.cpp 
 		
 NAME = btc
