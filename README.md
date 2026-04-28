@@ -8,6 +8,10 @@ Collection of all the C++ entry level projects designed to learn the foundations
 3. cpp02 - build your own first fixed point numbers, overload operators {+,-,/,*,n++,n--,++n,--n,<,>,==,<=,>=, etc... }
 4. cpp03 - inheritance, multi inheritance and understandig of linkage at compilation vs run time
 5. cpp04 - polymorphism and how to manage classes via their super classes delete Animal -> kills a Cat (figuratively...)
+6. cpp05 - exception handling, how to derive your own class 
+7. cpp06 - type casting, understanding the difference between all of them.
+8. cpp07 - function and class templates, the effort is in the tester displayed in the main files.
+9. cpp08 - algorithm and containers, how to hack a stack grabbing the iterator from the underlying deque (ex02)
 
 ### Useful command
 
