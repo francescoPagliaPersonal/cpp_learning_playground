@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:00:04 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/29 12:47:46 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/29 12:52:06 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int calculate(int left, int right, char oper) {
 		default:
 			throw std::runtime_error("Unexpected operator found.");
 	}
-	std::cout << left << " " << oper << " " << right << " = " << result << std::endl;
+	if (DEBUG)
+		std::cout << left << " " << oper << " " << right << " = " << result << std::endl;
 	return result;
 }
 
 int RPN::result(const char *str) {
-	int	num = 0;
-	int opr = 0;
+
 	if (!str || !*str)
 		throw std::runtime_error("Missing input.");
 	std::string input(str);
@@ -67,17 +67,13 @@ int RPN::result(const char *str) {
 			_items.push(calculate(left, right, input[pos]));
 		}
 		
-		if (DEBUG)
-			std::cout << "pos: " << pos << "  input : "<< input[pos] << std::endl;
-		
 		if (pos + 1 == input.size())
 			break;
 		if (input[pos + 1] != ' ')
 			throw std::runtime_error("Malformed input. Incorrect spacing");
 		++pos;
 	}
-	if (DEBUG)
-		std::cout << "numbers: " << num << "  opertors: " << opr << std::endl;
+
 	if (_items.size() != 1)
 		throw std::runtime_error("Calculation incomplete, not all operand have been consumed.");
 	return _items.top();
