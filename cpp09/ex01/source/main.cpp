@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:00:14 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/29 10:32:47 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/29 11:34:11 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int main(int ac, char **av)
 					<< "in example \"5 6 + 7 -\""<< std::endl;
 		return 1;
 	}
-	try { std::string input = RPN::parseInput(av[1]); }
+	try 
+	{ 
+		int calculation = RPN::result(av[1]);
+		std::cout << calculation << std::endl; 
+	}
 	catch (std::exception & e) {
 		std::cout << "Error: " << e.what() << " => " << av[1] << std::endl;
 	};
