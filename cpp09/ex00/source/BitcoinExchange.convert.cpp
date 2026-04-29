@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 17:57:07 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 18:38:41 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/29 09:48:29 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,20 @@ void BitcoinExchange::convert(const char* file) {
 			std::cout << "Error: " << error << std::endl; 
 			continue;
 		}
-		std::map<std::string, double>::iterator it = _dbBTC.find(date);
-		if (it == _dbBTC.end()) {
-			it = _dbBTC.lower_bound(date);
+		
+		std::map<std::string, double>::iterator it = _dbBTC.lower_bound(date);
+		if (it->first != date && it != _dbBTC.begin()) {
 			--it;
 		}
+		else if (it->first != date && it == _dbBTC.begin()) {
+			std::cout << "Error: bad input: date prior to first database item." 
+						<< " => " << myline << std::endl;
+			continue;
+		}
+		else if (it == _dbBTC.end())
+			it = --_dbBTC.end();
+		if (DEBUG)
+			std::cout << "requested key: " << date << "  ";
 		std::cout << it->first << " => " << rate << " = " << it->second * rate << std::endl;
 		
 	}
