@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:00:14 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/29 12:54:00 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/29 14:20:34 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 		std::cout << calculation << std::endl; 
 	}
 	catch (std::exception & e) {
-		std::cout << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 		return 1;
 	};
 	return 0;
