@@ -6,14 +6,14 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:00:04 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/29 12:52:06 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/29 12:59:20 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-#include <cctype>
-// #include <exception>
 #include <stdexcept>
+#include <string>
+#include <iostream>
 
 std::stack<int> RPN::_items;
 
@@ -45,12 +45,17 @@ int calculate(int left, int right, char oper) {
 
 int RPN::result(const char *str) {
 
+	// Basic string validation.
+	
 	if (!str || !*str)
 		throw std::runtime_error("Missing input.");
 	std::string input(str);
 	std::string::size_type pos = input.find_first_not_of(" 0123456789+-*/");
 	if (pos != input.npos)
 		throw std::runtime_error("Malformed input.");
+	
+	// Perform the calculation while validating the spacing rules.
+	
 	pos = 0;
 	while (pos + 1 != input.size()) {
 		pos = input.find_first_not_of(" ", pos);
@@ -73,6 +78,8 @@ int RPN::result(const char *str) {
 			throw std::runtime_error("Malformed input. Incorrect spacing");
 		++pos;
 	}
+
+	// Check items count before returning.
 
 	if (_items.size() != 1)
 		throw std::runtime_error("Calculation incomplete, not all operand have been consumed.");
