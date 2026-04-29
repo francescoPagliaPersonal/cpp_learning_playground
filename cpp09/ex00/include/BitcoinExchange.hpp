@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 12:10:34 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 18:37:04 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/29 09:53:00 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define BITCO_DB "db/data.csv"
 # define DATE_LEN 10
+# define FIRST_YEAR 2000
 
 # ifndef DEBUG
 #  define DEBUG 0

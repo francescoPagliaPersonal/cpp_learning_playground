@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.extractDate.cpp                    :+:      :+:    :+:   */
+/*   BitcoinExchange.isvalidDate.cpp                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:44:09 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/28 15:36:56 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/29 09:53:07 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool	BitcoinExchange::_isvalidDate(const std::string & date)
 	}
 	if (end - date.c_str() != DATE_LEN)
 		return false;
-	if (dateitem[0] < 2000)
+	if (dateitem[0] < FIRST_YEAR)
 		return false;
 	if (!(dateitem[1] > 0 && dateitem[1] <= 12))
 		return false;
