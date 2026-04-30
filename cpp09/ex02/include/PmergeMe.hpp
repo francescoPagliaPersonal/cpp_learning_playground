@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/29 15:36:05 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/04/30 09:35:57 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,9 @@ class PmergeMe
 	std::deque<int>		_dItems;
 	
 	template<typename T>
-	void _printIterable(std::string title, T const & obj) {
-		std::cout << "\nPRINTING "<< title << ": "<< std::endl;
-		typename T::const_iterator it = obj.begin();
-		typename T::const_iterator ite = obj.end();
-		if (it == ite)
-			return;
-		--ite;
-		while (it != ite )
-		{
-			std::cout << *it << ", ";
-			++it;
-		}
-		std::cout << *it << "." << std::endl;
-	}
+	void _printIterable(std::string title, T const & obj);
 };
+
+#include "PmergeMe.tpp" 
 
 #endif
