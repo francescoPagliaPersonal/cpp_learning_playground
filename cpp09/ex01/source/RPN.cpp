@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:00:04 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/29 12:59:20 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/05 10:44:58 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string>
 #include <iostream>
 
-std::stack<int> RPN::_items;
+std::stack<int, std::list<int> > RPN::_items;
 
 int calculate(int left, int right, char oper) {
 	if (oper == '/' && right == 0)
