@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/05 15:20:18 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/05 15:37:18 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ class PmergeMe
 	
 	template<typename T>
 	void	_printIterable(std::string title, T const & obj);
-	void	compare_pairs(std::vector<numid_s> & incoming);
-	void	print_pairs_info(std::vector<numid_s> const & looser, std::vector<numid_s> const & winner);
+	void	compare_pairs(std::vector<numid_s> & incoming, int level);
+	void	print_pairs_info(std::vector<numid_s> const & looser, std::vector<numid_s> const & winner, int level);
 	// std::vector<winner_s> & _merge(std::vector<winner_s> & winners);
 
 };

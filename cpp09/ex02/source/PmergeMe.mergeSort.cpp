@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 11:13:37 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/05 15:25:35 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/05 15:40:11 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,37 @@ typedef std::deque<int>::size_type	deq_id;
 	
 // }
 
-void PmergeMe::print_pairs_info(std::vector<numid_s> const & looser, std::vector<numid_s> const & winner)
+void PmergeMe::print_pairs_info(std::vector<numid_s> const & looser, std::vector<numid_s> const & winner, int level)
 {
+	std::cout << "winner:\t";
 	for (size_t i = 0; i < winner.size(); ++i)
 	{
 		std::cout << winner[i].value << "\t";	
 	}
 	std::cout << std::endl;
+	std::cout << "looser:\t";
+
 	for (size_t i = 0; i < looser.size(); ++i)
 	{
 		std::cout << looser[i].value << "\t";	
 	}
 	std::cout << std::endl;
+	std::cout << "index :\t";
 	for (size_t i = 0; i < winner.size(); ++i)
 	{
-		std::cout << *(--winner[i].index.end()) << "\t";	
+		std::cout << (winner[i].index[(level == 0 ? 0 : level )]) << "\t";	
 	}
-	std::cout << std::endl;
+	std::cout << "\n" << std::endl;
 }
 
-void PmergeMe::compare_pairs(std::vector<numid_s> & incoming)
+void PmergeMe::compare_pairs(std::vector<numid_s> & incoming, int level)
 {
 	if (incoming.size() < 2)
 		return ;
 	
 	std::vector<numid_s>	looser;
 	std::vector<numid_s>	winner;
+	
 	
 	numid_s					reminder;
 	
@@ -81,8 +86,8 @@ void PmergeMe::compare_pairs(std::vector<numid_s> & incoming)
 	if (incoming.size() % 2 != 0)
 		looser.push_back(*(--incoming.end()));
 	incoming = winner;
-	print_pairs_info(looser, winner);
-	compare_pairs(winner);
+	print_pairs_info(looser, winner, level);
+	compare_pairs(winner, ++level);
 	
 }
 
@@ -90,7 +95,7 @@ int PmergeMe::mergeSort(std::vector<int> & db)
 {
 	std::vector<numid_s>	winner;
 	std::vector<numid_s>	looser;
-	
+	int 					level = 0;
 	numid_s					reminder;
 	
 	if (_sourceItems.size() % 2 != 0)
@@ -109,8 +114,8 @@ int PmergeMe::mergeSort(std::vector<int> & db)
 	}
 	if (reminder.value > -1)
 		looser.push_back(reminder);
-	print_pairs_info(looser, winner);
-	compare_pairs(winner);
+	print_pairs_info(looser, winner, 0);
+	compare_pairs(winner, level);
 	
 	_vItems.push_back(reminder.value);
 	db.push_back(reminder.value);
