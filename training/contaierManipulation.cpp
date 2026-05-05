@@ -33,7 +33,7 @@ void mergesort(arrsize_t round, std::vector<int> & arr ) {
 
 int main(void) 
 {
-	// int ordered[] = {1,2,3,4,5,6,7,8,9,10, 11,12,13,14,15,16,17,19,19,20,21};
+	int ordered[] = {1,2,3,4,5,6,7,8,9,10, 11,12,13,14,15,16,17,19,19,20,21};
 	int unordered[] = {5,2,14,19,20,17,4,12,15,7,13,16,1,8,6,21,3,10,9,18,11};
 
 	std::vector<int> num;
@@ -48,6 +48,15 @@ int main(void)
 
 	mergesort(1, num);
 
+	std::vector<int> num2;
+	for (int i = 0; i < 21; ++i )
+		num2.push_back(ordered[i]);
+	std::cout << "test" << std::endl;
+
+	printrange(num2, 0, 20);
+	std::cout << "\nswap" << std::endl;
+	num2 = num;
+	printrange(num2, 0, 20);
 	// std::swap_ranges(&num[0], &num[5], &num[5]);
 	// for (std::vector<int>::size_type i = 0; i < num.size();  ++i)
 	// 	std::cout << num[i] << " ";
