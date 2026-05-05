@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/05 15:37:18 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/05 17:27:30 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ class PmergeMe
 	};
 	
 	typedef std::vector<numid_s>::size_type	vec_id;
+	typedef std::vector<numid_s>::iterator	vec_it;
 
 	// struct pair_s {
 	// 	numid_s		winner;
@@ -65,8 +66,10 @@ class PmergeMe
 	
 	template<typename T>
 	void	_printIterable(std::string title, T const & obj);
-	void	compare_pairs(std::vector<numid_s> & incoming, int level);
+	void	_compare_pairs(std::vector<numid_s> & incoming, int level);
 	void	print_pairs_info(std::vector<numid_s> const & looser, std::vector<numid_s> const & winner, int level);
+	void	_insert_looser(std::vector<numid_s> & container, vec_it start, vec_it end, numid_s num);
+	void 	_insert_array(std::vector<numid_s> & container, vec_id id_start, vec_id id_end, std::vector<numid_s> & winner, std::vector<numid_s> & looser );
 	// std::vector<winner_s> & _merge(std::vector<winner_s> & winners);
 
 };

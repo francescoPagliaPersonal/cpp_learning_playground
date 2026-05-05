@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 11:13:37 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/05 15:40:11 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/05 18:02:38 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,10 @@
 #include <cstddef>
 #include <vector>
 
-typedef std::deque<int>::size_type	deq_id;
-
-// std::vector<PmergeMe::winner_s> & PmergeMe::_merge(std::vector<winner_s> & winners )
-// {
-// 	if (winners.size() < 2)
-// 		return winners;
-	
-// 	typedef std::vector<winner_s>::size_type	win_id;
-	
-// 	std::vector<pair_s>		pairs;
-// 	for (win_id id = 0; id + 1 < winners.size(); id += 2) {
-// 		pair_s couple;
-// 		if (winners[id].value > winners[id + 1].value) {
-// 			couple.winner = winners[id].value;
-// 			couple.looser = winners[id + 1].value;
-// 		}
-		
-// 	}
-	
-	
-// }
 
 void PmergeMe::print_pairs_info(std::vector<numid_s> const & looser, std::vector<numid_s> const & winner, int level)
 {
-	std::cout << "winner:\t";
+	std::cout << "ITERATION: [" << level << "]" << "\nwinner:\t";
 	for (size_t i = 0; i < winner.size(); ++i)
 	{
 		std::cout << winner[i].value << "\t";	
@@ -54,22 +33,54 @@ void PmergeMe::print_pairs_info(std::vector<numid_s> const & looser, std::vector
 	std::cout << "index :\t";
 	for (size_t i = 0; i < winner.size(); ++i)
 	{
-		std::cout << (winner[i].index[(level == 0 ? 0 : level )]) << "\t";	
+		for (vec_id id = 0; id < winner[i].index.size(); ++id)
+			std::cout << winner[i].index[id] << " ";
+		std::cout << "\t";	
 	}
 	std::cout << "\n" << std::endl;
 }
 
-void PmergeMe::compare_pairs(std::vector<numid_s> & incoming, int level)
+
+void	PmergeMe::_insert_looser(std::vector<numid_s> & container, vec_it start, vec_it end, numid_s num) {
+	if (end - start == 1) {
+		if (num.value > end->value) {
+			container.insert(end + 1, num);
+		}
+		else {
+			num.value < start->value 
+				? container.insert(end, num) 
+				: container.insert(start, num);
+			_vCounter++;
+		}
+		_vCounter++;
+		return ;
+	}
+	else {
+		if (container.at((end - start) / 2).value > num.value)
+			_insert_looser(container, start + ((end - start) / 2), end, num);
+		else
+			_insert_looser(container, start, end - ((end - start) / 2), num);
+		_vCounter++;
+	}
+}
+
+void PmergeMe::_insert_array(std::vector<numid_s> & container, vec_id id_start, vec_id id_end, std::vector<numid_s> & winner, std::vector<numid_s> & looser ) {
+	while (id_end >= id_start) {
+		container.push_back(winner[id_end]);
+		_insert_looser(container, container.begin(), container.end() -1, looser[id_end]);
+		--id_end;
+	}
+}
+
+void PmergeMe::_compare_pairs(std::vector<numid_s> & incoming, int level)
 {
-	if (incoming.size() < 2)
+	if (incoming.size() < 2) 	
 		return ;
 	
 	std::vector<numid_s>	looser;
 	std::vector<numid_s>	winner;
 	
-	
-	numid_s					reminder;
-	
+	// build the pairs --------------> 
 	for (vec_id id = 0; id + 2 <= incoming.size(); id += 2) {
 		if (incoming[id].value > incoming[id + 1].value) {
 			looser.push_back(incoming[id + 1]);
@@ -84,11 +95,31 @@ void PmergeMe::compare_pairs(std::vector<numid_s> & incoming, int level)
 		_vCounter++;
 	}
 	if (incoming.size() % 2 != 0)
-		looser.push_back(*(--incoming.end()));
-	incoming = winner;
-	print_pairs_info(looser, winner, level);
-	compare_pairs(winner, ++level);
+		looser.push_back(incoming.back());
 	
+	print_pairs_info(looser, winner, level);
+
+	// execute recursion --------------> 
+	_compare_pairs(winner, level + 1);
+	
+	
+	// insert on return --------------->
+	std::vector<numid_s> tmp;
+	vec_id id = 0;
+	tmp.push_back(looser[id]);
+	tmp.push_back(winner[id]);
+	++id;
+
+	// TODO: resolve the growth of the array id!!!
+	std::cout << "tmp size: " << tmp.size() << " incoming size: " << incoming.size() << std::endl;
+	while (id < incoming.size() - 1) {
+		vec_id id_end   = (2 * ++id) - 1 > incoming.size() ? (incoming.size() - 1) : (2 * id - 1);
+		std::cout << "id: " << id << " id_end: " << id_end << std::endl;
+		_insert_array(tmp, id, id_end, winner, looser);
+		id = id_end;
+	}
+	incoming = tmp;
+	print_pairs_info(std::vector<numid_s>(), tmp, level);
 }
 
 int PmergeMe::mergeSort(std::vector<int> & db) 
@@ -99,7 +130,7 @@ int PmergeMe::mergeSort(std::vector<int> & db)
 	numid_s					reminder;
 	
 	if (_sourceItems.size() % 2 != 0)
-		reminder.value = *(--_sourceItems.end());
+		reminder.value = _sourceItems.back();
 	for (vec_id id = 0; id + 2 <= _sourceItems.size(); id += 2) 
 	{
 		if (_sourceItems[id] > _sourceItems[id + 1]){
@@ -115,7 +146,7 @@ int PmergeMe::mergeSort(std::vector<int> & db)
 	if (reminder.value > -1)
 		looser.push_back(reminder);
 	print_pairs_info(looser, winner, 0);
-	compare_pairs(winner, level);
+	_compare_pairs(winner, ++level);
 	
 	_vItems.push_back(reminder.value);
 	db.push_back(reminder.value);
