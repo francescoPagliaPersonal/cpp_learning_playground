@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:44 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/05 12:01:21 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/05 14:57:25 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,19 @@
 #include <sstream>
 #include <stdexcept>
 
-size_t				_vCounter = 0;
-size_t				_dCounter = 0;
 
-PmergeMe::PmergeMe(void) {};
 PmergeMe::~PmergeMe(void) {};
+
+PmergeMe::PmergeMe(void) : 
+	_vCounter(0),
+	_dCounter(0) {};
 
 PmergeMe::PmergeMe(const PmergeMe & obj) : 
 	_sourceItems(obj._sourceItems), 
 	_vItems(obj._vItems), 
-	_dItems(obj._dItems) {};
+	_dItems(obj._dItems),  
+	_vCounter(obj._vCounter),
+	_dCounter(obj._dCounter) {} ;
 
 PmergeMe& PmergeMe::operator=(const PmergeMe & obj) 
 {
@@ -37,6 +40,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe & obj)
 	_sourceItems = obj._sourceItems;
 	_vItems = obj._vItems;
 	_dItems = obj._dItems;
+	_vCounter = obj._vCounter;
+	_dCounter = obj._dCounter; 
 	return *this;
 };
 
@@ -67,4 +72,6 @@ void PmergeMe::ingest(const char **arr) {
 
 void PmergeMe::print(void)  {
 	_printIterable("Input", _sourceItems);
+	_printIterable("Sorted vector", _vItems);
+	std::cout << "Comparisons : " << _vCounter << std::endl;
 }

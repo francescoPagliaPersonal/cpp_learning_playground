@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/05 13:04:36 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/05 15:20:18 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,24 @@ class PmergeMe
 	
 
 	protected:
+
+
 	
-	struct winner_s {
+	struct numid_s {
 		int					value;
 		std::vector<size_t>	index; 
+
+		numid_s(void) : value(-1) {} ;
+		numid_s(int v) : value(v) {} ;
+    	numid_s(int v, size_t idx) : value(v) { index.push_back(idx); } ;
 	};
 	
-	struct pair_s {
-		int		winner;
-		int		looser;
-	};
+	typedef std::vector<numid_s>::size_type	vec_id;
+
+	// struct pair_s {
+	// 	numid_s		winner;
+	// 	numid_s		looser;
+	// };
 
 	
 	private:
@@ -56,9 +64,10 @@ class PmergeMe
 	size_t				_dCounter;
 	
 	template<typename T>
-	void _printIterable(std::string title, T const & obj);
-
-	std::vector<winner_s> & _merge(std::vector<winner_s> & winners);
+	void	_printIterable(std::string title, T const & obj);
+	void	compare_pairs(std::vector<numid_s> & incoming);
+	void	print_pairs_info(std::vector<numid_s> const & looser, std::vector<numid_s> const & winner);
+	// std::vector<winner_s> & _merge(std::vector<winner_s> & winners);
 
 };
 
