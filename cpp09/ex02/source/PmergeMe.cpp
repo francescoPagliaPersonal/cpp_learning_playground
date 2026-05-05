@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:44 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/04/30 09:37:25 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/05 12:01:21 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include <cstdlib>
 #include <sstream>
 #include <stdexcept>
+
+size_t				_vCounter = 0;
+size_t				_dCounter = 0;
 
 PmergeMe::PmergeMe(void) {};
 PmergeMe::~PmergeMe(void) {};
@@ -59,8 +62,7 @@ void PmergeMe::ingest(const char **arr) {
 			throw std::runtime_error(error.str());
 		}
 		_sourceItems.push_back(num);		
-	}
-	
+	}	
 }
 
 void PmergeMe::print(void)  {
