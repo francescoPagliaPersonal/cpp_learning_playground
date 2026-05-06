@@ -1,130 +1,7 @@
 
-# include <iostream>
-# include <vector>
-# include <cstddef>
+#include "header.hpp"
 
-int __counter = 0;
 std::vector<int> _jacobstahl;
-
-struct node_s {
-	int		value;
-	int		wins;
-	node_s	*parent;
-	node_s	*prev;
-	node_s	*next;
-	std::vector<node_s *>	childs;
-
-	node_s(void) {value = -1; wins = 0; parent = NULL; prev = NULL; next = NULL;};
-	node_s(int num) {value = num; wins = 0; parent = NULL; prev = NULL; next = NULL;};
-
-};
-
-typedef std::vector<node_s>::size_type		vec_id;
-typedef std::vector<node_s *>::size_type	ptr_id;
-typedef std::vector<int>::size_type			idx_id;
-
-std::vector<int> populateJacobNumber(int count)
-{
-	std::vector<int> jsNum;
-
-	jsNum.push_back(1);
-	if (count == 1)
-		return jsNum;
-	if (count == 2) {
-		jsNum.push_back(2);
-		return jsNum;
-	}
-
-	jsNum.push_back(3);
-
-	while (jsNum.back() < count)
-	{
-		int size = jsNum.size();
-		int next = jsNum[size - 1] + 2 * jsNum[size - 2];
-		jsNum.push_back(next);
-	}
-
-	if (jsNum.back() > count)
-		jsNum.pop_back();
-	if (jsNum.back() < count)
-		jsNum.push_back(count);
-
-	std::vector<int> filled;
-
-	for (size_t i = 0; i < jsNum.size(); ++i)
-	{
-		filled.push_back(jsNum[i]);
-		if (i > 0)
-		{
-			int prev = jsNum[i - 1];
-			int curr = jsNum[i];
-			
-			for (int x = curr - 1; x > prev ; --x)
-				filled.push_back(x);
-		}
-	}
-
-	jsNum = filled;
-	return jsNum;
-}
-
-void printchain(std::vector<node_s> container)
-{
-	vec_id	id;
-	for (id = 0; id < container.size(); ++id)
-		std::cout << container[id].value << "\t";
-	std::cout << std::endl;
-}
-
-void printchainR(std::vector<node_s *> container, node_s *reminder)
-{
-	vec_id	id;
-	for (id = 0; id < container.size(); ++id)
-		std::cout << container[id]->value << "\t";
-	if (reminder != NULL)
-		std::cout << "(" << reminder->value << ")" ;
-	std::cout << std::endl;
-}
-
-void printChildPar(std::vector<node_s> container)
-{
-	printchain(container);
-	vec_id	id;
-	for (id = 0; id < container.size(); ++id) {
-		if (container[id].parent != NULL)
-			std::cout << container[id].parent->value << "\t";
-		else
-			std::cout << "  \t";
-	}
-	std::cout << std::endl;
-
-	for (id = 0; id < container.size(); ++id) {
-		std::cout << container[id].wins << "\t";
-	}
-	std::cout << std::endl;
-}
-
-idx_id	findIndex(std::vector<int> & arr, int value)
-{
-	idx_id start = 0;
-	idx_id end = arr.size();
-	idx_id middle = end - start /2;
-	while (end - start != 1)
-	{
-		if (value > arr[middle])
-			start = middle;
-		else 
-			end = middle;
-		middle = end - start /2;
-		__counter++;
-	}
-	if (value > arr[end]) {
-		middle = end + 1 ;
-	}
-	else 
-		middle = value > arr[start] ? start + 1: start;
-	return middle;
-}
 
 void comparePairs(std::vector<node_s *> & arr, int level) 
 {
@@ -176,7 +53,7 @@ void comparePairs(std::vector<node_s *> & arr, int level)
 		return ;
 	}
 
-	std::vector<int>jsSeq = populateJacobNumber(looser.size());\
+	std::vector<int>jsSeq = getJacobSequence(looser.size());\
 	node_s	*start = looser[0];
 
 	for (size_t i = 0; i < jsSeq.size(); ++i)
@@ -209,7 +86,7 @@ int main(void)
 	int unordered[] = {5,2,14,19,20,17,4,12,15,7,13,16,1,8,6,21,3,10,9,18,11};
 
 	// populateJacobNumber(sizeof(unordered)/ sizeof(unordered[0]));
-	std::vector<int>	jsNum = populateJacobNumber(16);
+	std::vector<int>	jsNum = getJacobSequence(16);
 
 	std::cout << "jacobStahl number: ";
 	for (size_t i = 0; i < jsNum.size(); ++i)
