@@ -19,8 +19,9 @@ struct node_s {
 
 };
 
-typedef std::vector<node_s>::size_type vec_id;
-typedef std::vector<node_s *>::size_type ptr_id;
+typedef std::vector<node_s>::size_type		vec_id;
+typedef std::vector<node_s *>::size_type	ptr_id;
+typedef std::vector<int>::size_type			idx_id;
 
 std::vector<int> populateJacobNumber(int count)
 {
@@ -103,6 +104,27 @@ void printChildPar(std::vector<node_s> container)
 	std::cout << std::endl;
 }
 
+idx_id	findIndex(std::vector<int> & arr, int value)
+{
+	idx_id start = 0;
+	idx_id end = arr.size();
+	idx_id middle = end - start /2;
+	while (end - start != 1)
+	{
+		if (value > arr[middle])
+			start = middle;
+		else 
+			end = middle;
+		middle = end - start /2;
+		__counter++;
+	}
+	if (value > arr[end]) {
+		middle = end + 1 ;
+	}
+	else 
+		middle = value > arr[start] ? start + 1: start;
+	return middle;
+}
 
 void comparePairs(std::vector<node_s *> & arr, int level) 
 {
@@ -168,7 +190,7 @@ void comparePairs(std::vector<node_s *> & arr, int level)
 		while (win->prev != NULL)
 			binarr.insert(binarr.begin(), win->value);
 
-		int index = findIndex(binarr, los->value);  // TODO create the binary search method do find the index
+		idx_id index = findIndex(binarr, los->value);  // TODO create the binary search method do find the index
 		for (int i = 0; i < index; ++i)
 			start = start->next;
 		insertNode(start, los); // TODO add a method  to insert the value
