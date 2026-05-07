@@ -3,11 +3,13 @@
 
 int __counter = 0;
 
-void insertValue(std::vector<node_s> & numbers, int value)
+node_s * insertValue(std::vector<node_s *> & numbers, int value)
 {
-	idx_id	idx;
+	ptr_id	idx;
 	idx = findIndex(numbers, value);
-	numbers.insert(numbers.begin() + idx, value);
+	if (idx >= numbers.size())
+		return NULL;
+	return numbers[idx];
 }
 
 int main(void) 
@@ -19,16 +21,26 @@ int main(void)
 		node_s tmp(arr[i]);
 		numbers.push_back(tmp);	
 	}
+	
+	std::vector<node_s *> ptrArr;
+	for (size_t i = 0; i < numbers.size(); ++i)
+		ptrArr.push_back(&numbers[i]);
+
 	std::vector<int>	incrNumbers;
 	for (size_t i = 0; i < 46; ++i)
-		incrNumbers.push_back(i);	
+		incrNumbers.push_back(i);
 	
 	{
+		std::vector<node_s> tmp;
+		tmp.push_back(node_s(24));
+		tmp.push_back(node_s(0));
+		tmp.push_back(node_s(26));
 		std::cout << "\n======== Test findIndex ========"  << std::endl;
 		printVectorNode_s("Before insertion: ", numbers);
-		insertValue(numbers, 24);
-		insertValue(numbers, 0);
-		insertValue(numbers, 26);	
+		// ptr_id idx = findIndex(ptrArr, 24);
+		std::cout << "inserting 24 before: " << insertValue(ptrArr, 24)->value << std::endl;
+		std::cout << "inserting 0  before: " << insertValue(ptrArr, 0)->value << std::endl;
+		std::cout << "inserting 26 before: " << (insertValue(ptrArr, 26) == NULL ? "NULL": "ERROR") << std::endl;
 		printVectorNode_s("After insertion : ", numbers);
 	}
 	{
@@ -47,11 +59,12 @@ int main(void)
 	}
 	{
 		std::cout << "\n\n======== Test printList ========"  << std::endl;
-		for (size_t i = 0; i < numbers.size() - 1; ++i) {
-			numbers[i].next =  &numbers[i + 1];
+		
+		for (size_t i = 0; i < ptrArr.size() - 1; ++i) {
+			ptrArr[i]->next =  ptrArr[i + 1];
 		}
-		printVectorNode_s("array printed in vect form : ", numbers);
-		printWinnerList("array printed in list form : ", &numbers[0]);
+		printVectorNode_s("array printed in vect form : ", ptrArr);
+		printWinnerList("array printed in list form : ", ptrArr[0]);
 	}
 
 }

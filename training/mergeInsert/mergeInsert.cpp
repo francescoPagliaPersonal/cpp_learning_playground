@@ -1,6 +1,13 @@
 
 #include "header.hpp"
+#include <stdexcept>
+#include <functional>
+#include <memory>
+#include <new>
+#include <variant>
 #include <vector>
+
+int __counter = 0;
 
 std::vector<node_s *> pairNodes(std::vector<node_s *> & arr)
 {
@@ -24,19 +31,28 @@ std::vector<node_s *> pairNodes(std::vector<node_s *> & arr)
 	return winners;
 }
 
-std::vector<node_s> buildRange(node_s * last) 
+std::vector<node_s *> buildRange(node_s * last) 
 {	
-	std::vector<node_s> arr;
-	arr.push_back(*last);
+	std::vector<node_s *> arr;
+	arr.push_back(last);
 
 	node_s * tmp = last->prev;
 
 	while (last != NULL)
 	{
-		arr.insert(arr.begin(), *tmp);
+		arr.insert(arr.begin(), tmp);
 		tmp = tmp->prev;
 	}
 	return arr;
+}
+
+node_s * getInsertionNode(std::vector<node_s *> & numbers, int value)
+{
+	ptr_id	idx;
+	idx = findIndex(numbers, value);
+	if (idx >= numbers.size())
+		return NULL;
+	return numbers[idx];
 }
 
 node_s * comparePairs(std::vector<node_s *> & arr, int level) 
@@ -64,7 +80,6 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 	
 	std::vector<node_s *> looser;
 	node_s * tmp = winList;
-	
 	// get the node_s child in the looser list
 	if (tmp->next == NULL){
 		looser.push_back(tmp->childs.back());
@@ -84,17 +99,36 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 	looser[0]->next = winList;
 	winList = looser[0];
 
-	if (looser.size() <= 1) 
+	if (looser.size() <= 1) {
+		if (DEBUG >= 1) 
+		{
+			std::cout << "[" << level << "]";
+			printWinnerList("current winners:", winList);
+		}
 		return winList;
+	}
 
+	
+	
 	// following the Jacobstahl sequence grow the list of winners
 	std::vector<int> jsSeq = getJacobSequence(looser.size());
 	for (size_t i = 1; i < looser.size(); ++i) 
 	{
-		std::vector<node_s> binSearchRange;
-		node_s * rightBound = looser[i]->parent;
-		binSearchRange = buildRange(rightBound->prev);
+		std::vector<node_s *> binSearchRange;
+		node_s * currNode = looser[jsSeq[i]];
+		node_s * rightBound = currNode->parent;
+		binSearchRange = buildRange(rightBound);
+		std::cout << "CRASHING HERE!!" << std::endl;
 
+		node_s * insertPoint = getInsertionNode(binSearchRange, currNode->value);
+		if (insertPoint == NULL)
+			throw std::invalid_argument("Pointer must not have been null!!!");
+		currNode->next = insertPoint;
+		if (insertPoint->prev != NULL) {
+			insertPoint->prev->next = currNode;
+			currNode->prev = insertPoint->prev;
+		}
+		insertPoint->prev = currNode;		
 	}
 
 	if (DEBUG >= 1) 

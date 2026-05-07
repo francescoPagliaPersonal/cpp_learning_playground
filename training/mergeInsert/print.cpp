@@ -9,6 +9,15 @@ void printchain(std::vector<node_s> container)
 	std::cout << std::endl;
 }
 
+void printVectorNode_s(std::string title, std::vector<node_s *> container)
+{
+	vec_id	id;
+	std::cout << title ;
+	for (id = 0; id < container.size(); ++id)
+		std::cout << container[id]->value << " ";
+	std::cout << std::endl;
+}
+
 void printVectorNode_s(std::string title, std::vector<node_s> container)
 {
 	vec_id	id;
@@ -17,7 +26,6 @@ void printVectorNode_s(std::string title, std::vector<node_s> container)
 		std::cout << container[id].value << " ";
 	std::cout << std::endl;
 }
-
 void printVectorInt(std::string title, std::vector<int> container)
 {
 	vec_id	id;
