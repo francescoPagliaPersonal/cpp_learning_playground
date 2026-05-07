@@ -8,6 +8,7 @@
 #include <vector>
 
 int __counter = 0;
+node_s * maxBound = NULL;
 
 std::vector<node_s *> pairNodes(std::vector<node_s *> & arr)
 {
@@ -34,11 +35,12 @@ std::vector<node_s *> pairNodes(std::vector<node_s *> & arr)
 std::vector<node_s *> buildRange(node_s * last) 
 {	
 	std::vector<node_s *> arr;
+	
 	arr.push_back(last);
-
+	
 	node_s * tmp = last->prev;
-
-	while (last != NULL)
+	
+	while (tmp != NULL)
 	{
 		arr.insert(arr.begin(), tmp);
 		tmp = tmp->prev;
@@ -57,8 +59,10 @@ node_s * getInsertionNode(std::vector<node_s *> & numbers, int value)
 
 node_s * comparePairs(std::vector<node_s *> & arr, int level) 
 {
-	if (arr.size() < 2)
+	if (arr.size() < 2) {
+		maxBound = arr[0];
 		return arr[0];
+	}
 
 	std::vector<node_s *>	winners;
 	node_s *				reminder = NULL;
@@ -85,11 +89,13 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		looser.push_back(tmp->childs.back());
 		tmp->childs.pop_back();
 	}
-	while (tmp->next != NULL) {
+	while (tmp->next != NULL ) {
 		looser.push_back(tmp->childs.back());
 		tmp->childs.pop_back();
 		tmp = tmp->next;
 	}
+	looser.push_back(tmp->childs.back());
+	tmp->childs.pop_back();
 	// add the sparse looser if it was available
 	if (reminder != NULL)
 		looser.push_back(reminder);
@@ -108,19 +114,31 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		return winList;
 	}
 
+	std::cout << "===================================================="<< std::endl;
 	
-	
+	std::cout << "["<< level << "]";
+	printVectorNode_s("list of looser: ",looser);
+	std::cout << "maxbound: " << maxBound->value << std::endl;
+
 	// following the Jacobstahl sequence grow the list of winners
+
 	std::vector<int> jsSeq = getJacobSequence(looser.size());
 	for (size_t i = 1; i < looser.size(); ++i) 
 	{
 		std::vector<node_s *> binSearchRange;
 		node_s * currNode = looser[jsSeq[i]];
+		// std::cout << "currNode:" << currNode->value << " father: " << currNode->parent <<std::endl;
 		node_s * rightBound = currNode->parent;
-		binSearchRange = buildRange(rightBound);
-		std::cout << "CRASHING HERE!!" << std::endl;
-
+		if (rightBound != NULL)
+			binSearchRange = buildRange(rightBound);
+		else {
+			std::cout << "missing father starting from maxBound" << std::endl;
+			binSearchRange = buildRange(maxBound);
+		}
 		node_s * insertPoint = getInsertionNode(binSearchRange, currNode->value);
+		std::cout << "to insert: " << currNode->value << std::endl;
+		printVectorNode_s("searchRange: ", binSearchRange);
+		std::cout << "insertion point: " << insertPoint->value << std::endl;
 		if (insertPoint == NULL)
 			throw std::invalid_argument("Pointer must not have been null!!!");
 		currNode->next = insertPoint;
@@ -128,7 +146,10 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 			insertPoint->prev->next = currNode;
 			currNode->prev = insertPoint->prev;
 		}
-		insertPoint->prev = currNode;		
+		insertPoint->prev = currNode;
+		if (insertPoint == winList)
+			winList = currNode;
+
 	}
 
 	if (DEBUG >= 1) 
@@ -137,31 +158,6 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		printWinnerList("current winners:", winList);
 	}
 	return winList;
-	/*
-	
-	node_s	*start = looser[0];
-
-	for (size_t i = 0; i < jsSeq.size(); ++i)
-	{
-		node_s 	*win = looser[jsSeq[i]]->parent;
-		node_s	*los = looser[jsSeq[i]];
-		
-		std::vector<int>	binarr;
-		binarr.push_back(win->value);
-		win = win->prev;
-		while (win->prev != NULL)
-			binarr.insert(binarr.begin(), win->value);
-
-		idx_id index = findIndex(binarr, los->value);  // TODO create the binary search method do find the index
-		for (int i = 0; i < index; ++i)
-			start = start->next;
-		insertNode(start, los); // TODO add a method  to insert the value
-	}
-	winners = rebuidWinnerArray(start);  // decide what to pass back... probably is just enough to pass the beginning of the winner list!!
-	// up to here I created a chain of relationship so each child knows it's parent and 
-	// each parent know the order of it's child with a vector.
-	// now how can I reinsert the loosers  taking advantage of the connection I created avoiding any unnecessary comparison?
-	*/
 }
 
 
@@ -188,8 +184,9 @@ int main(void)
 	for (vec_id id = 0; id < numbers.size(); ++id)
 		winners.push_back(&numbers[id]);
 	// printchainR(winners, NULL);
-	comparePairs(winners, 1);
-	// printChildPar(numbers);
+	node_s * winList = comparePairs(winners, 1);
+	printVectorNode_s("\nORIGINAL LIST: \n", numbers);
+	printWinnerList("\nFINAL LIST: \n", winList);
 
 	std::cout << "\n\ncomparison: " << __counter << std::endl;
 
