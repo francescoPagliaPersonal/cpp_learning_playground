@@ -75,12 +75,13 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		printchainR(winners, reminder);
 	}
 
-	std::cout << "comparison count :" << __counter << std::endl;
+	
 	// START OF RECURSION HERE ----------------------->
 	node_s * winList = comparePairs(winners, level + 1);
 	
 	std::cout << "===================================================="<< std::endl;
-	
+	std::cout << "[" << level << "]";
+	std::cout << "comparison count :" << __counter << std::endl;
 	std::cout << "[" << level << "]";
 	printWinnerList("incomin winners:", winList);
 
