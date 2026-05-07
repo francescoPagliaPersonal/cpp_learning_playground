@@ -9,7 +9,6 @@ void comparePairs(std::vector<node_s *> & arr, int level)
 		return ;
 
 	std::vector<node_s *>	winners;
-	std::vector<node_s *>	sorted;
 	node_s *				reminder = NULL;
 
 	if (arr.size() % 2 != 0 )
@@ -33,6 +32,8 @@ void comparePairs(std::vector<node_s *> & arr, int level)
 			<< "\tarr.size: " << arr.size() 
 			<< "\twin.size: " << winners.size() << std::endl;
 	printchainR(winners, reminder);
+
+	// START OF RECURSION HERE ----------------------->
 	comparePairs(winners, ++level);
 	
 	
