@@ -5,6 +5,9 @@
 # include <vector>
 # include <cstddef>
 
+# ifndef DEBUG
+# define DEBUG 0
+# endif
 
 extern int __counter;
 

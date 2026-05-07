@@ -12,7 +12,7 @@ void printchain(std::vector<node_s> container)
 void printVectorInt(std::string title, std::vector<int> container)
 {
 	vec_id	id;
-	std::cout << title << std::endl;
+	std::cout << title ;
 	for (id = 0; id < container.size(); ++id)
 		std::cout << container[id] << " ";
 	std::cout << std::endl;
