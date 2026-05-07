@@ -39,6 +39,6 @@ void printVectorInt(std::string title, std::vector<int> container);
 void printVectorNode_s(std::string title, std::vector<node_s> container);
 void printVectorNode_s(std::string title, std::vector<node_s *> container);
 void printWinnerList(std::string title, node_s * winList);
-
+int fordJohnsonBound(int n);
 
 #endif // !HEADER_H

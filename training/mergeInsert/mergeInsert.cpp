@@ -205,8 +205,7 @@ int main(void)
 
 	printVectorNode_s("\nORIGINAL LIST: \n", numbers);
 	printWinnerList("\nFINAL LIST: \n", winList);
-	(void)winList;
-
-	std::cout << "\n\ncomparison: " << __counter << std::endl;
+	std::cout << "\n\nmax expected count: " << fordJohnsonBound(21) << std::endl;
+	std::cout << "comparison: " << __counter << std::endl;
 
 }
