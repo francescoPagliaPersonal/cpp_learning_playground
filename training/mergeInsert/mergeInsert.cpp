@@ -1,10 +1,7 @@
 
 #include "header.hpp"
+#include <iostream>
 #include <stdexcept>
-#include <functional>
-#include <memory>
-#include <new>
-#include <variant>
 #include <vector>
 
 int __counter = 0;
@@ -79,30 +76,42 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 	}
 
 	// START OF RECURSION HERE ----------------------->
-	node_s * winList = comparePairs(winners, ++level);
+	node_s * winList = comparePairs(winners, level + 1);
 	
+	std::cout << "===================================================="<< std::endl;
 	
+	std::cout << "[" << level << "]";
+	printWinnerList("incomin winners:", winList);
+
 	std::vector<node_s *> looser;
 	node_s * tmp = winList;
 	// get the node_s child in the looser list
-	if (tmp->next == NULL){
-		looser.push_back(tmp->childs.back());
-		tmp->childs.pop_back();
-	}
-	while (tmp->next != NULL ) {
-		looser.push_back(tmp->childs.back());
-		tmp->childs.pop_back();
+	// int i = 0;
+	std::cout << "[" << level << "]";
+	std::cout << "capture looser: ";
+	while (tmp != NULL )
+	{
+		if (!tmp->childs.empty()) {
+			looser.push_back(tmp->childs.back());
+			tmp->childs.pop_back(); 
+			std::cout << looser.back()->value << " ";
+		}
+		else {
+			std::cout << "   ";
+		}
 		tmp = tmp->next;
+		// i++;
 	}
-	looser.push_back(tmp->childs.back());
-	tmp->childs.pop_back();
+	std::cout << std::endl;
 	// add the sparse looser if it was available
 	if (reminder != NULL)
 		looser.push_back(reminder);
 
 	// insert the first looser in the winner list 
-	looser[0]->parent->prev = looser[0];
+	// looser[0]->parent->prev = looser[0];
+	winList->prev = looser[0];
 	looser[0]->next = winList;
+	looser[0]->parent = NULL;
 	winList = looser[0];
 
 	if (looser.size() <= 1) {
@@ -114,15 +123,16 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		return winList;
 	}
 
-	std::cout << "===================================================="<< std::endl;
 	
 	std::cout << "["<< level << "]";
 	printVectorNode_s("list of looser: ",looser);
-	std::cout << "maxbound: " << maxBound->value << std::endl;
+	std::vector<int> jsSeq = getJacobSequence(looser.size());
+	std::cout << "[" << level << "]";
+	printVectorInt("jacobstahlSeq:  ", jsSeq);
+	std::cout << "maxbound: " << maxBound->value << "\n"<< std::endl;
 
 	// following the Jacobstahl sequence grow the list of winners
 
-	std::vector<int> jsSeq = getJacobSequence(looser.size());
 	for (size_t i = 1; i < looser.size(); ++i) 
 	{
 		std::vector<node_s *> binSearchRange;
@@ -141,10 +151,12 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		std::cout << "insertion point: " << insertPoint->value << std::endl;
 		if (insertPoint == NULL)
 			throw std::invalid_argument("Pointer must not have been null!!!");
+		currNode->parent = NULL;
 		currNode->next = insertPoint;
 		if (insertPoint->prev != NULL) {
-			insertPoint->prev->next = currNode;
 			currNode->prev = insertPoint->prev;
+			insertPoint->prev->next = currNode;
+			insertPoint->prev = currNode;
 		}
 		insertPoint->prev = currNode;
 		if (insertPoint == winList)
@@ -185,8 +197,10 @@ int main(void)
 		winners.push_back(&numbers[id]);
 	// printchainR(winners, NULL);
 	node_s * winList = comparePairs(winners, 1);
+
 	printVectorNode_s("\nORIGINAL LIST: \n", numbers);
 	printWinnerList("\nFINAL LIST: \n", winList);
+	(void)winList;
 
 	std::cout << "\n\ncomparison: " << __counter << std::endl;
 

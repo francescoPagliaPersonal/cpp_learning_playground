@@ -15,16 +15,16 @@ std::vector<int> getJacobSequence(int count)
 
 	jsNum.push_back(3);
 
-	while (jsNum.back() < count )
+	while (jsNum.back() < count - 1 )
 	{
 		int size = jsNum.size();
 		int next = jsNum[size - 1] + 2 * jsNum[size - 2];
 		jsNum.push_back(next);
 	}
 
-	if (jsNum.back() > count)
+	if (jsNum.back() > count - 1)
 		jsNum.pop_back();
-	if (jsNum.back() < count)
+	if (jsNum.back() < count - 1)
 		jsNum.push_back(count - 1);
 
 	std::vector<int> filled;
