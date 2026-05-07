@@ -9,6 +9,15 @@ void printchain(std::vector<node_s> container)
 	std::cout << std::endl;
 }
 
+void printVectorNode_s(std::string title, std::vector<node_s> container)
+{
+	vec_id	id;
+	std::cout << title ;
+	for (id = 0; id < container.size(); ++id)
+		std::cout << container[id].value << " ";
+	std::cout << std::endl;
+}
+
 void printVectorInt(std::string title, std::vector<int> container)
 {
 	vec_id	id;
@@ -41,6 +50,21 @@ void printChildPar(std::vector<node_s> container)
 
 	for (id = 0; id < container.size(); ++id) {
 		std::cout << container[id].wins << "\t";
+	}
+	std::cout << std::endl;
+}
+
+void printWinnerList(std::string title, node_s * winList)
+{
+	if (winList == NULL)
+		return;
+	
+	std::cout << title ;
+	
+	node_s * tmp = winList;
+	while (tmp != NULL) {
+		std::cout << tmp->value << " ";
+		tmp = tmp->next;
 	}
 	std::cout << std::endl;
 }

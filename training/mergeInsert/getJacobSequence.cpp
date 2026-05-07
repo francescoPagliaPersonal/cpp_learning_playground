@@ -4,17 +4,18 @@ std::vector<int> getJacobSequence(int count)
 {
 	std::vector<int> jsNum;
 
+	jsNum.push_back(0);
 	jsNum.push_back(1);
-	if (count == 1)
+	if (count == 2)
 		return jsNum;
-	if (count == 2) {
+	if (count == 3) {
 		jsNum.push_back(2);
 		return jsNum;
 	}
 
 	jsNum.push_back(3);
 
-	while (jsNum.back() < count)
+	while (jsNum.back() < count )
 	{
 		int size = jsNum.size();
 		int next = jsNum[size - 1] + 2 * jsNum[size - 2];
@@ -24,7 +25,7 @@ std::vector<int> getJacobSequence(int count)
 	if (jsNum.back() > count)
 		jsNum.pop_back();
 	if (jsNum.back() < count)
-		jsNum.push_back(count);
+		jsNum.push_back(count - 1);
 
 	std::vector<int> filled;
 

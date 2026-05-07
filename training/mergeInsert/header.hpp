@@ -29,14 +29,15 @@ typedef std::vector<node_s>::size_type		vec_id;
 typedef std::vector<node_s *>::size_type	ptr_id;
 typedef std::vector<int>::size_type			idx_id;
 
-idx_id	findIndex(std::vector<int> & arr, int value);
+idx_id	findIndex(std::vector<node_s> & arr, int value);
 std::vector<int> getJacobSequence(int count);
 
 void printchain(std::vector<node_s> container);
 void printchainR(std::vector<node_s *> container, node_s *reminder);
 void printChildPar(std::vector<node_s> container);
 void printVectorInt(std::string title, std::vector<int> container);
-
+void printVectorNode_s(std::string title, std::vector<node_s> container);
+void printWinnerList(std::string title, node_s * winList);
 
 
 #endif // !HEADER_H

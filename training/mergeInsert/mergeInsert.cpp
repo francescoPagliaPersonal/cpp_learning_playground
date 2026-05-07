@@ -1,18 +1,11 @@
 
 #include "header.hpp"
+#include <vector>
 
-std::vector<int> _jacobstahl;
-
-void comparePairs(std::vector<node_s *> & arr, int level) 
+std::vector<node_s *> pairNodes(std::vector<node_s *> & arr)
 {
-	if (arr.size() < 2)
-		return ;
-
 	std::vector<node_s *>	winners;
-	node_s *				reminder = NULL;
 
-	if (arr.size() % 2 != 0 )
-		reminder = arr.back();
 	for (ptr_id id = 0; id + 2 <= arr.size(); id += 2) {
 		if (arr[id]->value > arr[id + 1]->value) {
 			arr[id]->childs.push_back(arr[id + 1]);
@@ -28,33 +21,90 @@ void comparePairs(std::vector<node_s *> & arr, int level)
 		}
 		__counter++;
 	}
-	std::cout << "\n\n[" << level << "]" 
-			<< "\tarr.size: " << arr.size() 
-			<< "\twin.size: " << winners.size() << std::endl;
-	printchainR(winners, reminder);
+	return winners;
+}
+
+std::vector<node_s> buildRange(node_s * last) 
+{	
+	std::vector<node_s> arr;
+	arr.push_back(*last);
+
+	node_s * tmp = last->prev;
+
+	while (last != NULL)
+	{
+		arr.insert(arr.begin(), *tmp);
+		tmp = tmp->prev;
+	}
+	return arr;
+}
+
+node_s * comparePairs(std::vector<node_s *> & arr, int level) 
+{
+	if (arr.size() < 2)
+		return arr[0];
+
+	std::vector<node_s *>	winners;
+	node_s *				reminder = NULL;
+
+	if (arr.size() % 2 != 0 )
+		reminder = arr.back();
+	winners = pairNodes(arr);
+	if (DEBUG >= 1) {
+		std::cout << "\n\n[" << level << "]" 
+				<< "\tarr.size: " << arr.size() 
+				<< "\twin.size: " << winners.size() << std::endl;
+
+		printchainR(winners, reminder);
+	}
 
 	// START OF RECURSION HERE ----------------------->
-	comparePairs(winners, ++level);
+	node_s * winList = comparePairs(winners, ++level);
 	
 	
 	std::vector<node_s *> looser;
-	for (ptr_id id = 0; id < winners.size(); ++id){
-		looser.push_back(winners[id]->childs.back());
-		winners[id]->childs.pop_back();
-	}
+	node_s * tmp = winList;
 	
+	// get the node_s child in the looser list
+	if (tmp->next == NULL){
+		looser.push_back(tmp->childs.back());
+		tmp->childs.pop_back();
+	}
+	while (tmp->next != NULL) {
+		looser.push_back(tmp->childs.back());
+		tmp->childs.pop_back();
+		tmp = tmp->next;
+	}
+	// add the sparse looser if it was available
 	if (reminder != NULL)
 		looser.push_back(reminder);
 
+	// insert the first looser in the winner list 
 	looser[0]->parent->prev = looser[0];
-	looser[0]->next = winners[0];
+	looser[0]->next = winList;
+	winList = looser[0];
 
-	if (looser.size() < 2){
-		winners.insert(winners.begin(), looser[0]);
-		return ;
+	if (looser.size() <= 1) 
+		return winList;
+
+	// following the Jacobstahl sequence grow the list of winners
+	std::vector<int> jsSeq = getJacobSequence(looser.size());
+	for (size_t i = 1; i < looser.size(); ++i) 
+	{
+		std::vector<node_s> binSearchRange;
+		node_s * rightBound = looser[i]->parent;
+		binSearchRange = buildRange(rightBound->prev);
+
 	}
 
-	std::vector<int>jsSeq = getJacobSequence(looser.size());\
+	if (DEBUG >= 1) 
+	{
+		std::cout << "[" << level << "]";
+		printWinnerList("current winners:", winList);
+	}
+	return winList;
+	/*
+	
 	node_s	*start = looser[0];
 
 	for (size_t i = 0; i < jsSeq.size(); ++i)
@@ -77,7 +127,7 @@ void comparePairs(std::vector<node_s *> & arr, int level)
 	// up to here I created a chain of relationship so each child knows it's parent and 
 	// each parent know the order of it's child with a vector.
 	// now how can I reinsert the loosers  taking advantage of the connection I created avoiding any unnecessary comparison?
-
+	*/
 }
 
 
