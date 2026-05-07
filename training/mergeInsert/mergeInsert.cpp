@@ -75,6 +75,7 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		printchainR(winners, reminder);
 	}
 
+	std::cout << "comparison count :" << __counter << std::endl;
 	// START OF RECURSION HERE ----------------------->
 	node_s * winList = comparePairs(winners, level + 1);
 	
@@ -145,12 +146,14 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 			std::cout << "missing father starting from maxBound" << std::endl;
 			binSearchRange = buildRange(maxBound);
 		}
+		binSearchRange.pop_back();
 		node_s * insertPoint = getInsertionNode(binSearchRange, currNode->value);
 		std::cout << "to insert: " << currNode->value << std::endl;
 		printVectorNode_s("searchRange: ", binSearchRange);
-		std::cout << "insertion point: " << insertPoint->value << std::endl;
 		if (insertPoint == NULL)
-			throw std::invalid_argument("Pointer must not have been null!!!");
+			insertPoint = maxBound;
+		std::cout << "insertion point: " << insertPoint->value << std::endl;
+			// throw std::invalid_argument("Pointer must not have been null!!!");
 		currNode->parent = NULL;
 		currNode->next = insertPoint;
 		if (insertPoint->prev != NULL) {
@@ -176,7 +179,8 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 int main(void) 
 {
 	std::vector<node_s>		numbers;
-	int unordered[] = {5,2,14,19,20,17,4,12,15,7,13,16,1,8,6,21,3,10,9,18,11};
+	int unordered[] = {5,2,14,19,20,17,4,12,15,7, 13,16,1,8,6,21,3,10,9,18,11};
+	// int unordered[] = {21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
 	// populateJacobNumber(sizeof(unordered)/ sizeof(unordered[0]));
 	std::vector<int>	jsNum = getJacobSequence(16);
