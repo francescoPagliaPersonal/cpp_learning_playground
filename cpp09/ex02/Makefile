@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/05/05 13:44:45 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/05/08 15:13:24 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,12 @@ BLD_DIR := build
 SRC_DIR := source
 ARGS ?= 
 
-FILES = PmergeMe.cpp PmergeMe.mergeSort.cpp \
+FILES = PmergeMe.cpp \
+		PmergeMe.ingest.cpp \
+		PmergeMe.jacobstahlSeq.cpp \
+		PmergeMe.mergeInsert.cpp PmergeMe.buildRange.cpp \
+		PmergeMe.list2container.cpp \
+		PmergeMe.print.cpp \
 		main.cpp 
 		
 NAME = PmergeMe
