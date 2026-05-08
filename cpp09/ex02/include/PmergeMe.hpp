@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/05 17:27:30 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/08 09:26:14 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,19 @@ class PmergeMe
 
 	protected:
 
+	struct node_s {
+	int		value;
+	int		wins;
+	node_s	*parent;
+	node_s	*prev;
+	node_s	*next;
+	std::vector<node_s *>	childs;
 
+	node_s(void) 
+	{value = -1; wins = 0; parent = NULL; prev = NULL; next = NULL;};
+	node_s(int num) {value = num; wins = 0; parent = NULL; prev = NULL; next = NULL;};
+
+	};
 	
 	struct numid_s {
 		int					value;
@@ -49,6 +61,9 @@ class PmergeMe
 	
 	typedef std::vector<numid_s>::size_type	vec_id;
 	typedef std::vector<numid_s>::iterator	vec_it;
+
+	typedef std::vector<node_s *>::size_type	ptr_id;
+
 
 	// struct pair_s {
 	// 	numid_s		winner;
@@ -63,6 +78,9 @@ class PmergeMe
 	std::deque<int>		_dItems;
 	size_t				_vCounter;
 	size_t				_dCounter;
+
+	static	std::vector<int>	jacobstahlSeq(int size);
+	static	std::vector<int>
 	
 	template<typename T>
 	void	_printIterable(std::string title, T const & obj);
