@@ -4,6 +4,7 @@
 # include <iostream>
 # include <vector>
 # include <cstddef>
+# include <deque>
 
 # ifndef DEBUG
 # define DEBUG 0
@@ -30,15 +31,27 @@ typedef std::vector<node_s *>::size_type	ptr_id;
 typedef std::vector<int>::size_type			idx_id;
 
 ptr_id	findIndex(std::vector<node_s *> & arr, int value);
-std::vector<int> getJacobSequence(int count);
+
+std::deque<int> getJacobSequence(int count);
 
 void printchain(std::vector<node_s> container);
 void printchainR(std::vector<node_s *> container, node_s *reminder);
 void printChildPar(std::vector<node_s> container);
-void printVectorInt(std::string title, std::vector<int> container);
+
 void printVectorNode_s(std::string title, std::vector<node_s> container);
 void printVectorNode_s(std::string title, std::vector<node_s *> container);
 void printWinnerList(std::string title, node_s * winList);
 int fordJohnsonBound(int n);
 
+template <typename T>
+void printVectorInt(std::string title, T const & container)
+{
+	typedef typename T::size_type id_it;
+	std::cout << title ;
+	for (id_it id = 0; id < container.size(); ++id)
+		std::cout << container[id] << " ";
+	std::cout << std::endl;
+};
+
 #endif // !HEADER_H
+

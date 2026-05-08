@@ -128,7 +128,7 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 	
 	std::cout << "["<< level << "]";
 	printVectorNode_s("list of looser: ",looser);
-	std::vector<int> jsSeq = getJacobSequence(looser.size());
+	std::deque<int> jsSeq = getJacobSequence(looser.size());
 	std::cout << "[" << level << "]";
 	printVectorInt("jacobstahlSeq:  ", jsSeq);
 	std::cout << "maxbound: " << maxBound->value << "\n"<< std::endl;
@@ -184,7 +184,7 @@ int main(void)
 	// int unordered[] = {21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
 	// populateJacobNumber(sizeof(unordered)/ sizeof(unordered[0]));
-	std::vector<int>	jsNum = getJacobSequence(16);
+	std::deque<int>	jsNum = getJacobSequence(16);
 
 	std::cout << "jacobStahl number: ";
 	for (size_t i = 0; i < jsNum.size(); ++i)

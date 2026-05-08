@@ -1,15 +1,17 @@
 #include "header.hpp"
 
-std::vector<int> getJacobSequence(int count)
+
+
+std::deque<int> getJacobSequence(int count)
 {
-	std::vector<int> jsNum;
+	std::deque<int> jsNum;
 
 	jsNum.push_back(0);
 	jsNum.push_back(1);
 	if (count == 2)
 		return jsNum;
 	if (count == 3) {
-		jsNum.push_back(2);
+		jsNum.insert(jsNum.begin() + 1, 2);
 		return jsNum;
 	}
 
@@ -22,12 +24,12 @@ std::vector<int> getJacobSequence(int count)
 		jsNum.push_back(next);
 	}
 
-	if (jsNum.back() > count - 1)
+	if (jsNum.back() > count )
 		jsNum.pop_back();
-	if (jsNum.back() < count - 1)
-		jsNum.push_back(count - 1);
+	if (jsNum.back() < count )
+		jsNum.push_back(count );
 
-	std::vector<int> filled;
+	std::deque<int> filled;
 
 	for (size_t i = 0; i < jsNum.size(); ++i)
 	{
@@ -41,6 +43,9 @@ std::vector<int> getJacobSequence(int count)
 				filled.push_back(x);
 		}
 	}
+	filled.pop_front();
+	for (size_t i = 0; i < filled.size(); ++i)
+		filled[i] -= 1;
 
 	jsNum = filled;
 	return jsNum;

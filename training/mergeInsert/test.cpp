@@ -47,7 +47,7 @@ int main(void)
 		std::cout << "\n\n======== Test jacobNumebers ========"  << std::endl;
 		printVectorInt("Numbered   list: \n", incrNumbers);
 		std::cout << "list size: " << incrNumbers.size() << std::endl;
-		std::vector<int>	jsSeries = getJacobSequence(incrNumbers.size());
+		std::deque<int>	jsSeries = getJacobSequence(incrNumbers.size());
 		printVectorInt("Jacobstahl list: \n", jsSeries);
 		std::cout << "list size: " << jsSeries.size() << std::endl;
 		std::cout << "Numbered list ordered following the index of JacobStahl list: " << std::endl;
