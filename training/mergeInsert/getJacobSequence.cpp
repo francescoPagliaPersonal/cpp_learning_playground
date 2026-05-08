@@ -1,37 +1,40 @@
 #include "header.hpp"
+#include <vector>
 
 
 
-std::deque<int> getJacobSequence(int count)
+std::vector<int> jacobstahlSeq(int size)
 {
-	std::deque<int> jsNum;
+	std::vector<int> jsNum;
+	jsNum.reserve(10);
 
 	jsNum.push_back(0);
 	jsNum.push_back(1);
-	if (count == 2)
+	if (size == 2)
 		return jsNum;
-	if (count == 3) {
+	if (size == 3) {
 		jsNum.insert(jsNum.begin() + 1, 2);
 		return jsNum;
 	}
 
 	jsNum.push_back(3);
 
-	while (jsNum.back() < count - 1 )
+	while (jsNum.back() < size - 1 )
 	{
 		int size = jsNum.size();
 		int next = jsNum[size - 1] + 2 * jsNum[size - 2];
 		jsNum.push_back(next);
 	}
 
-	if (jsNum.back() > count )
+	if (jsNum.back() > size )
 		jsNum.pop_back();
-	if (jsNum.back() < count )
-		jsNum.push_back(count );
+	if (jsNum.back() < size )
+		jsNum.push_back(size );
 
-	std::deque<int> filled;
+	std::vector<int> filled;
+	filled.reserve(size);
 
-	for (size_t i = 0; i < jsNum.size(); ++i)
+	for (size_t i = 1; i < jsNum.size(); ++i)
 	{
 		filled.push_back(jsNum[i]);
 		if (i > 0)
@@ -43,10 +46,8 @@ std::deque<int> getJacobSequence(int count)
 				filled.push_back(x);
 		}
 	}
-	filled.pop_front();
 	for (size_t i = 0; i < filled.size(); ++i)
 		filled[i] -= 1;
 
-	jsNum = filled;
-	return jsNum;
+	return filled;
 }
