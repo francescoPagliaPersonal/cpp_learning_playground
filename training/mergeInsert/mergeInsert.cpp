@@ -108,8 +108,8 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		looser.push_back(reminder);
 
 	// insert the first looser in the winner list 
-	// looser[0]->parent->prev = looser[0];
-	winList->prev = looser[0];
+	// winList->prev = looser[0];
+	looser[0]->parent->prev = looser[0];
 	looser[0]->next = winList;
 	looser[0]->parent = NULL;
 	winList = looser[0];
@@ -152,7 +152,6 @@ node_s * comparePairs(std::vector<node_s *> & arr, int level)
 		if (insertPoint == NULL)
 			insertPoint = maxBound;
 		std::cout << "insertion point: " << insertPoint->value << std::endl;
-			// throw std::invalid_argument("Pointer must not have been null!!!");
 		currNode->parent = NULL;
 		currNode->next = insertPoint;
 		if (insertPoint->prev != NULL) {
@@ -181,14 +180,6 @@ int main(void)
 	// int unordered[] = {5,2,14,19,20,17,4,12,15,7, 13,16,1,8,6,21,3,10,9,18,11};
 	// int unordered[] = {21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 	int unordered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
-
-	// populateJacobNumber(sizeof(unordered)/ sizeof(unordered[0]));
-	std::vector<int>	jsNum = jacobstahlSeq(16);
-
-	std::cout << "jacobStahl number: ";
-	for (size_t i = 0; i < jsNum.size(); ++i)
-		std::cout << jsNum[i] << " ";
-	std::cout << std::endl;
 
 	for (size_t i = 0; i < sizeof(unordered)/ sizeof(unordered[0]); ++i)
 	{
