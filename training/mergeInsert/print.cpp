@@ -48,11 +48,6 @@ void printChildPar(std::vector<node_s> container)
 			std::cout << "  \t";
 	}
 	std::cout << std::endl;
-
-	for (id = 0; id < container.size(); ++id) {
-		std::cout << container[id].wins << "\t";
-	}
-	std::cout << std::endl;
 }
 
 void printWinnerList(std::string title, node_s * winList)

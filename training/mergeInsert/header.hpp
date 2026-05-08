@@ -15,14 +15,13 @@ extern int __counter;
 
 struct node_s {
 	int		value;
-	int		wins;
 	node_s	*parent;
 	node_s	*prev;
 	node_s	*next;
 	std::vector<node_s *>	childs;
 
-	node_s(void) {value = -1; wins = 0; parent = NULL; prev = NULL; next = NULL;};
-	node_s(int num) {value = num; wins = 0; parent = NULL; prev = NULL; next = NULL;};
+	node_s(void) {value = -1; parent = NULL; prev = NULL; next = NULL;};
+	node_s(int num) {value = num; parent = NULL; prev = NULL; next = NULL;};
 
 };
 
@@ -32,7 +31,7 @@ typedef std::vector<int>::size_type			idx_id;
 
 ptr_id	findIndex(std::vector<node_s *> & arr, int value);
 
-std::deque<int> getJacobSequence(int count);
+std::vector<int> jacobstahlSeq(int size);
 
 void printchain(std::vector<node_s> container);
 void printchainR(std::vector<node_s *> container, node_s *reminder);
