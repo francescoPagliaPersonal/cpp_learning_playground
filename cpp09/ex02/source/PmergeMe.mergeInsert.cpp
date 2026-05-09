@@ -21,11 +21,15 @@ bool PmergeMe::mergeInsert(void) {
 	node_s*					vList;
 	node_s*					dList;
 	
-	
+	std::cout << "/////////////////////////////////////////////////" << "\n"
+			<< "sorting with vector:" << std::endl;
 	value2pointers(_sourceItems, vWinner);
 	vList = executeSort(vWinner, 0, _vCounter, buildRangeVector);
 	_vItems = list2vector(vList);
-	
+
+	std::cout << "sorting completed.\n" 
+			<< "/////////////////////////////////////////////////" << "\n"
+			<< "sorting with deque:" << std::endl;
 	value2pointers(_sourceItems, dWinner);
 	dList = executeSort(dWinner, 0, _dCounter, buildRangeDeque);
 	_dItems = list2deque(dList);

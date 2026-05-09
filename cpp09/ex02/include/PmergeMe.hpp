@@ -99,8 +99,14 @@ class PmergeMe
 	
 	void	_printNode_s(std::string title, std::vector<node_s> const & obj);
 
-
+	// debug printing -------------------->
+	template<typename T>
+	void printchainR(T container, node_s *reminder);
 	
+	template<typename T>
+	void printVectorNode_s(std::string title, T container);
+
+	void printWinnerList(std::string title, node_s * winList);
 	/* TO BE REMOVED!!!*/
 
 	struct numid_s {
@@ -183,7 +189,6 @@ template<typename T >
 PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T (*buildRange)(node_s * bound)) 
 {
 	if (arr.size() < 2) {
-		_maxBound = arr[0];
 		return arr[0];
 	}
 
@@ -194,7 +199,7 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 		reminder = arr.back();
 	winners = pairNodes(arr, counter);
 	
-	/*
+	
 	if (DEBUG >= 1) {
 		std::cout << "\n\n[" << level << "]" 
 				<< "\tarr.size: " << arr.size() 
@@ -202,40 +207,45 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 
 		printchainR(winners, reminder);
 	}
-	*/
+	
 
 	
 	// START OF RECURSION HERE ----------------------->
 	node_s * winList = executeSort(winners, level + 1, counter, buildRange);
+	if (_maxBound == NULL)
+		_maxBound = winList;
 	
-	/*
 	std::cout << "===================================================="<< std::endl;
 	std::cout << "[" << level << "]";
-	std::cout << "comparison count :" << __counter << std::endl;
+	std::cout << "max_bound count :" << _maxBound->value << std::endl;
+	std::cout << "[" << level << "]";
+	std::cout << "comparison count :" << counter << std::endl;
 	std::cout << "[" << level << "]";
 	printWinnerList("incomin winners:", winList);
-	*/
+	
 
 	T looser;
 	node_s * tmp = winList;
 	// get the node_s child in the looser list
-	/*
+	
+
+	
 	std::cout << "[" << level << "]";
 	std::cout << "capture looser: ";
-	*/
+	
 	while (tmp != NULL )
 	{
 		if (!tmp->childs.empty()) {
 			looser.push_back(tmp->childs.back());
 			tmp->childs.pop_back(); 
-			/*std::cout << looser.back()->value << " ";*/
-		}/*
+			std::cout << looser.back()->value << " ";
+		}
 		else {
 			std::cout << "   ";
-		}*/
+		}
 		tmp = tmp->next;
 	}
-	/*std::cout << std::endl;*/
+	std::cout << std::endl;
 	
 	// add the sparse looser if it was available
 	if (reminder != NULL)
@@ -251,23 +261,21 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 		if (DEBUG >= 1) 
 		{
 			std::cout << "[" << level << "]";
-			/*printWinnerList("current winners:", winList);*/
+			printWinnerList("current winners:", winList);
 		}
 		return winList;
 	}
 
-	/*
+	
 	std::cout << "["<< level << "]";
 	printVectorNode_s("list of looser: ",looser);
-	*/
+	
 	
 	std::vector<int> jsSeq = jacobstahlSeq(looser.size());
 	
-	/*
 	std::cout << "[" << level << "]";
-	printVectorInt("jacobstahlSeq:  ", jsSeq);
-	std::cout << "maxbound: " << maxBound->value << "\n"<< std::endl;
-	*/
+	_printIterable("jacobstahlSeq:  ", jsSeq);
+	std::cout << "maxbound: " << _maxBound->value << "\n"<< std::endl;
 
 	// following the Jacobstahl sequence grow the list of winners
 
@@ -285,13 +293,13 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 		}
 		binSearchRange.pop_back();
 		node_s * insertPoint = getInsertionNode(binSearchRange, currNode->value, counter);
-		/*
+		
 		std::cout << "to insert: " << currNode->value << std::endl;
 		printVectorNode_s("searchRange: ", binSearchRange);
 		if (insertPoint == NULL)
-			insertPoint = maxBound;
+			insertPoint = _maxBound;
 		std::cout << "insertion point: " << insertPoint->value << std::endl;
-		*/
+		
 		currNode->parent = NULL;
 		currNode->next = insertPoint;
 		if (insertPoint->prev != NULL) {
@@ -304,13 +312,13 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 			winList = currNode;
 
 	}
-	/*
+	
 	if (DEBUG >= 1) 
 	{
 		std::cout << "[" << level << "]";
 		printWinnerList("current winners:", winList);
 	}
-	*/
+	
 	return winList;
 }
 

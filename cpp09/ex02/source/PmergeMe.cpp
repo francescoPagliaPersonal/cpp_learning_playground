@@ -13,18 +13,21 @@
 #include "PmergeMe.hpp"
 
 
+
 PmergeMe::~PmergeMe(void) {};
 
 PmergeMe::PmergeMe(void) : 
 	_vCounter(0),
-	_dCounter(0) {};
+	_dCounter(0),
+	_maxBound(NULL) {};
 
 PmergeMe::PmergeMe(const PmergeMe & obj) : 
 	_sourceItems(obj._sourceItems), 
 	_vItems(obj._vItems), 
 	_dItems(obj._dItems),  
 	_vCounter(obj._vCounter),
-	_dCounter(obj._dCounter) {} ;
+	_dCounter(obj._dCounter),
+	_maxBound(obj._maxBound) {} ;
 
 PmergeMe& PmergeMe::operator=(const PmergeMe & obj) 
 {
@@ -35,7 +38,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe & obj)
 	_vItems = obj._vItems;
 	_dItems = obj._dItems;
 	_vCounter = obj._vCounter;
-	_dCounter = obj._dCounter; 
+	_dCounter = obj._dCounter;
+	_maxBound = obj._maxBound;
 	return *this;
 };
 

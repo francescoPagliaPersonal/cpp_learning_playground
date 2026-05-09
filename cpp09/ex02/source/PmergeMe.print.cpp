@@ -27,3 +27,19 @@ void	PmergeMe::_printNode_s(std::string title, std::vector<node_s> const & obj)
 	}
 	std::cout << it->value << "." << std::endl;
 }
+
+
+void PmergeMe::printWinnerList(std::string title, node_s * winList)
+{
+	if (winList == NULL)
+		return;
+	
+	std::cout << title ;
+	
+	node_s * tmp = winList;
+	while (tmp != NULL) {
+		std::cout << tmp->value << " ";
+		tmp = tmp->next;
+	}
+	std::cout << std::endl;
+}
