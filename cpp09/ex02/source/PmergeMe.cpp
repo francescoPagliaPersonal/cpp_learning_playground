@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:44 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 15:11:04 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 13:21:11 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,17 @@ PmergeMe& PmergeMe::operator=(const PmergeMe & obj)
 
 void PmergeMe::print(void)  {
 	_printNode_s("Input", _sourceItems);
+	if (DEBUG >= 1) {
+		std::cout << "Max comparisons : " 
+				<< fordJohnsonBound(_sourceItems.size()) << std::endl;
+	}
 	_printIterable("Sorted vector", _vItems);
-	std::cout << "Comparisons : " << _vCounter << std::endl;
+	if (DEBUG >= 1)
+		std::cout << "Comparisons : " << _vCounter << std::endl;
 	_printIterable("Sorted deque", _vItems);
-	std::cout << "Comparisons : " << _dCounter << std::endl;
+	if (DEBUG >= 1)
+		std::cout << "Comparisons : " << _dCounter << std::endl;
+	
 }
 
 PmergeMe::node_s::node_s(void) : 
