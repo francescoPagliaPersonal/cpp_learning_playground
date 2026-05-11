@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 11:33:22 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:16:23 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ class PmergeMe
 
 	
 	static	std::vector<int>		jacobstahlSeq(int size);
-	
+	int								fordJohnsonBound(int n) const ;
+
 	template<typename T > 
 	static typename T::size_type	findIndex(T const & arr, int value, size_t & counter);
 	
@@ -278,34 +279,44 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 			binSearchRange = buildRange(rightBound);
 		else {
 			std::cout << "missing father starting from maxBound" << std::endl;
-			binSearchRange = buildRange(_maxBound);
+			rightBound = _maxBound;
+			binSearchRange = buildRange(rightBound);
 		}
 		binSearchRange.pop_back();
 		node_s * insertPoint = getInsertionNode(binSearchRange, currNode->value, counter);
 		
 		std::cout << "to insert: " << currNode->value << std::endl;
 		printVectorNode_s("searchRange: ", binSearchRange);
-		if (insertPoint == NULL)
-			insertPoint = _maxBound;
-		std::cout << "insertion point: " << insertPoint->value << std::endl;
-		
-		currNode->parent = NULL;
-		currNode->next = insertPoint;
-		if (insertPoint->prev != NULL) {
-			currNode->prev = insertPoint->prev;
-			insertPoint->prev->next = currNode;
-			insertPoint->prev = currNode;
+		if (insertPoint == NULL && rightBound == _maxBound ) 
+		{
+			std::cout << "No insertion point, generates new boundary : " << currNode->value << std::endl;
+			currNode->prev = _maxBound;
+			_maxBound->next = currNode;
+			_maxBound = currNode;
 		}
-		insertPoint->prev = currNode;
-		if (insertPoint == winList)
+		else {
+			if (insertPoint == NULL)
+			insertPoint = rightBound;
+			std::cout << "insertion point: " << insertPoint->value << std::endl;
+
+			currNode->parent = NULL;
+			currNode->next = insertPoint;
+			if (insertPoint->prev != NULL) {
+				currNode->prev = insertPoint->prev;
+				insertPoint->prev->next = currNode;
+				insertPoint->prev = currNode;
+			}
+			insertPoint->prev = currNode;
+			if (insertPoint == winList)
 			winList = currNode;
 
+		}
 	}
 	
 	if (DEBUG >= 1) 
 	{
 		std::cout << "[" << level << "]";
-		printWinnerList("current winners:", winList);
+		printWinnerList("current winners  : ", winList);
 	}
 	
 	return winList;

@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:34:15 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 15:12:19 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 11:44:53 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(int ac, const char **av)
 	}
 	
 	PmergeMe	array;
-	// std::vector<node_s>	vSorted;
 	try {
 		array.ingest(&av[1]);
 		array.mergeInsert();
