@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 09:31:43 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 15:07:51 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 11:33:38 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void PmergeMe::_printIterable(std::string title, T const & obj) {
 }
 
 template<typename T>
-void PmergeMe::printchainR(T container, node_s *reminder)
+void PmergeMe::printLoosers(T container, node_s *reminder)
 {
 	typename T::size_type	id;
 	for (id = 0; id < container.size(); ++id)

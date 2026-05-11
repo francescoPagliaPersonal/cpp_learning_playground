@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 10:43:38 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 11:33:22 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ class PmergeMe
 	};
 	
 
-	typedef std::vector<node_s *>::size_type	ptrV_id;
-	typedef std::deque<node_s *>::size_type		ptrD_id;
+	// typedef std::vector<node_s *>::size_type	ptrV_id;
+	// typedef std::deque<node_s *>::size_type		ptrD_id;
 
 	
 	public: 
@@ -56,7 +56,6 @@ class PmergeMe
 	int		mergeSort(std::deque<int> & db);
 	void	print(void);
 	
-
 	
 
 	private:
@@ -75,8 +74,8 @@ class PmergeMe
 	static typename T::size_type	findIndex(T const & arr, int value, size_t & counter);
 	
 	
-	template<typename T >
-	void			value2pointers(std::vector<node_s> & db, T & ptrDb);
+	template<typename C, typename T >
+	void			value2pointers(C & db, T & ptrDb);
 
 	template<typename T >
 	node_s *		executeSort(T & ptrDb, int level, size_t & counter, T (*buildRange)(node_s * bound));
@@ -94,43 +93,30 @@ class PmergeMe
 	std::vector<int>				list2vector(node_s *list);
 	std::deque<int>					list2deque(node_s *list);
 	
+	
 	template<typename T>
 	void	_printIterable(std::string title, T const & obj);
 	
 	void	_printNode_s(std::string title, std::vector<node_s> const & obj);
 
+	
 	// debug printing -------------------->
 	template<typename T>
-	void printchainR(T container, node_s *reminder);
+	void printLoosers(T container, node_s *reminder);
 	
 	template<typename T>
 	void printVectorNode_s(std::string title, T container);
 
 	void printWinnerList(std::string title, node_s * winList);
-	/* TO BE REMOVED!!!*/
 
-	struct numid_s {
-		int					value;
-		std::vector<size_t>	index; 
-
-		numid_s(void) : value(-1) {} ;
-		numid_s(int v) : value(v) {} ;
-    	numid_s(int v, size_t idx) : value(v) { index.push_back(idx); } ;
-	};
+	std::deque<node_s>	vec2deq(std::vector<node_s> input);
 	
-	typedef std::vector<numid_s>::size_type	vec_id;
-	typedef std::vector<numid_s>::iterator	vec_it;
-
-	void	_compare_pairs(std::vector<numid_s> & incoming, int level);
-	void	print_pairs_info(std::vector<numid_s> const & looser, std::vector<numid_s> const & winner, int level);
-	void	_insert_looser(std::vector<numid_s> & container, vec_it start, vec_it end, numid_s num);
-	void 	_insert_array(std::vector<numid_s> & container, vec_id id_start, vec_id id_end, std::vector<numid_s> & winner, std::vector<numid_s> & looser );
 };
 
-template<typename T >
-void PmergeMe::value2pointers(std::vector<node_s> & db, T & ptrDb)
+template<typename C, typename T >
+void PmergeMe::value2pointers(C & db, T & ptrDb)
 {
-	std::vector<int>::size_type id;
+	typename C::size_type id;
 	for (id = 0; id < db.size(); ++id)
 		ptrDb.push_back(&db[id]);
 }
@@ -208,7 +194,7 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 				<< "\tarr.size: " << arr.size() 
 				<< "\twin.size: " << winners.size() << std::endl;
 
-		printchainR(winners, reminder);
+		printLoosers(winners, reminder);
 	}
 	
 
