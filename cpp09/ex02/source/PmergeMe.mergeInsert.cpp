@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 13:56:57 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 15:12:57 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 10:46:53 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ bool PmergeMe::mergeInsert(void) {
 	std::cout << "sorting completed.\n" 
 			<< "/////////////////////////////////////////////////" << "\n"
 			<< "sorting with deque:" << std::endl;
-	value2pointers(_sourceItems, dWinner);
+	std::vector<node_s>		democopy(_sourceItems);
+	value2pointers(democopy, dWinner);
 	dList = executeSort(dWinner, 0, _dCounter, buildRangeDeque);
 	_dItems = list2deque(dList);
 	

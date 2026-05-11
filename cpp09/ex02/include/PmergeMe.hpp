@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 15:22:59 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 10:43:38 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,9 @@ template<typename T >
 PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T (*buildRange)(node_s * bound)) 
 {
 	if (arr.size() < 2) {
+		std::cout << "[" << level << "]";
+		std::cout << "Levels       : "<< level 
+					<< " reached Top!" << std::endl;
 		return arr[0];
 	}
 
@@ -217,11 +220,11 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 	
 	std::cout << "===================================================="<< std::endl;
 	std::cout << "[" << level << "]";
-	std::cout << "max_bound count :" << _maxBound->value << std::endl;
+	std::cout << "max_bound        : "<< _maxBound->value << std::endl;
 	std::cout << "[" << level << "]";
-	std::cout << "comparison count :" << counter << std::endl;
+	std::cout << "comparison count : " << counter << std::endl;
 	std::cout << "[" << level << "]";
-	printWinnerList("incomin winners:", winList);
+	printWinnerList("incomin winners  : ", winList);
 	
 
 	T looser;
@@ -231,7 +234,7 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 
 	
 	std::cout << "[" << level << "]";
-	std::cout << "capture looser: ";
+	std::cout << "capture looser   : ";
 	
 	while (tmp != NULL )
 	{
@@ -268,7 +271,7 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 
 	
 	std::cout << "["<< level << "]";
-	printVectorNode_s("list of looser: ",looser);
+	printVectorNode_s("list of looser   : ",looser);
 	
 	
 	std::vector<int> jsSeq = jacobstahlSeq(looser.size());
