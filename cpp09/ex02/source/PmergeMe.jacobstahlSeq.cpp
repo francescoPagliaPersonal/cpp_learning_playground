@@ -6,13 +6,13 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 12:35:23 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 14:55:17 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:39:12 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <PmergeMe.hpp>
 
-std::vector<int> PmergeMe::jacobstahlSeq(int size)
+std::vector<int> PmergeMe::_jacobstahlSeq(int size)
 {
 	std::vector<int> jsNum;
 	jsNum.reserve(10);

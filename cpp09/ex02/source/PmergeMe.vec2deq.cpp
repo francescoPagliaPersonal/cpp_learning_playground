@@ -2,7 +2,7 @@
 #include <deque>
 #include <vector>
 
-std::deque<PmergeMe::node_s>	PmergeMe::vec2deq(std::vector<node_s> input) 
+std::deque<PmergeMe::node_s>	PmergeMe::_vec2deq(std::vector<node_s> input) 
 {
 	std::deque<node_s>	tmp;
 

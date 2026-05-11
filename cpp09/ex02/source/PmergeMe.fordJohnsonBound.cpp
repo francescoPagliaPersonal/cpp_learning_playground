@@ -2,7 +2,7 @@
 #include "PmergeMe.hpp"
 #include <cmath>
 
-int	PmergeMe::fordJohnsonBound(int n) const {
+int	PmergeMe::_fordJohnsonBound(int n) const {
 	double total = 0;
 	const double logTwo = std::log(2.0); 
 	for (int k = 1; k <= n; ++k) {

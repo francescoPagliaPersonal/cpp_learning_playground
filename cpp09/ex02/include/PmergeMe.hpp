@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 15:22:41 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:40:06 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ class PmergeMe
 		node_s(void) ;
 		node_s(int num);
 	};
-	
 
-	// typedef std::vector<node_s *>::size_type	ptrV_id;
-	// typedef std::deque<node_s *>::size_type		ptrD_id;
 
 	
 	public: 
@@ -52,9 +49,9 @@ class PmergeMe
 	
 	void 	ingest(const char **arr);
 	bool	mergeInsert(void);
-	int		mergeSort(std::vector<int> & db);
-	int		mergeSort(std::deque<int> & db);
 	void	print(void);
+	std::vector<int>	getSortedVector(void) const;
+	std::deque<int>		getSortedDeque(void) const;
 	
 	
 
@@ -68,33 +65,34 @@ class PmergeMe
 	node_s *			_maxBound;
 
 	
-	static	std::vector<int>		jacobstahlSeq(int size);
-	int								fordJohnsonBound(int n) const ;
+	static	std::vector<int>		_jacobstahlSeq(int size);
+	int								_fordJohnsonBound(int n) const ;
 
 	template<typename T > 
-	static typename T::size_type	findIndex(T const & arr, int value, size_t & counter);
+	static typename T::size_type	_findIndex(T const & arr, int value, size_t & counter);
 	
 	
 	template<typename C, typename T >
-	void			value2pointers(C & db, T & ptrDb);
+	void			_value2pointers(C & db, T & ptrDb);
 
 	template<typename T >
-	node_s *		executeSort(T & ptrDb, int level, size_t & counter, T (*buildRange)(node_s * bound));
+	node_s *		_executeSort(T & ptrDb, int level, size_t & counter, T (*buildRange)(node_s * bound));
 	
 	template<typename T >
-	T 				pairNodes(T const & arr, size_t & counter);
+	T 				_pairNodes(T const & arr, size_t & counter);
 
 	template<typename T >
-	node_s * 		getInsertionNode(T const & numbers, int value, size_t & counter);
+	node_s * 		_getInsertionNode(T const & numbers, int value, size_t & counter);
 
-	static std::vector<node_s *>	buildRangeVector(node_s * last) ;
-	static std::deque<node_s *>		buildRangeDeque(node_s * last) ;
+	static std::vector<node_s *>	_buildRangeVector(node_s * last) ;
+	static std::deque<node_s *>		_buildRangeDeque(node_s * last) ;
+	
+	// from sorted list export arrays  -------------------->
+	std::vector<int>				_list2vector(node_s *list);
+	std::deque<int>					_list2deque(node_s *list);
 	
 	
-	std::vector<int>				list2vector(node_s *list);
-	std::deque<int>					list2deque(node_s *list);
-	
-	
+	// print helpers -------------------->
 	template<typename T>
 	void	_printIterable(std::string title, T const & obj);
 	
@@ -103,22 +101,22 @@ class PmergeMe
 	
 	// debug printing -------------------->
 	template<typename T>
-	void printLoosers(T container, node_s *reminder);
+	void	_printLoosers(T container, node_s *reminder);
 	
 	template<typename T>
-	void printContainerNode_s(std::string title, T container);
+	void	_printContainerNode_s(std::string title, T container);
 
 	template<typename T>
-	void printContainerInt(std::string title, T container);
+	void	_printContainerInt(std::string title, T container);
 
-	void printWinnerList(std::string title, node_s * winList);
+	void	_printWinnerList(std::string title, node_s * winList);
 
-	std::deque<node_s>	vec2deq(std::vector<node_s> input);
+	std::deque<node_s>	_vec2deq(std::vector<node_s> input);
 	
 };
 
 template<typename C, typename T >
-void PmergeMe::value2pointers(C & db, T & ptrDb)
+void PmergeMe::_value2pointers(C & db, T & ptrDb)
 {
 	typename C::size_type id;
 	for (id = 0; id < db.size(); ++id)
@@ -126,7 +124,7 @@ void PmergeMe::value2pointers(C & db, T & ptrDb)
 }
 
 template<typename T >
-T PmergeMe::pairNodes(T const & arr, size_t & counter)
+T PmergeMe::_pairNodes(T const & arr, size_t & counter)
 {
 	T	winners;
 	typename T::size_type id;
@@ -148,7 +146,7 @@ T PmergeMe::pairNodes(T const & arr, size_t & counter)
 }
 
 template<typename T >
-typename T::size_type PmergeMe::findIndex(T const & arr, int value, size_t & counter) 
+typename T::size_type PmergeMe::_findIndex(T const & arr, int value, size_t & counter) 
 {
 	typedef typename T::size_type T_id;
 	
@@ -165,18 +163,18 @@ typename T::size_type PmergeMe::findIndex(T const & arr, int value, size_t & cou
 }
 
 template<typename T >
-PmergeMe::node_s * PmergeMe::getInsertionNode(T const & numbers, int value, size_t & counter)
+PmergeMe::node_s * PmergeMe::_getInsertionNode(T const & numbers, int value, size_t & counter)
 {
 	typename T::size_type	idx;
 	
-	idx = findIndex(numbers, value, counter);
+	idx = _findIndex(numbers, value, counter);
 	if (idx >= numbers.size())
 		return NULL;
 	return numbers[idx];
 }
 
 template<typename T >
-PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T (*buildRange)(node_s * bound)) 
+PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, T (*buildRange)(node_s * bound)) 
 {
 	if (arr.size() < 2) {
 		std::cout << "[" << level << "]";
@@ -190,7 +188,7 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 
 	if (arr.size() % 2 != 0 )
 		reminder = arr.back();
-	winners = pairNodes(arr, counter);
+	winners = _pairNodes(arr, counter);
 	
 	
 	if (DEBUG >= 1) {
@@ -198,13 +196,13 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 				<< "\tarr.size: " << arr.size() 
 				<< "\twin.size: " << winners.size() << std::endl;
 
-		printLoosers(winners, reminder);
+		_printLoosers(winners, reminder);
 	}
 	
 
 	
 	// START OF RECURSION HERE ----------------------->
-	node_s * winList = executeSort(winners, level + 1, counter, buildRange);
+	node_s * winList = _executeSort(winners, level + 1, counter, buildRange);
 	if (_maxBound == NULL)
 		_maxBound = winList;
 	
@@ -214,7 +212,7 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 	std::cout << "[" << level << "]";
 	std::cout << "comparison count : " << counter << std::endl;
 	std::cout << "[" << level << "]";
-	printWinnerList("incomin winners  : ", winList);
+	_printWinnerList("incomin winners  : ", winList);
 	
 
 	T looser;
@@ -254,20 +252,20 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 		if (DEBUG >= 1) 
 		{
 			std::cout << "[" << level << "]";
-			printWinnerList("current winners:", winList);
+			_printWinnerList("current winners:", winList);
 		}
 		return winList;
 	}
 
 	
 	std::cout << "["<< level << "]";
-	printContainerNode_s("list of looser   : ",looser);
+	_printContainerNode_s("list of looser   : ",looser);
 	
 	
-	std::vector<int> jsSeq = jacobstahlSeq(looser.size());
+	std::vector<int> jsSeq = _jacobstahlSeq(looser.size());
 	
 	std::cout << "[" << level << "]";
-	printContainerInt("jacobstahlSeq    : ", jsSeq);
+	_printContainerInt("jacobstahlSeq    : ", jsSeq);
 	std::cout << "maxbound: " << _maxBound->value << "\n"<< std::endl;
 
 	// following the Jacobstahl sequence grow the list of winners
@@ -286,10 +284,10 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 			binSearchRange = buildRange(rightBound);
 		}
 		binSearchRange.pop_back();
-		node_s * insertPoint = getInsertionNode(binSearchRange, currNode->value, counter);
+		node_s * insertPoint = _getInsertionNode(binSearchRange, currNode->value, counter);
 		
 		std::cout << "to insert: " << currNode->value << std::endl;
-		printContainerNode_s("searchRange: ", binSearchRange);
+		_printContainerNode_s("searchRange: ", binSearchRange);
 		if (insertPoint == NULL && rightBound == _maxBound ) 
 		{
 			std::cout << "No insertion point, generates new boundary : " << currNode->value << std::endl;
@@ -319,7 +317,7 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 	if (DEBUG >= 1) 
 	{
 		std::cout << "[" << level << "]";
-		printWinnerList("current winners  : ", winList);
+		_printWinnerList("current winners  : ", winList);
 	}
 	
 	return winList;

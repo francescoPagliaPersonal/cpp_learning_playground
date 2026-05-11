@@ -6,13 +6,13 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 13:22:47 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 13:25:48 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:41:36 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-std::vector<PmergeMe::node_s *> PmergeMe::buildRangeVector(node_s * last) 
+std::vector<PmergeMe::node_s *> PmergeMe::_buildRangeVector(node_s * last) 
 {	
 	std::vector<node_s *> arr;
 	
@@ -29,7 +29,7 @@ std::vector<PmergeMe::node_s *> PmergeMe::buildRangeVector(node_s * last)
 }
 
 
-std::deque<PmergeMe::node_s *> PmergeMe::buildRangeDeque(node_s * last) 
+std::deque<PmergeMe::node_s *> PmergeMe::_buildRangeDeque(node_s * last) 
 {	
 	std::deque<node_s *> arr;
 	

@@ -6,13 +6,13 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:41:59 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 14:45:29 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:39:19 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-std::vector<int> PmergeMe::list2vector(node_s *list)
+std::vector<int> PmergeMe::_list2vector(node_s *list)
 {
 	std::vector<int> arr;
 
@@ -29,7 +29,7 @@ std::vector<int> PmergeMe::list2vector(node_s *list)
 }
 
 
-std::deque<int> PmergeMe::list2deque(node_s *list)
+std::deque<int> PmergeMe::_list2deque(node_s *list)
 {
 	std::deque<int> arr;
 

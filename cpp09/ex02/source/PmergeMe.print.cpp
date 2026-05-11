@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 15:08:53 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 15:10:39 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:35:25 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	PmergeMe::_printNode_s(std::string title, std::vector<node_s> const & obj)
 }
 
 
-void PmergeMe::printWinnerList(std::string title, node_s * winList)
+void PmergeMe::_printWinnerList(std::string title, node_s * winList)
 {
 	if (winList == NULL)
 		return;

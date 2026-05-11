@@ -6,12 +6,12 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 09:31:43 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 15:30:12 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:41:01 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 template<typename T>
-void PmergeMe::_printIterable(std::string title, T const & obj) {
+void	PmergeMe::_printIterable(std::string title, T const & obj) {
 	std::cout << "\nPRINTING "<< title << ": "<< std::endl;
 	typename T::const_iterator it = obj.begin();
 	typename T::const_iterator ite = obj.end();
@@ -27,7 +27,7 @@ void PmergeMe::_printIterable(std::string title, T const & obj) {
 }
 
 template<typename T>
-void PmergeMe::printLoosers(T container, node_s *reminder)
+void	PmergeMe::_printLoosers(T container, node_s *reminder)
 {
 	typename T::size_type	id;
 	for (id = 0; id < container.size(); ++id)
@@ -38,7 +38,7 @@ void PmergeMe::printLoosers(T container, node_s *reminder)
 }
 
 template<typename T>
-void PmergeMe::printContainerNode_s(std::string title, T container)
+void	PmergeMe::_printContainerNode_s(std::string title, T container)
 {
 	typename T::size_type	id;
 	std::cout << title ;
@@ -48,7 +48,7 @@ void PmergeMe::printContainerNode_s(std::string title, T container)
 }
 
 template<typename T>
-void PmergeMe::printContainerInt(std::string title, T container)
+void	PmergeMe::_printContainerInt(std::string title, T container)
 {
 	typename T::size_type	id;
 	std::cout << title ;
