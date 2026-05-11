@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 15:16:23 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:22:41 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ class PmergeMe
 	void printLoosers(T container, node_s *reminder);
 	
 	template<typename T>
-	void printVectorNode_s(std::string title, T container);
+	void printContainerNode_s(std::string title, T container);
+
+	template<typename T>
+	void printContainerInt(std::string title, T container);
 
 	void printWinnerList(std::string title, node_s * winList);
 
@@ -258,13 +261,13 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 
 	
 	std::cout << "["<< level << "]";
-	printVectorNode_s("list of looser   : ",looser);
+	printContainerNode_s("list of looser   : ",looser);
 	
 	
 	std::vector<int> jsSeq = jacobstahlSeq(looser.size());
 	
 	std::cout << "[" << level << "]";
-	_printIterable("jacobstahlSeq:  ", jsSeq);
+	printContainerInt("jacobstahlSeq    : ", jsSeq);
 	std::cout << "maxbound: " << _maxBound->value << "\n"<< std::endl;
 
 	// following the Jacobstahl sequence grow the list of winners
@@ -286,7 +289,7 @@ PmergeMe::node_s * PmergeMe::executeSort(T & arr, int level, size_t & counter, T
 		node_s * insertPoint = getInsertionNode(binSearchRange, currNode->value, counter);
 		
 		std::cout << "to insert: " << currNode->value << std::endl;
-		printVectorNode_s("searchRange: ", binSearchRange);
+		printContainerNode_s("searchRange: ", binSearchRange);
 		if (insertPoint == NULL && rightBound == _maxBound ) 
 		{
 			std::cout << "No insertion point, generates new boundary : " << currNode->value << std::endl;
