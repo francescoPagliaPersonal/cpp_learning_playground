@@ -23,17 +23,20 @@ bool PmergeMe::mergeInsert(void) {
 
 	std::deque<node_s>		democopy = _vec2deq(_sourceItems);
 	
-	std::cout << "/////////////////////////////////////////////////" << "\n"
-			<< "sorting with vector:" << std::endl;
+	if (DEBUG >= 1) {
+		std::cout << "/////////////////////////////////////////////////" << "\n"
+				<< "sorting with vector:" << std::endl;
+
+	}
 	_value2pointers(_sourceItems, vWinner);
 	vList = _executeSort(vWinner, 0, _vCounter, _buildRangeVector);
 	_vItems = _list2vector(vList);
 
-	
-	std::cout << "sorting completed.\n" 
-			<< "/////////////////////////////////////////////////" << "\n"
-			<< "sorting with deque:" << std::endl;
-	
+	if (DEBUG >= 1) {
+		std::cout << "sorting completed.\n" 
+				<< "/////////////////////////////////////////////////" << "\n"
+				<< "sorting with deque:" << std::endl;
+	}
 	_value2pointers(democopy, dWinner);
 	dList = _executeSort(dWinner, 0, _dCounter, _buildRangeDeque);
 	_dItems = _list2deque(dList);

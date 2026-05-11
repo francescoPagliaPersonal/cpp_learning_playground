@@ -180,8 +180,10 @@ template<typename T >
 PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, T (*buildRange)(node_s * bound)) 
 {
 	if (arr.size() < 2) {
-		std::cout << "[" << level << "]";
-		std::cout << "Max levels reached, starting insertion." << std::endl;
+		if (DEBUG >= 1) {
+			std::cout << "[" << level << "]";
+			std::cout << "Max levels reached, starting insertion." << std::endl;
+		}
 		return arr[0];
 	}
 
@@ -208,38 +210,32 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 	if (_maxBound == NULL)
 		_maxBound = winList;
 	
-	std::cout << "===================================================="<< std::endl;
-	std::cout << "[" << level << "]";
-	std::cout << "max_bound        : "<< _maxBound->value << std::endl;
-	std::cout << "[" << level << "]";
-	std::cout << "comparison count : " << counter << "\n"
-			<< 	"----------------------------------------------------" << std::endl;
-	std::cout << "[" << level << "]";
-	_printWinnerList("incomin winners  : ", winList);
+	if (DEBUG >= 1) 
+	{
+		std::cout << "===================================================="<< std::endl;
+		std::cout << "[" << level << "]";
+		std::cout << "max_bound        : "<< _maxBound->value << std::endl;
+		std::cout << "[" << level << "]";
+		std::cout << "comparison count : " << counter << "\n"
+				<< 	"----------------------------------------------------" << std::endl;
+		std::cout << "[" << level << "]";
+		_printWinnerList("incomin winners  : ", winList);
+	}
 	
 
 	T looser;
 	node_s * tmp = winList;
 	// get the node_s child in the looser list
 	
-
-	
-	std::cout << "[" << level << "]";
-	std::cout << "capture looser   : ";
 	
 	while (tmp != NULL )
 	{
 		if (!tmp->childs.empty()) {
 			looser.push_back(tmp->childs.back());
 			tmp->childs.pop_back(); 
-			std::cout << looser.back()->value << " ";
-		}
-		else {
-			std::cout << "   ";
 		}
 		tmp = tmp->next;
 	}
-	std::cout << std::endl;
 	
 	// add the sparse looser if it was available
 	if (reminder != NULL)
@@ -260,16 +256,18 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 		return winList;
 	}
 
-	
-	std::cout << "["<< level << "]";
-	_printContainerNode_s("list of looser   : ",looser);
-	
-	
 	std::vector<int> jsSeq = _jacobstahlSeq(looser.size());
-	
-	std::cout << "[" << level << "]";
-	_printContainerInt("jacobstahlSeq    : ", jsSeq);
-	std::cout << "----------------------------------------------------" << std::endl;
+
+	if (DEBUG >= 1) 
+	{
+		std::cout << "["<< level << "]";
+		_printContainerNode_s("list of looser   : ",looser);
+
+		std::cout << "[" << level << "]";
+		_printContainerInt("jacobstahlSeq    : ", jsSeq);
+		std::cout << "----------------------------------------------------" << std::endl;
+	}
+
 	// following the Jacobstahl sequence grow the list of winners
 
 	for (size_t i = 1; i < looser.size(); ++i) 
@@ -278,22 +276,27 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 		node_s * currNode = looser[jsSeq[i]];
 		// std::cout << "currNode:" << currNode->value << " father: " << currNode->parent <<std::endl;
 		node_s * rightBound = currNode->parent;
-		std::cout << "to insert: " << currNode->value << std::endl;
+		if (DEBUG >= 1) 
+			std::cout << "to insert: " << currNode->value << std::endl;
 		if (rightBound != NULL) {
 			binSearchRange = buildRange(rightBound);
 			binSearchRange.pop_back();
 		}
 		else {
-			std::cout << "missing father starting from maxBound" << std::endl;
+			if (DEBUG >= 1) 
+				std::cout << "missing father starting from maxBound" << std::endl;
 			rightBound = _maxBound;
 			binSearchRange = buildRange(rightBound);
 		}
 		node_s * insertPoint = _getInsertionNode(binSearchRange, currNode->value, counter);
 		
-		_printContainerNode_s("searchRange: ", binSearchRange);
+		if (DEBUG >= 1) 
+			_printContainerNode_s("searchRange: ", binSearchRange);
+		
 		if (insertPoint == NULL && rightBound == _maxBound && currNode->parent == NULL) 
 		{
-			std::cout << "No insertion point, generates new boundary : " << currNode->value << std::endl;
+			if (DEBUG >= 1) 
+				std::cout << "No insertion point, generates new boundary : " << currNode->value << std::endl;
 			currNode->prev = _maxBound;
 			_maxBound->next = currNode;
 			_maxBound = currNode;
@@ -301,7 +304,8 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 		else {
 			if (insertPoint == NULL)
 			insertPoint = rightBound;
-			std::cout << "insertion point: " << insertPoint->value << "\n" << std::endl;
+			if (DEBUG >= 1) 
+				std::cout << "insertion point: " << insertPoint->value << "\n" << std::endl;
 
 			currNode->parent = NULL;
 			currNode->next = insertPoint;
