@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 15:40:06 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 16:00:33 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,9 @@ class PmergeMe
 	
 	// debug printing -------------------->
 	template<typename T>
+	void	_printPairs(T container, node_s *reminder);
+	
+	template<typename T>
 	void	_printLoosers(T container, node_s *reminder);
 	
 	template<typename T>
@@ -178,8 +181,7 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 {
 	if (arr.size() < 2) {
 		std::cout << "[" << level << "]";
-		std::cout << "Levels       : "<< level 
-					<< " reached Top!" << std::endl;
+		std::cout << "Max levels reached, starting insertion." << std::endl;
 		return arr[0];
 	}
 
@@ -196,7 +198,7 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 				<< "\tarr.size: " << arr.size() 
 				<< "\twin.size: " << winners.size() << std::endl;
 
-		_printLoosers(winners, reminder);
+		_printPairs(winners, reminder);
 	}
 	
 
@@ -210,7 +212,8 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 	std::cout << "[" << level << "]";
 	std::cout << "max_bound        : "<< _maxBound->value << std::endl;
 	std::cout << "[" << level << "]";
-	std::cout << "comparison count : " << counter << std::endl;
+	std::cout << "comparison count : " << counter << "\n"
+			<< 	"----------------------------------------------------" << std::endl;
 	std::cout << "[" << level << "]";
 	_printWinnerList("incomin winners  : ", winList);
 	

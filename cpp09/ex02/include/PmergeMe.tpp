@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 09:31:43 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 15:41:01 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 15:58:45 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,24 @@ void	PmergeMe::_printLoosers(T container, node_s *reminder)
 		std::cout << "(" << reminder->value << ")" ;
 	std::cout << std::endl;
 }
+
+template<typename T>
+void	PmergeMe::_printPairs(T container, node_s *reminder)
+{
+	typename T::size_type	id;
+	for (id = 0; id < container.size(); ++id)
+		std::cout << container[id]->value << "\t";
+	std::cout << std::endl;
+	for (id = 0; id < container.size(); ++id) {
+		if (!container[id]->childs.empty())
+			std::cout << container[id]->childs.back()->value << "\t";
+	}
+	
+	if (reminder != NULL)
+		std::cout << "(" << reminder->value << ")" ;
+	std::cout << std::endl;
+}
+
 
 template<typename T>
 void	PmergeMe::_printContainerNode_s(std::string title, T container)
