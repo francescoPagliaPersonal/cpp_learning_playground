@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 12:35:04 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/08 15:04:24 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/11 12:32:13 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,39 @@
 #include <cstdlib>
 #include <sstream>
 
+static bool checkDuplicates(std::vector<int> & arr, int value) 
+{
+	typedef  std::vector<int>::size_type T_id;
+	
+	if (arr.empty()) {
+		arr.push_back(value);
+		return false;
+	}
+		
+	T_id low = 0;
+	T_id high = arr.size(); 
+	T_id mid = -1;
+	while (low < high) {
+		mid = low + (high - low) / 2;
+		if 
+			(arr[mid] < value) low = mid + 1;
+		else 
+			high = mid;
+	}
+	if (arr[low] != value && arr[low + 1] != value )
+	{
+		arr.insert(arr.begin() + low, value);
+		return false;
+	}
+	return true;
+}
+
+
 void PmergeMe::ingest(const char **arr) {
 	std::string				myint;
 	std::string::size_type	pos;
 	std::stringstream		error;
+	std::vector<int>		duplicates;
 	
 	for (int i = 0; arr[i] != NULL; ++i) {
 		myint = arr[i];
@@ -38,7 +67,11 @@ void PmergeMe::ingest(const char **arr) {
 			error << "item [" << i << "] overflows: " << myint;
 			throw std::runtime_error(error.str());
 		}
-		
+		if (checkDuplicates(duplicates, num)) {
+			error.clear();
+			error << "item [" << i << "] is a duplicate: " << myint;
+			throw std::runtime_error(error.str());
+		}
 		_sourceItems.push_back(node_s(num));		
 	}	
 }
