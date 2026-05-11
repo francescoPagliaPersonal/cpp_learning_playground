@@ -255,7 +255,7 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 		if (DEBUG >= 1) 
 		{
 			std::cout << "[" << level << "]";
-			_printWinnerList("current winners:", winList);
+			_printWinnerList("current winners  : ", winList);
 		}
 		return winList;
 	}
@@ -269,8 +269,7 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 	
 	std::cout << "[" << level << "]";
 	_printContainerInt("jacobstahlSeq    : ", jsSeq);
-	std::cout << "maxbound: " << _maxBound->value << "\n"<< std::endl;
-
+	std::cout << "----------------------------------------------------" << std::endl;
 	// following the Jacobstahl sequence grow the list of winners
 
 	for (size_t i = 1; i < looser.size(); ++i) 
@@ -279,19 +278,20 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 		node_s * currNode = looser[jsSeq[i]];
 		// std::cout << "currNode:" << currNode->value << " father: " << currNode->parent <<std::endl;
 		node_s * rightBound = currNode->parent;
-		if (rightBound != NULL)
+		std::cout << "to insert: " << currNode->value << std::endl;
+		if (rightBound != NULL) {
 			binSearchRange = buildRange(rightBound);
+			binSearchRange.pop_back();
+		}
 		else {
 			std::cout << "missing father starting from maxBound" << std::endl;
 			rightBound = _maxBound;
 			binSearchRange = buildRange(rightBound);
 		}
-		binSearchRange.pop_back();
 		node_s * insertPoint = _getInsertionNode(binSearchRange, currNode->value, counter);
 		
-		std::cout << "to insert: " << currNode->value << std::endl;
 		_printContainerNode_s("searchRange: ", binSearchRange);
-		if (insertPoint == NULL && rightBound == _maxBound ) 
+		if (insertPoint == NULL && rightBound == _maxBound && currNode->parent == NULL) 
 		{
 			std::cout << "No insertion point, generates new boundary : " << currNode->value << std::endl;
 			currNode->prev = _maxBound;
@@ -301,7 +301,7 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 		else {
 			if (insertPoint == NULL)
 			insertPoint = rightBound;
-			std::cout << "insertion point: " << insertPoint->value << std::endl;
+			std::cout << "insertion point: " << insertPoint->value << "\n" << std::endl;
 
 			currNode->parent = NULL;
 			currNode->next = insertPoint;
@@ -322,7 +322,8 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 		std::cout << "[" << level << "]";
 		_printWinnerList("current winners  : ", winList);
 	}
-	
+	if (level == 0)
+		_maxBound = NULL;
 	return winList;
 }
 
