@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:44 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 15:38:54 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/12 11:07:45 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,31 @@ PmergeMe& PmergeMe::operator=(const PmergeMe & obj)
 };
 
 void PmergeMe::print(void)  {
-	_printNode_s("Input", _sourceItems);
-	if (DEBUG >= 1) {
-		std::cout << "Max comparisons : " 
-				<< _fordJohnsonBound(_sourceItems.size()) << std::endl;
-	}
-	_printIterable("Sorted vector", _vItems);
-	if (DEBUG >= 1)
-		std::cout << "Comparisons : " << _vCounter << std::endl;
-	_printIterable("Sorted deque", _vItems);
-	if (DEBUG >= 1)
-		std::cout << "Comparisons : " << _dCounter << std::endl;
+	if (DEBUG == 0)
+		_printNode_s("Before: ", _sourceItems, PRINT_ITEMS);
 	
+	if (DEBUG >= 1) {
+		std::cout << "\n\n====================================================\n\n"<< std::endl;
+		_printNode_s("Unsorted input : \n", _sourceItems);
+		std::cout << "Max comparisons : " 
+				<< _fordJohnsonBound(_sourceItems.size()) << "\n" << std::endl;
+	}
+	if (DEBUG == 0)
+		_printContainerInt("After: ", _vItems, PRINT_ITEMS);
+	
+	if (DEBUG >= 1) {
+		_printContainerInt("Sorted vector   : \n", _vItems);
+		std::cout << "Comparisons     : " << _vCounter << "\n" << std::endl;
+		_printContainerInt("Sorted deque    : \n", _dItems);
+		std::cout << "Comparisons     : " << _dCounter << "\n" << std::endl;
+	}
+	
+	std::cout	<< "Time to process a range of "	<< _vItems.size() 
+				<< " elements with std::vector : "	<< _vTime
+				<< " us" << std::endl;
+	std::cout	<< "Time to process a range of "	<< _dItems.size() 
+				<< " elements with std::deque  : "	<< _dTime
+				<< " us" << std::endl;
 }
 
 PmergeMe::node_s::node_s(void) : 

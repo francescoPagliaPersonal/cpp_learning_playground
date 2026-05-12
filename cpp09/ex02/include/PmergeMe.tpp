@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 09:31:43 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 15:58:45 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/12 10:56:34 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,17 @@ void	PmergeMe::_printContainerInt(std::string title, T container)
 	for (id = 0; id < container.size(); ++id)
 		std::cout << " " << container[id] << " ";
 	std::cout << std::endl;
+}
+
+template<typename T>
+void	PmergeMe::_printContainerInt(std::string title, T container, typename T::size_type items)
+{
+	
+	typename T::size_type	id;
+	typename T::size_type	limit;
+	std::cout << title ;
+	limit = container.size() > items ? items : container.size();
+	for (id = 0; id < limit; ++id)
+		std::cout << " " << container[id];
+	std::cout << (container.size() > items ? " [...]" : "") << std::endl;
 }

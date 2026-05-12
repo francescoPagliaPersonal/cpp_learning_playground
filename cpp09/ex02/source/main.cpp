@@ -6,18 +6,12 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:34:15 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 16:03:36 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/12 12:05:37 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <exception>
-#include <iostream>
-
-/*
-this list creates issues:
-73, 13, 16, 37, 18, 90, 58, 54, 83.
-*/
 
 int main(int ac, const char **av)
 {

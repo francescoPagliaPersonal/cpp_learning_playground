@@ -6,7 +6,7 @@
 #    By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 16:56:29 by fpaglia           #+#    #+#              #
-#    Updated: 2026/05/11 11:38:37 by fpaglia          ###   ########.fr        #
+#    Updated: 2026/05/12 10:41:58 by fpaglia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ FILES = PmergeMe.cpp \
 		PmergeMe.mergeInsert.cpp PmergeMe.buildRange.cpp \
 		PmergeMe.list2container.cpp PmergeMe.vec2deq.cpp \
 		PmergeMe.print.cpp \
+		PmergeMe.getTimeDelta.cpp \
 		PmergeMe.fordJohnsonBound.cpp \
 		main.cpp 
 		

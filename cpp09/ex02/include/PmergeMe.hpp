@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:13:30 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 16:00:33 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/12 11:46:27 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # ifndef DEBUG
 #  define DEBUG 0
 # endif
-
+# ifndef PRINT_ITEMS
+#  define PRINT_ITEMS  5
+# endif
 #include <cstddef>
 #include <deque>
 #include <vector>
@@ -63,9 +65,12 @@ class PmergeMe
 	size_t				_vCounter;
 	size_t				_dCounter;
 	node_s *			_maxBound;
+	std::string			_vTime;
+	std::string			_dTime;
 
 	
-	static	std::vector<int>		_jacobstahlSeq(int size);
+	static std::string				_getTimeDelta(struct timeval & begin);
+	static std::vector<int>			_jacobstahlSeq(int size);
 	int								_fordJohnsonBound(int n) const ;
 
 	template<typename T > 
@@ -97,6 +102,7 @@ class PmergeMe
 	void	_printIterable(std::string title, T const & obj);
 	
 	void	_printNode_s(std::string title, std::vector<node_s> const & obj);
+	void	_printNode_s(std::string title, std::vector<node_s> const & obj, int items);
 
 	
 	// debug printing -------------------->
@@ -111,6 +117,9 @@ class PmergeMe
 
 	template<typename T>
 	void	_printContainerInt(std::string title, T container);
+	
+	template<typename T>
+	void	_printContainerInt(std::string title, T container, typename T::size_type items);
 
 	void	_printWinnerList(std::string title, node_s * winList);
 
