@@ -6,7 +6,7 @@
 /*   By: fpaglia <fpaglia@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 12:35:04 by fpaglia           #+#    #+#             */
-/*   Updated: 2026/05/11 12:32:13 by fpaglia          ###   ########.fr       */
+/*   Updated: 2026/05/12 11:17:18 by fpaglia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool checkDuplicates(std::vector<int> & arr, int value)
 		else 
 			high = mid;
 	}
-	if (arr[low] != value && arr[low + 1] != value )
+	if (arr.size() == low || arr[low] != value )
 	{
 		arr.insert(arr.begin() + low, value);
 		return false;
