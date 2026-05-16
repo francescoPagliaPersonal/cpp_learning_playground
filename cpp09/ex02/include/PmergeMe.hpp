@@ -81,7 +81,8 @@ class PmergeMe
 	void			_value2pointers(C & db, T & ptrDb);
 
 	template<typename T >
-	node_s *		_executeSort(T & ptrDb, int level, size_t & counter, T (*buildRange)(node_s * bound));
+	node_s *		_executeSort(T & ptrDb, int level, size_t & counter, 
+						T (*buildRange)(node_s * first, node_s * bound, typename T::size_type size));
 	
 	template<typename T >
 	T 				_pairNodes(T const & arr, size_t & counter);
@@ -89,8 +90,8 @@ class PmergeMe
 	template<typename T >
 	node_s * 		_getInsertionNode(T const & numbers, int value, size_t & counter);
 
-	static std::vector<node_s *>	_buildRangeVector(node_s * last) ;
-	static std::deque<node_s *>		_buildRangeDeque(node_s * last) ;
+	static std::vector<node_s *>	_buildRangeVector(node_s * first, node_s * bound, std::vector<node_s *>::size_type size);
+	static std::deque<node_s *>		_buildRangeDeque(node_s * first, node_s * bound, std::deque<node_s *>::size_type size);
 	
 	// from sorted list export arrays  -------------------->
 	std::vector<int>				_list2vector(node_s *list);
@@ -186,7 +187,9 @@ PmergeMe::node_s * PmergeMe::_getInsertionNode(T const & numbers, int value, siz
 }
 
 template<typename T >
-PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, T (*buildRange)(node_s * bound)) 
+PmergeMe::node_s * 
+PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
+						T (*buildRange)(node_s * first, node_s * bound, typename T::size_type size)) 
 {
 	if (arr.size() < 2) {
 		if (DEBUG >= 1) {
@@ -283,19 +286,18 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 	{
 		T binSearchRange;
 		node_s * currNode = looser[jsSeq[i]];
-		// std::cout << "currNode:" << currNode->value << " father: " << currNode->parent <<std::endl;
 		node_s * rightBound = currNode->parent;
 		if (DEBUG >= 1) 
 			std::cout << "to insert: " << currNode->value << std::endl;
 		if (rightBound != NULL) {
-			binSearchRange = buildRange(rightBound);
+			binSearchRange = buildRange(winList, rightBound, looser.size() * 2);
 			binSearchRange.pop_back();
 		}
 		else {
 			if (DEBUG >= 1) 
 				std::cout << "missing father starting from maxBound" << std::endl;
 			rightBound = _maxBound;
-			binSearchRange = buildRange(rightBound);
+			binSearchRange = buildRange(winList, rightBound, looser.size() * 2);
 		}
 		node_s * insertPoint = _getInsertionNode(binSearchRange, currNode->value, counter);
 		
@@ -312,7 +314,7 @@ PmergeMe::node_s * PmergeMe::_executeSort(T & arr, int level, size_t & counter, 
 		}
 		else {
 			if (insertPoint == NULL)
-			insertPoint = rightBound;
+				insertPoint = rightBound;
 			if (DEBUG >= 1) 
 				std::cout << "insertion point: " << insertPoint->value << "\n" << std::endl;
 

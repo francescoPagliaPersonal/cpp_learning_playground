@@ -12,26 +12,32 @@
 
 #include "PmergeMe.hpp"
 
-std::vector<PmergeMe::node_s *> PmergeMe::_buildRangeVector(node_s * last) 
+std::vector<PmergeMe::node_s *> 
+PmergeMe::_buildRangeVector(node_s * first, node_s * last, 
+							std::vector<node_s *>::size_type size)
 {	
 	std::vector<node_s *> arr;
+	arr.reserve(size);
 	
-	arr.push_back(last);
+	node_s * tmp = first;
 	
-	node_s * tmp = last->prev;
-	
-	while (tmp != NULL)
+	while (tmp != last)
 	{
-		arr.insert(arr.begin(), tmp);
-		tmp = tmp->prev;
+		arr.push_back(tmp);
+		tmp = tmp->next;
 	}
+	arr.push_back(last);
 	return arr;
 }
 
 
-std::deque<PmergeMe::node_s *> PmergeMe::_buildRangeDeque(node_s * last) 
+std::deque<PmergeMe::node_s *> 
+PmergeMe::_buildRangeDeque(node_s * first, node_s * last, 
+							std::deque<node_s *>::size_type size)
 {	
 	std::deque<node_s *> arr;
+	(void)first;
+	(void)size;
 	
 	arr.push_back(last);
 	
